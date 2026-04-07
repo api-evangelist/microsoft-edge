@@ -14,10 +14,10 @@ apis:
     humanUrl: https://developer.microsoft.com/microsoft-edge/webview2/
     baseUrl: https://api.webview2.com
     tags:
-      - webview
-      - embedding
-      - native apps
-      - browser control
+      - Browser Control
+      - Embedding
+      - Native Apps
+      - Webview
     properties:
       - type: Documentation
         url: https://docs.microsoft.com/microsoft-edge/webview2/
@@ -33,23 +33,20 @@ apis:
     description: >-
       Debug and inspect Microsoft Edge browser using Chrome DevTools Protocol.
     image: https://docs.microsoft.com/en-us/media/logos/logo_edge.svg
-    humanUrl: 
-      https://docs.microsoft.com/microsoft-edge/devtools-protocol-chromium/
+    humanUrl: https://docs.microsoft.com/microsoft-edge/devtools-protocol-chromium/
     baseUrl: http://localhost:9222
     tags:
-      - devtools
-      - debugging
-      - automation
-      - testing
+      - Automation
+      - Debugging
+      - Devtools
+      - Testing
     properties:
       - type: Documentation
-        url: 
-          https://docs.microsoft.com/microsoft-edge/devtools-protocol-chromium/
+        url: https://docs.microsoft.com/microsoft-edge/devtools-protocol-chromium/
       - type: Protocol Reference
         url: https://chromedevtools.github.io/devtools-protocol/
       - type: Getting Started
-        url: 
-          https://docs.microsoft.com/microsoft-edge/devtools-protocol-chromium/get-started
+        url: https://docs.microsoft.com/microsoft-edge/devtools-protocol-chromium/get-started
   - name: Microsoft Edge Extensions API
     description: >-
       Build browser extensions for Microsoft Edge.
@@ -57,19 +54,17 @@ apis:
     humanUrl: https://docs.microsoft.com/microsoft-edge/extensions-chromium/
     baseUrl: https://microsoftedge.microsoft.com/addons
     tags:
-      - extensions
-      - add-ons
-      - browser extensions
-      - web extensions
+      - Add-Ons
+      - Browser Extensions
+      - Extensions
+      - Web Extensions
     properties:
       - type: Documentation
         url: https://docs.microsoft.com/microsoft-edge/extensions-chromium/
       - type: Developer Guide
-        url: 
-          https://docs.microsoft.com/microsoft-edge/extensions-chromium/developer-guide/
+        url: https://docs.microsoft.com/microsoft-edge/extensions-chromium/developer-guide/
       - type: API Reference
-        url: 
-          https://docs.microsoft.com/microsoft-edge/extensions-chromium/developer-guide/api-support
+        url: https://docs.microsoft.com/microsoft-edge/extensions-chromium/developer-guide/api-support
       - type: Partner Center
         url: https://partner.microsoft.com/dashboard/microsoftedge/
       - type: Extensions Store
@@ -78,33 +73,29 @@ apis:
     description: >-
       Modern web APIs and standards supported in Microsoft Edge.
     image: https://docs.microsoft.com/en-us/media/logos/logo_edge.svg
-    humanUrl: 
-      https://docs.microsoft.com/microsoft-edge/progressive-web-apps-chromium/
+    humanUrl: https://docs.microsoft.com/microsoft-edge/progressive-web-apps-chromium/
     baseUrl: https://www.microsoft.com/edge
     tags:
-      - web platform
-      - progressive web apps
-      - pwa
-      - web standards
+      - Progressive Web Apps
+      - Pwa
+      - Web Platform
+      - Web Standards
     properties:
       - type: Documentation
-        url: 
-          https://docs.microsoft.com/microsoft-edge/progressive-web-apps-chromium/
+        url: https://docs.microsoft.com/microsoft-edge/progressive-web-apps-chromium/
       - type: Web Platform Status
         url: https://developer.microsoft.com/microsoft-edge/platform/status/
       - type: PWA Documentation
-        url: 
-          https://docs.microsoft.com/microsoft-edge/progressive-web-apps-chromium/
+        url: https://docs.microsoft.com/microsoft-edge/progressive-web-apps-chromium/
       - type: What's New
-        url: 
-          https://docs.microsoft.com/microsoft-edge/progressive-web-apps-chromium/whats-new/
+        url: https://docs.microsoft.com/microsoft-edge/progressive-web-apps-chromium/whats-new/
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
 tags:
-  - browser
-  - microsoft
-  - edge
-  - chromium
-  - web development
-  - developer tools
+  - Browser
+  - Chromium
+  - Developer Tools
+  - Edge
+  - Microsoft
+  - Web Development
