@@ -1,0 +1,48 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-edge/refs/heads/main/json-structure/devtools-api-protocol-schema-structure.json",
+  "name": "ProtocolSchema",
+  "description": "DevTools Protocol schema definition from the Microsoft Edge DevTools Protocol HTTP API",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "object",
+      "description": "Protocol version",
+      "properties": {
+        "major": {
+          "type": "string",
+          "description": "Major version number"
+        },
+        "minor": {
+          "type": "string",
+          "description": "Minor version number"
+        }
+      }
+    },
+    "domains": {
+      "type": "array",
+      "description": "Protocol domains",
+      "items": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string",
+            "description": "Domain name"
+          },
+          "experimental": {
+            "type": "boolean",
+            "description": "Whether the domain is experimental"
+          },
+          "commands": {
+            "type": "array",
+            "description": "Domain commands"
+          },
+          "events": {
+            "type": "array",
+            "description": "Domain events"
+          }
+        }
+      }
+    }
+  }
+}

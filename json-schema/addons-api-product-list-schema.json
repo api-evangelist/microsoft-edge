@@ -1,0 +1,20 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-edge/refs/heads/main/json-schema/addons-api-product-list-schema.json",
+  "title": "ProductList",
+  "description": "Paginated list of extension products in the Microsoft Edge Add-ons store",
+  "type": "object",
+  "properties": {
+    "value": {
+      "type": "array",
+      "description": "Array of products",
+      "items": {
+        "$ref": "addons-api-product-schema.json"
+      }
+    },
+    "totalCount": {
+      "type": "integer",
+      "description": "Total number of products"
+    }
+  }
+}

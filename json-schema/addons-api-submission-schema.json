@@ -1,0 +1,32 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-edge/refs/heads/main/json-schema/addons-api-submission-schema.json",
+  "title": "Submission",
+  "description": "An extension submission for review and publishing in the Microsoft Edge Add-ons store",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Submission identifier"
+    },
+    "productId": {
+      "type": "string",
+      "description": "Parent product identifier"
+    },
+    "status": {
+      "type": "string",
+      "description": "Submission status",
+      "enum": ["Draft", "InReview", "Published", "Failed", "Cancelled"]
+    },
+    "createdUtc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Submission creation timestamp"
+    },
+    "completedUtc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Submission completion timestamp"
+    }
+  }
+}

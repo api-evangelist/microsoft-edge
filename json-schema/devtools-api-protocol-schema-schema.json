@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-edge/refs/heads/main/json-schema/devtools-api-protocol-schema-schema.json",
+  "title": "ProtocolSchema",
+  "description": "DevTools Protocol schema definition from the Microsoft Edge DevTools Protocol HTTP API",
+  "type": "object",
+  "properties": {
+    "version": {
+      "type": "object",
+      "description": "Protocol version",
+      "properties": {
+        "major": {
+          "type": "string",
+          "description": "Major version number"
+        },
+        "minor": {
+          "type": "string",
+          "description": "Minor version number"
+        }
+      }
+    },
+    "domains": {
+      "type": "array",
+      "description": "Protocol domains",
+      "items": {
+        "type": "object",
+        "properties": {
+          "domain": {
+            "type": "string",
+            "description": "Domain name"
+          },
+          "experimental": {
+            "type": "boolean",
+            "description": "Whether the domain is experimental"
+          },
+          "commands": {
+            "type": "array",
+            "description": "Domain commands",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string",
+                  "description": "Command name"
+                },
+                "parameters": {
+                  "type": "array",
+                  "description": "Command parameters",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "name": {
+                        "type": "string"
+                      },
+                      "type": {
+                        "type": "string"
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          },
+          "events": {
+            "type": "array",
+            "description": "Domain events",
+            "items": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

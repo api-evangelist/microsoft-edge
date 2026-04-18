@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-edge/refs/heads/main/json-schema/addons-api-package-upload-result-schema.json",
+  "title": "PackageUploadResult",
+  "description": "Package upload operation result for the Microsoft Edge Add-ons API",
+  "type": "object",
+  "properties": {
+    "operationId": {
+      "type": "string",
+      "description": "Upload operation identifier"
+    },
+    "status": {
+      "type": "string",
+      "description": "Operation status",
+      "enum": ["InProgress", "Succeeded", "Failed"]
+    },
+    "message": {
+      "type": "string",
+      "description": "Status message"
+    }
+  }
+}

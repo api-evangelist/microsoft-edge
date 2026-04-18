@@ -1,0 +1,10 @@
+{
+  "description": "",
+  "devtoolsFrontendUrl": "/devtools/inspector.html?ws=localhost:9222/devtools/page/ABC123",
+  "faviconUrl": "https://www.example.com/favicon.ico",
+  "id": "ABC123",
+  "title": "Example Page - Microsoft Edge",
+  "type": "page",
+  "url": "https://www.example.com",
+  "webSocketDebuggerUrl": "ws://localhost:9222/devtools/page/ABC123"
+}

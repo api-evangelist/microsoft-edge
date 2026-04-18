@@ -1,0 +1,354 @@
+openapi: 3.0.3
+info:
+  title: Microsoft Edge DevTools Protocol HTTP API
+  description: >-
+    HTTP endpoints for the Microsoft Edge DevTools Protocol, based on the
+    Chromium DevTools Protocol. These endpoints allow programmatic discovery
+    and management of debuggable browser targets including pages, service
+    workers, and extensions. The HTTP API serves as the entry point for
+    establishing WebSocket debugging connections to individual targets.
+  version: 1.0.0
+  contact:
+    name: Microsoft Edge Developer
+    url: https://developer.microsoft.com/microsoft-edge/
+  license:
+    name: Microsoft Software License
+    url: https://www.microsoft.com/legal/terms-of-use
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+  - url: http://localhost:9222
+    description: Local Edge DevTools debugging endpoint
+security: []
+tags:
+  - name: Targets
+    description: Discover and manage debuggable browser targets
+  - name: Browser
+    description: Browser-level information and management
+  - name: Pages
+    description: Page target management
+paths:
+  /json/list:
+    get:
+      operationId: listTargets
+      summary: Microsoft Edge List Debuggable Targets
+      description: >-
+        Returns a JSON array of all debuggable targets including pages,
+        service workers, extensions, and background pages with their
+        WebSocket debugger URLs.
+      tags:
+        - Targets
+      responses:
+        '200':
+          description: List of debuggable targets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Target'
+              examples:
+                ListTargets200Example:
+                  summary: Default listTargets 200 response
+                  x-microcks-default: true
+                  value:
+                    - description: ''
+                      devtoolsFrontendUrl: /devtools/inspector.html?ws=localhost:9222/devtools/page/ABC123
+                      id: ABC123
+                      title: Example Page
+                      type: page
+                      url: https://www.example.com
+                      webSocketDebuggerUrl: ws://localhost:9222/devtools/page/ABC123
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /json/new:
+    put:
+      operationId: createTarget
+      summary: Microsoft Edge Create New Target
+      description: >-
+        Opens a new tab navigated to the specified URL and returns the
+        new target's debugging information.
+      tags:
+        - Pages
+      parameters:
+        - name: url
+          in: query
+          required: false
+          description: URL to navigate the new tab to
+          schema:
+            type: string
+            format: uri
+          example: https://www.example.com
+      responses:
+        '200':
+          description: New target created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Target'
+              examples:
+                CreateTarget200Example:
+                  summary: Default createTarget 200 response
+                  x-microcks-default: true
+                  value:
+                    description: ''
+                    devtoolsFrontendUrl: /devtools/inspector.html?ws=localhost:9222/devtools/page/DEF456
+                    id: DEF456
+                    title: New Tab
+                    type: page
+                    url: https://www.example.com
+                    webSocketDebuggerUrl: ws://localhost:9222/devtools/page/DEF456
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /json/activate/{targetId}:
+    post:
+      operationId: activateTarget
+      summary: Microsoft Edge Activate Target
+      description: >-
+        Brings the specified target to the foreground, making it the
+        active page in the browser window.
+      tags:
+        - Pages
+      parameters:
+        - name: targetId
+          in: path
+          required: true
+          description: Target identifier
+          schema:
+            type: string
+          example: ABC123
+      responses:
+        '200':
+          description: Target activated successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                ActivateTarget200Example:
+                  summary: Default activateTarget 200 response
+                  x-microcks-default: true
+                  value: Target activated
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /json/close/{targetId}:
+    post:
+      operationId: closeTarget
+      summary: Microsoft Edge Close Target
+      description: >-
+        Closes the specified target tab or page.
+      tags:
+        - Pages
+      parameters:
+        - name: targetId
+          in: path
+          required: true
+          description: Target identifier
+          schema:
+            type: string
+          example: ABC123
+      responses:
+        '200':
+          description: Target closed successfully
+          content:
+            text/plain:
+              schema:
+                type: string
+              examples:
+                CloseTarget200Example:
+                  summary: Default closeTarget 200 response
+                  x-microcks-default: true
+                  value: Target is closing
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /json/version:
+    get:
+      operationId: getBrowserVersion
+      summary: Microsoft Edge Get Browser Version
+      description: >-
+        Returns browser version information including the browser name,
+        protocol version, user agent string, V8 version, and WebKit version.
+      tags:
+        - Browser
+      responses:
+        '200':
+          description: Browser version information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrowserVersion'
+              examples:
+                GetBrowserVersion200Example:
+                  summary: Default getBrowserVersion 200 response
+                  x-microcks-default: true
+                  value:
+                    Browser: Microsoft Edge/125.0.0.0
+                    Protocol-Version: '1.3'
+                    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0
+                    V8-Version: 12.5.283.0
+                    WebKit-Version: 537.36
+                    webSocketDebuggerUrl: ws://localhost:9222/devtools/browser/GHI789
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /json/protocol:
+    get:
+      operationId: getProtocolSchema
+      summary: Microsoft Edge Get Protocol Schema
+      description: >-
+        Returns the complete DevTools Protocol schema in JSON format,
+        including all domains, commands, events, and types.
+      tags:
+        - Browser
+      responses:
+        '200':
+          description: Full protocol schema
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProtocolSchema'
+              examples:
+                GetProtocolSchema200Example:
+                  summary: Default getProtocolSchema 200 response
+                  x-microcks-default: true
+                  value:
+                    version:
+                      major: '1'
+                      minor: '3'
+                    domains:
+                      - domain: Page
+                        experimental: false
+                        commands:
+                          - name: navigate
+                            parameters:
+                              - name: url
+                                type: string
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Target:
+      type: object
+      description: A debuggable browser target
+      properties:
+        description:
+          type: string
+          description: Target description
+          example: ''
+        devtoolsFrontendUrl:
+          type: string
+          description: URL to the DevTools frontend for this target
+          example: /devtools/inspector.html?ws=localhost:9222/devtools/page/ABC123
+        faviconUrl:
+          type: string
+          description: URL to the target's favicon
+          example: https://www.example.com/favicon.ico
+        id:
+          type: string
+          description: Unique target identifier
+          example: ABC123
+        title:
+          type: string
+          description: Page title
+          example: Example Page
+        type:
+          type: string
+          description: Target type
+          enum:
+            - page
+            - background_page
+            - service_worker
+            - worker
+            - iframe
+            - other
+          example: page
+        url:
+          type: string
+          format: uri
+          description: Current URL of the target
+          example: https://www.example.com
+        webSocketDebuggerUrl:
+          type: string
+          description: WebSocket URL for debugging this target
+          example: ws://localhost:9222/devtools/page/ABC123
+    BrowserVersion:
+      type: object
+      description: Browser version and protocol information
+      properties:
+        Browser:
+          type: string
+          description: Browser name and version
+          example: Microsoft Edge/125.0.0.0
+        Protocol-Version:
+          type: string
+          description: DevTools Protocol version
+          example: '1.3'
+        User-Agent:
+          type: string
+          description: Full user agent string
+          example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+        V8-Version:
+          type: string
+          description: V8 JavaScript engine version
+          example: 12.5.283.0
+        WebKit-Version:
+          type: string
+          description: WebKit rendering engine version
+          example: 537.36
+        webSocketDebuggerUrl:
+          type: string
+          description: WebSocket URL for browser-level debugging
+          example: ws://localhost:9222/devtools/browser/GHI789
+    ProtocolSchema:
+      type: object
+      description: DevTools Protocol schema definition
+      properties:
+        version:
+          type: object
+          properties:
+            major:
+              type: string
+              example: '1'
+            minor:
+              type: string
+              example: '3'
+        domains:
+          type: array
+          description: Protocol domains
+          items:
+            type: object
+            properties:
+              domain:
+                type: string
+                example: Page
+              experimental:
+                type: boolean
+                example: false
+              commands:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    parameters:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          type:
+                            type: string
+              events:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string

@@ -1,0 +1,78 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "edge": "https://developer.microsoft.com/microsoft-edge/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Target": "edge:Target",
+    "BrowserVersion": "edge:BrowserVersion",
+    "ProtocolSchema": "edge:ProtocolSchema",
+
+    "id": {
+      "@id": "dcterms:identifier",
+      "@type": "xsd:string"
+    },
+    "title": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "url": {
+      "@id": "schema:url",
+      "@type": "@id"
+    },
+    "type": {
+      "@id": "edge:type",
+      "@type": "xsd:string"
+    },
+    "devtoolsFrontendUrl": {
+      "@id": "edge:devtools_frontend_url",
+      "@type": "xsd:string"
+    },
+    "faviconUrl": {
+      "@id": "edge:favicon_url",
+      "@type": "@id"
+    },
+    "webSocketDebuggerUrl": {
+      "@id": "edge:web_socket_debugger_url",
+      "@type": "xsd:string"
+    },
+    "browser": {
+      "@id": "edge:browser",
+      "@type": "xsd:string"
+    },
+    "protocolVersion": {
+      "@id": "edge:protocol_version",
+      "@type": "xsd:string"
+    },
+    "userAgent": {
+      "@id": "edge:user_agent",
+      "@type": "xsd:string"
+    },
+    "v8Version": {
+      "@id": "edge:v8_version",
+      "@type": "xsd:string"
+    },
+    "webKitVersion": {
+      "@id": "edge:webkit_version",
+      "@type": "xsd:string"
+    },
+    "domains": {
+      "@id": "edge:domains",
+      "@container": "@set"
+    },
+    "commands": {
+      "@id": "edge:commands",
+      "@container": "@set"
+    },
+    "events": {
+      "@id": "edge:events",
+      "@container": "@set"
+    }
+  }
+}

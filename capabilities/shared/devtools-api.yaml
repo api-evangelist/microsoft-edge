@@ -1,0 +1,93 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Microsoft Edge DevTools Protocol HTTP API
+  description: >-
+    HTTP endpoints for the Microsoft Edge DevTools Protocol. Allows
+    programmatic discovery and management of debuggable browser targets
+    including pages, service workers, and extensions.
+  tags:
+    - Microsoft Edge
+    - DevTools
+    - Debugging
+  created: '2026-04-18'
+  modified: '2026-04-18'
+binds: []
+capability:
+  consumes:
+    - type: http
+      namespace: edge-devtools-api
+      baseUri: http://localhost:9222
+      description: >-
+        HTTP endpoints for the Microsoft Edge DevTools Protocol based on the
+        Chromium DevTools Protocol.
+      resources:
+        - name: targets
+          path: /json
+          description: Debuggable browser target management
+          operations:
+            - name: listTargets
+              method: GET
+              path: /list
+              description: Microsoft Edge List Debuggable Targets
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: array
+                  value: $.
+            - name: createTarget
+              method: PUT
+              path: /new
+              description: Microsoft Edge Create New Target
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+            - name: activateTarget
+              method: POST
+              path: /activate/{targetId}
+              description: Microsoft Edge Activate Target
+              inputParameters:
+                - name: targetId
+                  type: string
+                  required: true
+              outputRawFormat: text
+              outputParameters:
+                - name: result
+                  type: string
+                  value: $.
+            - name: closeTarget
+              method: POST
+              path: /close/{targetId}
+              description: Microsoft Edge Close Target
+              inputParameters:
+                - name: targetId
+                  type: string
+                  required: true
+              outputRawFormat: text
+              outputParameters:
+                - name: result
+                  type: string
+                  value: $.
+        - name: browser
+          path: /json
+          description: Browser information
+          operations:
+            - name: getBrowserVersion
+              method: GET
+              path: /version
+              description: Microsoft Edge Get Browser Version
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+            - name: getProtocolSchema
+              method: GET
+              path: /protocol
+              description: Microsoft Edge Get Protocol Schema
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.

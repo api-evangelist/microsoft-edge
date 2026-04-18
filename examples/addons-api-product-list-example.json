@@ -1,0 +1,17 @@
+{
+  "value": [
+    {
+      "id": "ext-500123",
+      "name": "My Extension",
+      "status": "Published",
+      "lastUpdatedUtc": "2026-04-15T10:00:00Z"
+    },
+    {
+      "id": "ext-500456",
+      "name": "Tab Manager Pro",
+      "status": "Published",
+      "lastUpdatedUtc": "2026-04-10T08:30:00Z"
+    }
+  ],
+  "totalCount": 5
+}

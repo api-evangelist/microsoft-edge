@@ -1,0 +1,39 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-edge/refs/heads/main/json-schema/addons-api-product-schema.json",
+  "title": "Product",
+  "description": "An extension product in the Microsoft Edge Add-ons store",
+  "type": "object",
+  "properties": {
+    "id": {
+      "type": "string",
+      "description": "Product identifier"
+    },
+    "name": {
+      "type": "string",
+      "description": "Extension name"
+    },
+    "description": {
+      "type": "string",
+      "description": "Extension description"
+    },
+    "status": {
+      "type": "string",
+      "description": "Product publishing status",
+      "enum": ["Draft", "InReview", "Published", "Unpublished", "Rejected"]
+    },
+    "version": {
+      "type": "string",
+      "description": "Current published version"
+    },
+    "lastUpdatedUtc": {
+      "type": "string",
+      "format": "date-time",
+      "description": "Last update timestamp"
+    },
+    "category": {
+      "type": "string",
+      "description": "Store category"
+    }
+  }
+}

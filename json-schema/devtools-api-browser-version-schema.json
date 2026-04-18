@@ -1,0 +1,33 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-edge/refs/heads/main/json-schema/devtools-api-browser-version-schema.json",
+  "title": "BrowserVersion",
+  "description": "Browser version and protocol information from the Microsoft Edge DevTools Protocol",
+  "type": "object",
+  "properties": {
+    "Browser": {
+      "type": "string",
+      "description": "Browser name and version"
+    },
+    "Protocol-Version": {
+      "type": "string",
+      "description": "DevTools Protocol version"
+    },
+    "User-Agent": {
+      "type": "string",
+      "description": "Full user agent string"
+    },
+    "V8-Version": {
+      "type": "string",
+      "description": "V8 JavaScript engine version"
+    },
+    "WebKit-Version": {
+      "type": "string",
+      "description": "WebKit rendering engine version"
+    },
+    "webSocketDebuggerUrl": {
+      "type": "string",
+      "description": "WebSocket URL for browser-level debugging"
+    }
+  }
+}

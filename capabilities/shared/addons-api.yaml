@@ -1,0 +1,118 @@
+naftiko: 1.0.0-alpha1
+info:
+  label: Microsoft Edge Add-ons API
+  description: >-
+    REST API for managing Microsoft Edge browser extensions through the
+    Partner Center. Enables programmatic publishing, updating, and managing
+    Edge extensions in the Microsoft Edge Add-ons store.
+  tags:
+    - Microsoft Edge
+    - Extensions
+    - Add-Ons
+  created: '2026-04-18'
+  modified: '2026-04-18'
+binds:
+  - namespace: env
+    keys:
+      EDGE_ADDONS_ACCESS_TOKEN: EDGE_ADDONS_ACCESS_TOKEN
+capability:
+  consumes:
+    - type: http
+      namespace: edge-addons-api
+      baseUri: https://api.addons.microsoftedge.microsoft.com
+      description: >-
+        REST API for managing Microsoft Edge browser extensions through the
+        Partner Center.
+      authentication:
+        type: bearer
+        token: '{{EDGE_ADDONS_ACCESS_TOKEN}}'
+      resources:
+        - name: products
+          path: /v1/products
+          description: Extension product management
+          operations:
+            - name: listProducts
+              method: GET
+              description: Microsoft Edge List Products
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+            - name: getProduct
+              method: GET
+              path: /{productId}
+              description: Microsoft Edge Get Product
+              inputParameters:
+                - name: productId
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+        - name: submissions
+          path: /v1/products/{productId}/submissions
+          description: Extension submission management
+          operations:
+            - name: createSubmission
+              method: POST
+              description: Microsoft Edge Create Submission
+              inputParameters:
+                - name: productId
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+            - name: getSubmission
+              method: GET
+              path: /{submissionId}
+              description: Microsoft Edge Get Submission Status
+              inputParameters:
+                - name: productId
+                  type: string
+                  required: true
+                - name: submissionId
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+        - name: packages
+          path: /v1/products/{productId}/submissions/draft/package
+          description: Extension package upload
+          operations:
+            - name: uploadPackage
+              method: POST
+              description: Microsoft Edge Upload Package
+              inputParameters:
+                - name: productId
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.
+            - name: getPackageUploadStatus
+              method: GET
+              path: /operations/{operationId}
+              description: Microsoft Edge Get Package Upload Status
+              inputParameters:
+                - name: productId
+                  type: string
+                  required: true
+                - name: operationId
+                  type: string
+                  required: true
+              outputRawFormat: json
+              outputParameters:
+                - name: result
+                  type: object
+                  value: $.

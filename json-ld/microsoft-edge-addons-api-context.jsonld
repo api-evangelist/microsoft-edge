@@ -1,0 +1,66 @@
+{
+  "@context": {
+    "@version": 1.1,
+    "edge": "https://developer.microsoft.com/microsoft-edge/schema/",
+    "schema": "https://schema.org/",
+    "dcterms": "http://purl.org/dc/terms/",
+    "xsd": "http://www.w3.org/2001/XMLSchema#",
+
+    "Product": "edge:Product",
+    "Submission": "edge:Submission",
+    "PackageUploadResult": "edge:PackageUploadResult",
+
+    "id": {
+      "@id": "dcterms:identifier",
+      "@type": "xsd:string"
+    },
+    "name": {
+      "@id": "schema:name",
+      "@type": "xsd:string"
+    },
+    "description": {
+      "@id": "schema:description",
+      "@type": "xsd:string"
+    },
+    "status": {
+      "@id": "edge:status",
+      "@type": "xsd:string"
+    },
+    "version": {
+      "@id": "schema:version",
+      "@type": "xsd:string"
+    },
+    "lastUpdatedUtc": {
+      "@id": "schema:dateModified",
+      "@type": "xsd:dateTime"
+    },
+    "category": {
+      "@id": "edge:category",
+      "@type": "xsd:string"
+    },
+    "productId": {
+      "@id": "edge:product_id",
+      "@type": "xsd:string"
+    },
+    "createdUtc": {
+      "@id": "schema:dateCreated",
+      "@type": "xsd:dateTime"
+    },
+    "completedUtc": {
+      "@id": "edge:completed_utc",
+      "@type": "xsd:dateTime"
+    },
+    "operationId": {
+      "@id": "edge:operation_id",
+      "@type": "xsd:string"
+    },
+    "message": {
+      "@id": "edge:message",
+      "@type": "xsd:string"
+    },
+    "notes": {
+      "@id": "edge:notes",
+      "@type": "xsd:string"
+    }
+  }
+}

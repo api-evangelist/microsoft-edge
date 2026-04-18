@@ -1,0 +1,203 @@
+naftiko: "1.0.0-alpha1"
+
+info:
+  label: "Microsoft Edge Browser Development"
+  description: "Unified workflow for Microsoft Edge browser development combining DevTools Protocol debugging with Add-ons extension lifecycle management. Used by extension developers, web developers, and QA engineers."
+  tags:
+    - Microsoft Edge
+    - Browser Development
+    - Extensions
+    - Debugging
+    - Automation
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+binds:
+  - namespace: env
+    keys:
+      EDGE_DEVTOOLS_HOST: EDGE_DEVTOOLS_HOST
+      EDGE_ADDONS_API_TOKEN: EDGE_ADDONS_API_TOKEN
+
+capability:
+  consumes:
+    - import: devtools-api
+      location: ./shared/devtools-api.yaml
+    - import: addons-api
+      location: ./shared/addons-api.yaml
+
+  exposes:
+    - type: rest
+      port: 8080
+      namespace: browser-development-api
+      description: "Unified REST API for Microsoft Edge browser development workflows."
+      resources:
+        - path: /v1/targets
+          name: targets
+          description: "Debuggable browser targets"
+          operations:
+            - method: GET
+              name: list-targets
+              description: "List all debuggable targets"
+              call: "devtools-api.list-targets"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/targets/new
+          name: new-target
+          description: "Create new browser target"
+          operations:
+            - method: PUT
+              name: create-target
+              description: "Open a new browser tab"
+              call: "devtools-api.create-target"
+              with:
+                url: "rest.url"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/version
+          name: version
+          description: "Browser version"
+          operations:
+            - method: GET
+              name: get-browser-version
+              description: "Get browser version info"
+              call: "devtools-api.get-browser-version"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/extensions
+          name: extensions
+          description: "Extension products"
+          operations:
+            - method: GET
+              name: list-products
+              description: "List extension products"
+              call: "addons-api.list-products"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+        - path: /v1/extensions/{productId}
+          name: extension-detail
+          description: "Extension product detail"
+          operations:
+            - method: GET
+              name: get-product
+              description: "Get extension details"
+              call: "addons-api.get-product"
+              with:
+                productId: "rest.productId"
+              outputParameters:
+                - type: object
+                  mapping: "$."
+
+    - type: mcp
+      port: 9090
+      namespace: browser-development-mcp
+      transport: http
+      description: "MCP server for AI-assisted Microsoft Edge browser development."
+      tools:
+        - name: list-targets
+          description: "List all debuggable browser targets in Microsoft Edge"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "devtools-api.list-targets"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-target
+          description: "Open a new browser tab in Microsoft Edge"
+          hints:
+            readOnly: false
+          call: "devtools-api.create-target"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: activate-target
+          description: "Bring a browser tab to the foreground"
+          hints:
+            readOnly: false
+          call: "devtools-api.activate-target"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: close-target
+          description: "Close a browser tab"
+          hints:
+            readOnly: false
+            destructive: true
+          call: "devtools-api.close-target"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-browser-version
+          description: "Get Microsoft Edge browser version information"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "devtools-api.get-browser-version"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-protocol-schema
+          description: "Get the full DevTools Protocol schema definition"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "devtools-api.get-protocol-schema"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: list-extensions
+          description: "List all extension products in the Edge Add-ons store"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "addons-api.list-products"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-extension
+          description: "Get details of an extension product"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "addons-api.get-product"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: create-submission
+          description: "Submit an extension for review and publishing"
+          hints:
+            readOnly: false
+          call: "addons-api.create-submission"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-submission-status
+          description: "Check the status of an extension submission"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "addons-api.get-submission"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: upload-package
+          description: "Upload a new extension package"
+          hints:
+            readOnly: false
+          call: "addons-api.upload-package"
+          outputParameters:
+            - type: object
+              mapping: "$."
+        - name: get-upload-status
+          description: "Check the status of a package upload"
+          hints:
+            readOnly: true
+            openWorld: true
+          call: "addons-api.get-upload-status"
+          outputParameters:
+            - type: object
+              mapping: "$."

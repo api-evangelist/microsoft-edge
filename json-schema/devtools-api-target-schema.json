@@ -1,0 +1,43 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-edge/refs/heads/main/json-schema/devtools-api-target-schema.json",
+  "title": "Target",
+  "description": "A debuggable browser target from the Microsoft Edge DevTools Protocol HTTP API",
+  "type": "object",
+  "properties": {
+    "description": {
+      "type": "string",
+      "description": "Target description"
+    },
+    "devtoolsFrontendUrl": {
+      "type": "string",
+      "description": "URL to the DevTools frontend for this target"
+    },
+    "faviconUrl": {
+      "type": "string",
+      "description": "URL to the target's favicon"
+    },
+    "id": {
+      "type": "string",
+      "description": "Unique target identifier"
+    },
+    "title": {
+      "type": "string",
+      "description": "Page title"
+    },
+    "type": {
+      "type": "string",
+      "description": "Target type",
+      "enum": ["page", "background_page", "service_worker", "worker", "iframe", "other"]
+    },
+    "url": {
+      "type": "string",
+      "format": "uri",
+      "description": "Current URL of the target"
+    },
+    "webSocketDebuggerUrl": {
+      "type": "string",
+      "description": "WebSocket URL for debugging this target"
+    }
+  }
+}

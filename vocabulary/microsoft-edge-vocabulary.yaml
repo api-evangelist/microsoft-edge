@@ -1,0 +1,225 @@
+vocabulary: "1.0.0"
+
+info:
+  provider: "Microsoft Edge"
+  description: "Vocabulary mapping operational and capability dimensions for Microsoft Edge browser development APIs."
+  created: "2026-04-18"
+  modified: "2026-04-18"
+
+operational:
+  apis:
+    - name: Microsoft Edge DevTools Protocol HTTP API
+      namespace: devtools-api
+      version: "1.0.0"
+      baseUrl: http://localhost:9222
+      status: active
+    - name: Microsoft Edge Add-ons API
+      namespace: addons-api
+      version: "1.0.0"
+      baseUrl: https://api.addons.microsoftedge.microsoft.com
+      status: active
+
+  resources:
+    - name: targets
+      api: devtools-api
+      description: "Debuggable browser targets including pages, service workers, and extensions"
+      actions: [list, create, activate, close]
+    - name: browser-version
+      api: devtools-api
+      description: "Browser version and protocol information"
+      actions: [get]
+    - name: protocol-schema
+      api: devtools-api
+      description: "DevTools Protocol schema definition"
+      actions: [get]
+    - name: products
+      api: addons-api
+      description: "Extension products in the Edge Add-ons store"
+      actions: [list, get]
+    - name: submissions
+      api: addons-api
+      description: "Extension submissions for review and publishing"
+      actions: [create, get]
+    - name: packages
+      api: addons-api
+      description: "Extension package uploads"
+      actions: [upload, get-status]
+
+  actions:
+    - name: list
+      httpMethod: GET
+      pattern: read
+      description: "Retrieve a collection of resources"
+    - name: get
+      httpMethod: GET
+      pattern: read
+      description: "Retrieve a single resource"
+    - name: create
+      httpMethod: POST
+      pattern: write
+      description: "Create a new resource"
+    - name: activate
+      httpMethod: POST
+      pattern: write
+      description: "Bring a target to the foreground"
+    - name: close
+      httpMethod: POST
+      pattern: destructive
+      description: "Close a browser target"
+    - name: upload
+      httpMethod: POST
+      pattern: write
+      description: "Upload a file"
+    - name: get-status
+      httpMethod: GET
+      pattern: read
+      description: "Check operation status"
+
+  schemas:
+    core:
+      - name: Target
+        description: "Debuggable browser target"
+        keyProperties: [id, title, type, url, webSocketDebuggerUrl]
+      - name: BrowserVersion
+        description: "Browser version information"
+        keyProperties: [Browser, Protocol-Version, User-Agent]
+      - name: Product
+        description: "Extension product in the store"
+        keyProperties: [id, name, status, version]
+      - name: Submission
+        description: "Extension submission for review"
+        keyProperties: [id, productId, status]
+      - name: PackageUploadResult
+        description: "Package upload operation result"
+        keyProperties: [operationId, status, message]
+
+  parameters:
+    pagination:
+      - name: $top
+        type: integer
+        description: "Maximum items to return"
+      - name: $skip
+        type: integer
+        description: "Items to skip"
+    identifiers:
+      - name: targetId
+        type: string
+        description: "Browser target identifier"
+      - name: productId
+        type: string
+        description: "Extension product identifier"
+      - name: submissionId
+        type: string
+        description: "Submission identifier"
+      - name: operationId
+        type: string
+        description: "Upload operation identifier"
+
+  enums:
+    targetTypes:
+      - page
+      - background_page
+      - service_worker
+      - worker
+      - iframe
+      - other
+    productStatuses:
+      - Draft
+      - InReview
+      - Published
+      - Unpublished
+      - Rejected
+    submissionStatuses:
+      - Draft
+      - InReview
+      - Published
+      - Failed
+      - Cancelled
+    uploadStatuses:
+      - InProgress
+      - Succeeded
+      - Failed
+
+  authentication:
+    schemes:
+      - type: none
+        apis: [devtools-api]
+        description: "DevTools Protocol HTTP API has no authentication (local only)"
+      - type: bearer
+        apis: [addons-api]
+        description: "OAuth 2.0 Bearer token via Azure AD client credentials flow"
+
+capability:
+  workflows:
+    - name: Browser Development
+      file: capabilities/browser-development.yaml
+      description: "Unified browser development workflow combining debugging and extension management"
+      apis: [devtools-api, addons-api]
+      toolCount: 12
+      personas: [Extension Developer, Web Developer, QA Engineer]
+      domains: [Debugging, Extension Management]
+
+  personas:
+    - id: extension-developer
+      name: Extension Developer
+      description: "Develops and publishes browser extensions for Microsoft Edge"
+      workflows: [Browser Development]
+    - id: web-developer
+      name: Web Developer
+      description: "Develops web applications and uses DevTools for debugging"
+      workflows: [Browser Development]
+    - id: qa-engineer
+      name: QA Engineer
+      description: "Tests web applications and extensions using DevTools automation"
+      workflows: [Browser Development]
+
+  domains:
+    - name: Debugging
+      description: "Browser debugging and inspection"
+      resources: [targets, browser-version, protocol-schema]
+    - name: Extension Management
+      description: "Extension lifecycle from development to publication"
+      resources: [products, submissions, packages]
+
+  namespaces:
+    consumed:
+      - devtools-api
+      - addons-api
+    restExposed:
+      - name: browser-development-api
+        port: 8080
+    mcpExposed:
+      - name: browser-development-mcp
+        port: 9090
+
+  binds:
+    - name: EDGE_DEVTOOLS_HOST
+      workflows: [Browser Development]
+    - name: EDGE_ADDONS_API_TOKEN
+      workflows: [Browser Development]
+
+crossReference:
+  - resource: targets
+    operations: [listTargets, createTarget, activateTarget, closeTarget]
+    workflows: [Browser Development]
+    personas: [Web Developer, QA Engineer, Extension Developer]
+  - resource: browser-version
+    operations: [getBrowserVersion]
+    workflows: [Browser Development]
+    personas: [Web Developer, QA Engineer]
+  - resource: protocol-schema
+    operations: [getProtocolSchema]
+    workflows: [Browser Development]
+    personas: [Web Developer]
+  - resource: products
+    operations: [listProducts, getProduct]
+    workflows: [Browser Development]
+    personas: [Extension Developer]
+  - resource: submissions
+    operations: [createSubmission, getSubmission]
+    workflows: [Browser Development]
+    personas: [Extension Developer]
+  - resource: packages
+    operations: [uploadPackage, getPackageUploadStatus]
+    workflows: [Browser Development]
+    personas: [Extension Developer]

@@ -1,0 +1,35 @@
+{
+  "version": {
+    "major": "1",
+    "minor": "3"
+  },
+  "domains": [
+    {
+      "domain": "Page",
+      "experimental": false,
+      "commands": [
+        {
+          "name": "navigate",
+          "parameters": [
+            {
+              "name": "url",
+              "type": "string"
+            }
+          ]
+        },
+        {
+          "name": "reload",
+          "parameters": []
+        }
+      ],
+      "events": [
+        {
+          "name": "loadEventFired"
+        },
+        {
+          "name": "domContentEventFired"
+        }
+      ]
+    }
+  ]
+}

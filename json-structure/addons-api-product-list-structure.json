@@ -1,0 +1,38 @@
+{
+  "$schema": "https://json-structure.org/meta/core/v0/#",
+  "$id": "https://raw.githubusercontent.com/api-evangelist/microsoft-edge/refs/heads/main/json-structure/addons-api-product-list-structure.json",
+  "name": "ProductList",
+  "description": "Paginated list of extension products in the Microsoft Edge Add-ons store",
+  "type": "object",
+  "properties": {
+    "value": {
+      "type": "array",
+      "description": "Array of products",
+      "items": {
+        "type": "object",
+        "properties": {
+          "id": {
+            "type": "string",
+            "description": "Product identifier"
+          },
+          "name": {
+            "type": "string",
+            "description": "Extension name"
+          },
+          "status": {
+            "type": "string",
+            "description": "Product publishing status"
+          },
+          "lastUpdatedUtc": {
+            "type": "datetime",
+            "description": "Last update timestamp"
+          }
+        }
+      }
+    },
+    "totalCount": {
+      "type": "integer",
+      "description": "Total number of products"
+    }
+  }
+}
