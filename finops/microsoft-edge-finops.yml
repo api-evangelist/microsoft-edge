@@ -1,5 +1,6 @@
 specification: FinOps Framework
 specificationVersion: '1.0'
+schema: https://www.finops.org/framework/
 alignedWith:
   framework: FinOps Foundation Framework
   frameworkUrl: https://www.finops.org/framework/
@@ -8,159 +9,69 @@ alignedWith:
   dataSpecUrl: https://focus.finops.org/focus-specification/v1-3/
 provider: Microsoft Edge
 providerId: microsoft-edge
-publisherName: Microsoft Edge
-serviceCategory: API
+publisherName: Microsoft Corporation
+serviceCategory: Developer Tools
 created: '2026-05-04'
-modified: '2026-05-04'
+modified: '2026-05-05'
+reconciled: true
 tags:
   - Browser
   - Chromium
   - Developer Tools
   - Edge
-  - Extensions
   - Microsoft
-  - Progressive Web Apps
-  - Web Development
-  - WebView
   - FinOps
-  - Cost Management
   - FOCUS
-description: FinOps framework definition for the Microsoft Edge API surface. Provides a FOCUS-aligned
-  mapping for cost allocation, usage measurement, and unit-economics reporting across the provider's APIs.
-principles:
-  - name: Visibility
-    description: Make API consumption costs visible to engineering, product, and finance teams in near
-      real-time.
-  - name: Allocation
-    description: Tag every chargeable API call with the consuming team, environment, application, and
-      feature so cost can be allocated.
-  - name: Optimization
-    description: Continuously evaluate request patterns, caching, batching, and tier selection to reduce
-      cost per useful unit of work.
-  - name: Accountability
-    description: Establish budget owners and chargeback or showback flows for each consuming team.
-domains:
-  - name: Understand Usage and Cost
-    capabilities:
-      - Data Ingestion
-      - Allocation
-      - Reporting and Analytics
-      - Anomaly Management
-  - name: Quantify Business Value
-    capabilities:
-      - Planning and Estimating
-      - Forecasting
-      - Budgeting
-      - Benchmarking
-      - Unit Economics
-  - name: Optimize Usage and Cost
-    capabilities:
-      - Architecting for Cloud
-      - Rate Optimization
-      - Workload Optimization
-      - Cloud Sustainability
-      - Licensing and SaaS
-  - name: Manage the FinOps Practice
-    capabilities:
-      - FinOps Practice Operations
-      - FinOps Education and Enablement
-      - Invoicing and Chargeback
-      - Onboarding Workloads
-      - Intersecting Disciplines
+description: 'FOCUS-aligned FinOps for Microsoft Edge: the browser and developer APIs are free, with enterprise
+  management surfaced as a no-incremental-charge feature of Microsoft 365 and Entra ID subscriptions.
+  Costs flow through the bundled Microsoft 365 SKU rather than per-call metering.'
+sources:
+  - https://www.microsoft.com/en-us/edge/business
+  - https://learn.microsoft.com/en-us/microsoft-edge/
 billingModel:
-  pricingCategory: Usage-Based
+  pricingCategory: Bundled with Microsoft 365
   billingFrequency: Monthly
   billingCurrency: USD
   chargeCategories:
     - Usage
     - Purchase
     - Tax
-    - Credit
     - Adjustment
-  chargeFrequency: Recurring
 focusColumns:
   ServiceName: Microsoft Edge
-  ServiceCategory: Developer Tools / API
-  ProviderName: Microsoft Edge
-  PublisherName: Microsoft Edge
-  InvoiceIssuerName: Microsoft Edge
-  PricingCategory: Usage-Based
-  PricingUnit: request
+  ServiceCategory: Developer Tools
+  ProviderName: Microsoft
+  PublisherName: Microsoft Corporation
+  InvoiceIssuerName: Microsoft Corporation
   BillingCurrency: USD
   ChargeCategory: Usage
 meters:
-  - name: api_requests
-    description: Count of billable API requests
+  - name: edge_for_business_seats
+    description: Active Edge for Business users counted via the parent Microsoft 365 / Entra ID seat licenses
+    unit: seat
+    aggregation: sum
+    dimensions:
+      - tenant
+      - sku
+  - name: addons_api_calls
+    description: Calls to the Edge Add-ons publishing API (no charge; tracked for fair-use)
     unit: request
     aggregation: sum
     dimensions:
-      - api
-      - endpoint
-      - tier
-      - region
-      - consumer
-  - name: data_egress
-    description: Bytes returned over the network in API responses
-    unit: GB
-    aggregation: sum
-    dimensions:
-      - api
-      - region
-      - consumer
-  - name: compute_seconds
-    description: Server-side compute consumed by the request, where applicable
-    unit: second
-    aggregation: sum
-    dimensions:
-      - api
-      - endpoint
-      - tier
-apis:
-  - name: Microsoft Edge Add-ons API
-    baseURL: https://api.addons.microsoftedge.microsoft.com
-    tags:
-      - Add-Ons
-      - Browser Extensions
-      - Extension Publishing
-      - Package Management
-      - Partner Center
-    serviceName: Microsoft Edge Add-ons API
-    serviceCategory: API
-  - name: Microsoft Edge DevTools Protocol HTTP API
-    baseURL: http://localhost:9222
-    tags:
-      - Automation
-      - Browser Debugging
-      - DevTools
-      - Remote Debugging
-      - Testing
-    serviceName: Microsoft Edge DevTools Protocol HTTP API
-    serviceCategory: API
-  - name: Microsoft Edge Extensions API
-    baseURL: https://microsoftedge.microsoft.com/addons
-    tags:
-      - Add-Ons
-      - Browser Extensions
-      - Chromium Extensions
-      - Web Extensions
-    serviceName: Microsoft Edge Extensions API
-    serviceCategory: API
-  - name: Microsoft Edge Web Platform APIs
-    baseURL: https://www.microsoft.com/edge
-    tags:
-      - Progressive Web Apps
-      - PWA
-      - Web Platform
-      - Web Standards
-    serviceName: Microsoft Edge Web Platform APIs
-    serviceCategory: API
-unitEconomics:
-  - name: Cost per 1K Requests
-    metric: billed_cost / (api_requests / 1000)
-    target: TBD
-  - name: Cost per Active Consumer
-    metric: billed_cost / active_consumers
-    target: TBD
+      - partner_center_account
+principles:
+  - name: Visibility
+    description: Edge consumption is observable via Microsoft 365 admin center usage reports and Entra
+      sign-in logs; there is no separate Edge billing meter.
+  - name: Allocation
+    description: Allocate Edge for Business usage to teams via the M365 / Entra group memberships that
+      control license assignment.
+  - name: Optimization
+    description: There is no per-seat charge for Edge itself; optimization focuses on the bundled M365
+      SKU and on reducing DevTools / extension complexity inside the enterprise.
+  - name: Accountability
+    description: IT owns Edge configuration via Intune / Group Policy; finance owns the underlying M365
+      SKU.
 maintainers:
   - FN: Kin Lane
     email: kin@apievangelist.com
