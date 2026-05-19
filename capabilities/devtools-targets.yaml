@@ -1,0 +1,67 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Microsoft Edge DevTools Protocol HTTP API — Targets
+  description: 'Microsoft Edge DevTools Protocol HTTP API — Targets. 1 operations. Lead operation: Microsoft Edge List Debuggable
+    Targets. Self-contained Naftiko capability covering one Microsoft Edge business surface.'
+  tags:
+  - Microsoft Edge
+  - Targets
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MICROSOFT_EDGE_API_KEY: MICROSOFT_EDGE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: devtools-targets
+    baseUri: http://localhost:9222
+    description: Microsoft Edge DevTools Protocol HTTP API — Targets business capability. Self-contained, no shared references.
+    resources:
+    - name: json-list
+      path: /json/list
+      operations:
+      - name: listtargets
+        method: GET
+        description: Microsoft Edge List Debuggable Targets
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+  exposes:
+  - type: rest
+    namespace: devtools-targets-rest
+    port: 8080
+    description: REST adapter for Microsoft Edge DevTools Protocol HTTP API — Targets. One Spectral-compliant resource per
+      consumed operation, prefixed with /v1.
+    resources:
+    - path: /v1/json/list
+      name: json-list
+      description: REST surface for json-list.
+      operations:
+      - method: GET
+        name: listtargets
+        description: Microsoft Edge List Debuggable Targets
+        call: devtools-targets.listtargets
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: devtools-targets-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Microsoft Edge DevTools Protocol HTTP API — Targets. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: microsoft-edge-list-debuggable-targets
+      description: Microsoft Edge List Debuggable Targets
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: devtools-targets.listtargets
+      outputParameters:
+      - type: object
+        mapping: $.

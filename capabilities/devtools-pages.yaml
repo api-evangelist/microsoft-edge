@@ -1,0 +1,160 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Microsoft Edge DevTools Protocol HTTP API — Pages
+  description: 'Microsoft Edge DevTools Protocol HTTP API — Pages. 3 operations. Lead operation: Microsoft Edge Activate Target.
+    Self-contained Naftiko capability covering one Microsoft Edge business surface.'
+  tags:
+  - Microsoft Edge
+  - Pages
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MICROSOFT_EDGE_API_KEY: MICROSOFT_EDGE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: devtools-pages
+    baseUri: http://localhost:9222
+    description: Microsoft Edge DevTools Protocol HTTP API — Pages business capability. Self-contained, no shared references.
+    resources:
+    - name: json-activate-targetId
+      path: /json/activate/{targetId}
+      operations:
+      - name: activatetarget
+        method: POST
+        description: Microsoft Edge Activate Target
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: targetId
+          in: path
+          type: string
+          description: Target identifier
+          required: true
+    - name: json-close-targetId
+      path: /json/close/{targetId}
+      operations:
+      - name: closetarget
+        method: POST
+        description: Microsoft Edge Close Target
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: targetId
+          in: path
+          type: string
+          description: Target identifier
+          required: true
+    - name: json-new
+      path: /json/new
+      operations:
+      - name: createtarget
+        method: PUT
+        description: Microsoft Edge Create New Target
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: url
+          in: query
+          type: string
+          description: URL to navigate the new tab to
+  exposes:
+  - type: rest
+    namespace: devtools-pages-rest
+    port: 8080
+    description: REST adapter for Microsoft Edge DevTools Protocol HTTP API — Pages. One Spectral-compliant resource per consumed
+      operation, prefixed with /v1.
+    resources:
+    - path: /v1/json/activate/{targetid}
+      name: json-activate-targetid
+      description: REST surface for json-activate-targetId.
+      operations:
+      - method: POST
+        name: activatetarget
+        description: Microsoft Edge Activate Target
+        call: devtools-pages.activatetarget
+        with:
+          targetId: rest.targetId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/json/close/{targetid}
+      name: json-close-targetid
+      description: REST surface for json-close-targetId.
+      operations:
+      - method: POST
+        name: closetarget
+        description: Microsoft Edge Close Target
+        call: devtools-pages.closetarget
+        with:
+          targetId: rest.targetId
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/json/new
+      name: json-new
+      description: REST surface for json-new.
+      operations:
+      - method: PUT
+        name: createtarget
+        description: Microsoft Edge Create New Target
+        call: devtools-pages.createtarget
+        with:
+          url: rest.url
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: devtools-pages-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Microsoft Edge DevTools Protocol HTTP API — Pages. One tool per consumed operation, routed
+      inline through this capability's consumes block.
+    tools:
+    - name: microsoft-edge-activate-target
+      description: Microsoft Edge Activate Target
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: devtools-pages.activatetarget
+      with:
+        targetId: tools.targetId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: microsoft-edge-close-target
+      description: Microsoft Edge Close Target
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: devtools-pages.closetarget
+      with:
+        targetId: tools.targetId
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: microsoft-edge-create-new-target
+      description: Microsoft Edge Create New Target
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: true
+      call: devtools-pages.createtarget
+      with:
+        url: tools.url
+      outputParameters:
+      - type: object
+        mapping: $.

@@ -1,0 +1,136 @@
+naftiko: 1.0.0-alpha2
+info:
+  label: Microsoft Edge Add-ons API — Packages
+  description: 'Microsoft Edge Add-ons API — Packages. 2 operations. Lead operation: Microsoft Edge Upload Package. Self-contained
+    Naftiko capability covering one Microsoft Edge business surface.'
+  tags:
+  - Microsoft Edge
+  - Packages
+  created: '2026-05-19'
+  modified: '2026-05-19'
+binds:
+- namespace: env
+  keys:
+    MICROSOFT_EDGE_API_KEY: MICROSOFT_EDGE_API_KEY
+capability:
+  consumes:
+  - type: http
+    namespace: addons-packages
+    baseUri: https://api.addons.microsoftedge.microsoft.com
+    description: Microsoft Edge Add-ons API — Packages business capability. Self-contained, no shared references.
+    resources:
+    - name: v1-products-productId-submissions-draft-package
+      path: /v1/products/{productId}/submissions/draft/package
+      operations:
+      - name: uploadpackage
+        method: POST
+        description: Microsoft Edge Upload Package
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: productId
+          in: path
+          type: string
+          description: Product identifier
+          required: true
+        - name: body
+          in: body
+          type: object
+          description: Request body (JSON).
+          required: true
+    - name: v1-products-productId-submissions-draft-package-operations-operationId
+      path: /v1/products/{productId}/submissions/draft/package/operations/{operationId}
+      operations:
+      - name: getpackageuploadstatus
+        method: GET
+        description: Microsoft Edge Get Package Upload Status
+        outputRawFormat: json
+        outputParameters:
+        - name: result
+          type: object
+          value: $.
+        inputParameters:
+        - name: productId
+          in: path
+          type: string
+          description: Product identifier
+          required: true
+        - name: operationId
+          in: path
+          type: string
+          description: Upload operation identifier
+          required: true
+    authentication:
+      type: bearer
+      token: '{{env.MICROSOFT_EDGE_API_KEY}}'
+  exposes:
+  - type: rest
+    namespace: addons-packages-rest
+    port: 8080
+    description: REST adapter for Microsoft Edge Add-ons API — Packages. One Spectral-compliant resource per consumed operation,
+      prefixed with /v1.
+    resources:
+    - path: /v1/v1/products/{productid}/submissions/draft/package
+      name: v1-products-productid-submissions-draft-package
+      description: REST surface for v1-products-productId-submissions-draft-package.
+      operations:
+      - method: POST
+        name: uploadpackage
+        description: Microsoft Edge Upload Package
+        call: addons-packages.uploadpackage
+        with:
+          productId: rest.productId
+          body: rest.body
+        outputParameters:
+        - type: object
+          mapping: $.
+    - path: /v1/v1/products/{productid}/submissions/draft/package/operations/{operationid}
+      name: v1-products-productid-submissions-draft-package-operations-operationid
+      description: REST surface for v1-products-productId-submissions-draft-package-operations-operationId.
+      operations:
+      - method: GET
+        name: getpackageuploadstatus
+        description: Microsoft Edge Get Package Upload Status
+        call: addons-packages.getpackageuploadstatus
+        with:
+          productId: rest.productId
+          operationId: rest.operationId
+        outputParameters:
+        - type: object
+          mapping: $.
+  - type: mcp
+    namespace: addons-packages-mcp
+    port: 9090
+    transport: http
+    description: MCP adapter for Microsoft Edge Add-ons API — Packages. One tool per consumed operation, routed inline through
+      this capability's consumes block.
+    tools:
+    - name: microsoft-edge-upload-package
+      description: Microsoft Edge Upload Package
+      hints:
+        readOnly: false
+        destructive: false
+        idempotent: false
+      call: addons-packages.uploadpackage
+      with:
+        productId: tools.productId
+        body: tools.body
+      outputParameters:
+      - type: object
+        mapping: $.
+    - name: microsoft-edge-get-package-upload
+      description: Microsoft Edge Get Package Upload Status
+      hints:
+        readOnly: true
+        destructive: false
+        idempotent: true
+      call: addons-packages.getpackageuploadstatus
+      with:
+        productId: tools.productId
+        operationId: tools.operationId
+      outputParameters:
+      - type: object
+        mapping: $.
