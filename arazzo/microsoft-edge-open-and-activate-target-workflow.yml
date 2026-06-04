@@ -1,0 +1,74 @@
+arazzo: 1.0.1
+info:
+  title: Microsoft Edge Open And Activate Target
+  summary: Confirm the DevTools endpoint, open a new tab at a URL, and bring it to the foreground.
+  description: >-
+    A DevTools Protocol automation flow against a local Microsoft Edge debugging
+    endpoint. The workflow first reads the browser version to confirm the
+    debugging endpoint is reachable and capture its WebSocket debugger URL, then
+    opens a new tab navigated to the supplied URL, and finally activates that new
+    target so it becomes the foreground page. The DevTools HTTP API requires no
+    authentication, so no Authorization header is sent. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: devtoolsApi
+  url: ../openapi/microsoft-edge-devtools-api.yaml
+  type: openapi
+workflows:
+- workflowId: open-and-activate-target
+  summary: Verify the browser, open a new tab at a URL, then activate it.
+  description: >-
+    Confirms the DevTools endpoint via the version call, opens a new target at
+    the requested URL, and brings that target to the foreground.
+  inputs:
+    type: object
+    required:
+    - url
+    properties:
+      url:
+        type: string
+        description: The URL to navigate the new tab to.
+  steps:
+  - stepId: getBrowserVersion
+    description: >-
+      Read browser version and protocol information to confirm the local
+      DevTools debugging endpoint is reachable before opening a tab.
+    operationId: getBrowserVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      browser: $response.body#/Browser
+      protocolVersion: $response.body#/Protocol-Version
+  - stepId: createTarget
+    description: >-
+      Open a new tab navigated to the supplied URL and capture the new target's
+      identifier and WebSocket debugger URL.
+    operationId: createTarget
+    parameters:
+    - name: url
+      in: query
+      value: $inputs.url
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      targetId: $response.body#/id
+      webSocketDebuggerUrl: $response.body#/webSocketDebuggerUrl
+  - stepId: activateTarget
+    description: >-
+      Bring the newly created target to the foreground, making it the active
+      page in the browser window.
+    operationId: activateTarget
+    parameters:
+    - name: targetId
+      in: path
+      value: $steps.createTarget.outputs.targetId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      activationResult: $response.body
+  outputs:
+    browser: $steps.getBrowserVersion.outputs.browser
+    targetId: $steps.createTarget.outputs.targetId
+    webSocketDebuggerUrl: $steps.createTarget.outputs.webSocketDebuggerUrl

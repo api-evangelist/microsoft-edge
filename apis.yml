@@ -183,6 +183,30 @@ apis:
   - type: ReleaseNotes
     url: https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/whats-new/
 common:
+- type: ArazzoWorkflows
+  url: arazzo/
+  workflows:
+  - url: arazzo/microsoft-edge-find-and-close-target-workflow.yml
+    name: Microsoft Edge Find And Close Target
+    summary: List debuggable targets, branch on whether any exist, and close the first target.
+  - url: arazzo/microsoft-edge-inspect-browser-environment-workflow.yml
+    name: Microsoft Edge Inspect Browser Environment
+    summary: Read the browser version and then fetch the full DevTools Protocol schema.
+  - url: arazzo/microsoft-edge-list-and-inspect-product-workflow.yml
+    name: Microsoft Edge List And Inspect Product
+    summary: List the developer account's extensions and fetch full details for the first product.
+  - url: arazzo/microsoft-edge-open-and-activate-target-workflow.yml
+    name: Microsoft Edge Open And Activate Target
+    summary: Confirm the DevTools endpoint, open a new tab at a URL, and bring it to the foreground.
+  - url: arazzo/microsoft-edge-publish-extension-update-workflow.yml
+    name: Microsoft Edge Publish Extension Update
+    summary: Upload a new extension package, wait for validation, then create and track a store submission.
+  - url: arazzo/microsoft-edge-submit-draft-and-track-workflow.yml
+    name: Microsoft Edge Submit Draft And Track
+    summary: Create a submission for an already-uploaded draft and poll it until Published or Failed.
+  - url: arazzo/microsoft-edge-upload-package-and-validate-workflow.yml
+    name: Microsoft Edge Upload Package And Validate
+    summary: Confirm a product exists, upload a draft package, and poll until the package is validated.
 - type: Documentation
   url: https://learn.microsoft.com/en-us/microsoft-edge/
   name: Microsoft Edge Documentation

@@ -1,0 +1,110 @@
+arazzo: 1.0.1
+info:
+  title: Microsoft Edge Submit Draft And Track
+  summary: Create a submission for an already-uploaded draft and poll it until Published or Failed.
+  description: >-
+    Publishes a draft that has already been staged for a product. The workflow
+    creates a submission to start the review and publishing process, then polls
+    the submission until it reaches a terminal state. While the submission is
+    InReview the workflow loops, branching to a published end on Published and
+    surfacing the completion timestamp. Use this after a package has been
+    uploaded and validated when you want to drive the review-to-publish phase on
+    its own. Every step spells out its request inline so the flow can be read and
+    executed without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: addonsApi
+  url: ../openapi/microsoft-edge-addons-api.yaml
+  type: openapi
+workflows:
+- workflowId: submit-draft-and-track
+  summary: Create a submission and poll it until it is Published or Failed.
+  description: >-
+    Creates a submission for the product's current draft and polls the
+    submission status, looping while InReview and ending when it is Published.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - productId
+    properties:
+      accessToken:
+        type: string
+        description: >-
+          Azure AD bearer access token acquired via the client credentials
+          flow for the Microsoft Partner Center scope.
+      productId:
+        type: string
+        description: The product (extension) identifier whose draft is submitted.
+      notes:
+        type: string
+        description: Notes for the review team attached to the submission.
+        default: Submitting current draft for review.
+  steps:
+  - stepId: createSubmission
+    description: >-
+      Create a submission for the product's draft, queuing it for review. The
+      API returns 202 Accepted with the new submission identifier and status.
+    operationId: createSubmission
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: productId
+      in: path
+      value: $inputs.productId
+    requestBody:
+      contentType: application/json
+      payload:
+        notes: $inputs.notes
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      submissionId: $response.body#/id
+      submissionStatus: $response.body#/status
+      createdUtc: $response.body#/createdUtc
+  - stepId: pollSubmissionStatus
+    description: >-
+      Poll the submission until it leaves the InReview state. The loop ends on
+      Published, while a Failed or Cancelled status terminates the workflow.
+    operationId: getSubmission
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: productId
+      in: path
+      value: $inputs.productId
+    - name: submissionId
+      in: path
+      value: $steps.createSubmission.outputs.submissionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      finalStatus: $response.body#/status
+      completedUtc: $response.body#/completedUtc
+    onSuccess:
+    - name: stillInReview
+      type: goto
+      stepId: pollSubmissionStatus
+      criteria:
+      - context: $response.body
+        condition: $.status == "InReview"
+        type: jsonpath
+    - name: published
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "Published"
+        type: jsonpath
+    onFailure:
+    - name: submissionFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "Failed"
+        type: jsonpath
+  outputs:
+    submissionId: $steps.createSubmission.outputs.submissionId
+    finalStatus: $steps.pollSubmissionStatus.outputs.finalStatus
+    completedUtc: $steps.pollSubmissionStatus.outputs.completedUtc

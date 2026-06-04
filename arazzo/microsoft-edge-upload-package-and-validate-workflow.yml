@@ -1,0 +1,127 @@
+arazzo: 1.0.1
+info:
+  title: Microsoft Edge Upload Package And Validate
+  summary: Confirm a product exists, upload a draft package, and poll until the package is validated.
+  description: >-
+    A focused package-staging flow for the Edge Add-ons store. The workflow
+    first fetches the target product to confirm it exists and capture its
+    current status and version, then uploads a new extension package as a
+    draft, and finally polls the asynchronous upload operation until it
+    reports Succeeded or Failed. It stops short of creating a submission so it
+    can be used to validate a build before deciding to publish. Every step
+    spells out its request inline so the flow can be read and executed without
+    opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: addonsApi
+  url: ../openapi/microsoft-edge-addons-api.yaml
+  type: openapi
+workflows:
+- workflowId: upload-package-and-validate
+  summary: Verify a product, upload a draft package, and await upload validation.
+  description: >-
+    Reads the product to confirm it exists, uploads a ZIP package as a draft,
+    and polls the upload operation until it reaches a terminal Succeeded or
+    Failed status.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - productId
+    - packageContent
+    properties:
+      accessToken:
+        type: string
+        description: >-
+          Azure AD bearer access token acquired via the client credentials
+          flow for the Microsoft Partner Center scope.
+      productId:
+        type: string
+        description: The product (extension) identifier to upload a package for.
+      packageContent:
+        type: string
+        description: The binary contents of the extension package ZIP file.
+  steps:
+  - stepId: getProduct
+    description: >-
+      Retrieve the product to confirm it exists and capture its current
+      publishing status and version before uploading a new package.
+    operationId: getProduct
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: productId
+      in: path
+      value: $inputs.productId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      productName: $response.body#/name
+      currentStatus: $response.body#/status
+      currentVersion: $response.body#/version
+  - stepId: uploadPackage
+    description: >-
+      Upload the new extension package as a draft for the confirmed product.
+      The upload is asynchronous and returns 202 with an operation identifier.
+    operationId: uploadPackage
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: productId
+      in: path
+      value: $inputs.productId
+    requestBody:
+      contentType: application/zip
+      payload: $inputs.packageContent
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      uploadOperationId: $response.body#/operationId
+      uploadStatus: $response.body#/status
+  - stepId: pollUploadStatus
+    description: >-
+      Poll the upload operation until it leaves the InProgress state. The loop
+      ends on Succeeded, while a Failed status terminates the workflow.
+    operationId: getPackageUploadStatus
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: productId
+      in: path
+      value: $inputs.productId
+    - name: operationId
+      in: path
+      value: $steps.uploadPackage.outputs.uploadOperationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      uploadResultStatus: $response.body#/status
+      uploadMessage: $response.body#/message
+    onSuccess:
+    - name: stillRunning
+      type: goto
+      stepId: pollUploadStatus
+      criteria:
+      - context: $response.body
+        condition: $.status == "InProgress"
+        type: jsonpath
+    - name: validated
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "Succeeded"
+        type: jsonpath
+    onFailure:
+    - name: validationFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "Failed"
+        type: jsonpath
+  outputs:
+    productName: $steps.getProduct.outputs.productName
+    uploadOperationId: $steps.uploadPackage.outputs.uploadOperationId
+    uploadResultStatus: $steps.pollUploadStatus.outputs.uploadResultStatus

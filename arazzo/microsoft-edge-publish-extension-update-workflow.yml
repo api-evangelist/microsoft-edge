@@ -1,0 +1,174 @@
+arazzo: 1.0.1
+info:
+  title: Microsoft Edge Publish Extension Update
+  summary: Upload a new extension package, wait for validation, then create and track a store submission.
+  description: >-
+    The end-to-end Edge Add-ons publishing flow. The workflow uploads a new
+    extension package as a draft for an existing product, polls the package
+    upload operation until validation succeeds or fails, and only when the
+    package is validated does it create a store submission and poll that
+    submission until it reaches a terminal Published or Failed state. Both the
+    package upload and the submission creation are asynchronous and return 202
+    Accepted, so each is followed by a dedicated poll loop. Every step spells
+    out its request inline so the flow can be read and executed without opening
+    the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: addonsApi
+  url: ../openapi/microsoft-edge-addons-api.yaml
+  type: openapi
+workflows:
+- workflowId: publish-extension-update
+  summary: Upload a package, await validation, then submit and track publication.
+  description: >-
+    Uploads a ZIP extension package for an existing product, waits for the
+    upload operation to validate the package, creates a submission to publish
+    it, and polls the submission until it is Published or Failed.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    - productId
+    - packageContent
+    properties:
+      accessToken:
+        type: string
+        description: >-
+          Azure AD bearer access token acquired via the client credentials
+          flow for the Microsoft Partner Center scope.
+      productId:
+        type: string
+        description: The product (extension) identifier to publish an update for.
+      packageContent:
+        type: string
+        description: The binary contents of the extension package ZIP file.
+      notes:
+        type: string
+        description: Optional notes for the review team attached to the submission.
+        default: Automated update submission.
+  steps:
+  - stepId: uploadPackage
+    description: >-
+      Upload the new extension package as a draft for the product. The API
+      accepts the upload asynchronously and returns an operation identifier
+      used to track validation progress.
+    operationId: uploadPackage
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: productId
+      in: path
+      value: $inputs.productId
+    requestBody:
+      contentType: application/zip
+      payload: $inputs.packageContent
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      uploadOperationId: $response.body#/operationId
+      uploadStatus: $response.body#/status
+  - stepId: pollUploadStatus
+    description: >-
+      Poll the package upload operation until it leaves the InProgress state.
+      A Succeeded status means the package validated and is ready to submit; a
+      Failed status stops the workflow.
+    operationId: getPackageUploadStatus
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: productId
+      in: path
+      value: $inputs.productId
+    - name: operationId
+      in: path
+      value: $steps.uploadPackage.outputs.uploadOperationId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      uploadResultStatus: $response.body#/status
+      uploadMessage: $response.body#/message
+    onSuccess:
+    - name: uploadStillRunning
+      type: goto
+      stepId: pollUploadStatus
+      criteria:
+      - context: $response.body
+        condition: $.status == "InProgress"
+        type: jsonpath
+    - name: uploadValidated
+      type: goto
+      stepId: createSubmission
+      criteria:
+      - context: $response.body
+        condition: $.status == "Succeeded"
+        type: jsonpath
+    onFailure:
+    - name: uploadFailed
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "Failed"
+        type: jsonpath
+  - stepId: createSubmission
+    description: >-
+      Create a submission for the validated draft package, initiating the
+      review and publishing process. The API queues the submission and returns
+      202 Accepted with the new submission identifier.
+    operationId: createSubmission
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: productId
+      in: path
+      value: $inputs.productId
+    requestBody:
+      contentType: application/json
+      payload:
+        notes: $inputs.notes
+    successCriteria:
+    - condition: $statusCode == 202
+    outputs:
+      submissionId: $response.body#/id
+      submissionStatus: $response.body#/status
+  - stepId: pollSubmissionStatus
+    description: >-
+      Poll the submission until it reaches a terminal state. InReview means
+      the review is still running, Published means the update is live, and
+      Failed or Cancelled stops the workflow.
+    operationId: getSubmission
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: productId
+      in: path
+      value: $inputs.productId
+    - name: submissionId
+      in: path
+      value: $steps.createSubmission.outputs.submissionId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      finalStatus: $response.body#/status
+      completedUtc: $response.body#/completedUtc
+    onSuccess:
+    - name: submissionStillInReview
+      type: goto
+      stepId: pollSubmissionStatus
+      criteria:
+      - context: $response.body
+        condition: $.status == "InReview"
+        type: jsonpath
+    - name: submissionPublished
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.status == "Published"
+        type: jsonpath
+  outputs:
+    uploadOperationId: $steps.uploadPackage.outputs.uploadOperationId
+    submissionId: $steps.createSubmission.outputs.submissionId
+    finalStatus: $steps.pollSubmissionStatus.outputs.finalStatus

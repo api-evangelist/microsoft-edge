@@ -1,0 +1,61 @@
+arazzo: 1.0.1
+info:
+  title: Microsoft Edge Inspect Browser Environment
+  summary: Read the browser version and then fetch the full DevTools Protocol schema.
+  description: >-
+    A DevTools Protocol diagnostic flow against a local Microsoft Edge debugging
+    endpoint. The workflow reads browser version information, including the
+    browser build, protocol version, and user agent, then retrieves the complete
+    DevTools Protocol schema describing every domain, command, event, and type
+    supported by that build. It is the natural first call for tooling that needs
+    to confirm protocol compatibility before issuing commands. The DevTools HTTP
+    API requires no authentication, so no Authorization header is sent. Every
+    step spells out its request inline so the flow can be read and executed
+    without opening the underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: devtoolsApi
+  url: ../openapi/microsoft-edge-devtools-api.yaml
+  type: openapi
+workflows:
+- workflowId: inspect-browser-environment
+  summary: Capture browser version, then retrieve the full protocol schema.
+  description: >-
+    Reads browser version and protocol information, then fetches the complete
+    DevTools Protocol schema for that browser build.
+  inputs:
+    type: object
+    properties:
+      placeholder:
+        type: string
+        description: >-
+          Unused input placeholder; both calls take no parameters, so this
+          workflow requires no operational inputs.
+  steps:
+  - stepId: getBrowserVersion
+    description: >-
+      Read browser version information including the browser build, DevTools
+      protocol version, user agent, and browser-level WebSocket debugger URL.
+    operationId: getBrowserVersion
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      browser: $response.body#/Browser
+      protocolVersion: $response.body#/Protocol-Version
+      userAgent: $response.body#/User-Agent
+  - stepId: getProtocolSchema
+    description: >-
+      Retrieve the complete DevTools Protocol schema, including the protocol
+      version and the list of supported domains and their commands.
+    operationId: getProtocolSchema
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      schemaMajorVersion: $response.body#/version/major
+      schemaMinorVersion: $response.body#/version/minor
+      domains: $response.body#/domains
+  outputs:
+    browser: $steps.getBrowserVersion.outputs.browser
+    protocolVersion: $steps.getBrowserVersion.outputs.protocolVersion
+    schemaMajorVersion: $steps.getProtocolSchema.outputs.schemaMajorVersion
+    domains: $steps.getProtocolSchema.outputs.domains

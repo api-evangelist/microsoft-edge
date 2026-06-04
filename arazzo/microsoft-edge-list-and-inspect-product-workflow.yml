@@ -1,0 +1,89 @@
+arazzo: 1.0.1
+info:
+  title: Microsoft Edge List And Inspect Product
+  summary: List the developer account's extensions and fetch full details for the first product.
+  description: >-
+    A discovery flow for the Edge Add-ons store. The workflow lists the
+    extensions associated with the authenticated developer account, then reads
+    the full details of the first returned product, including its description,
+    publishing status, version, and category. It is the natural starting point
+    for any automation that needs to resolve a product before uploading a
+    package or creating a submission. Every step spells out its request inline
+    so the flow can be read and executed without opening the underlying OpenAPI
+    description.
+  version: 1.0.0
+sourceDescriptions:
+- name: addonsApi
+  url: ../openapi/microsoft-edge-addons-api.yaml
+  type: openapi
+workflows:
+- workflowId: list-and-inspect-product
+  summary: List products, then retrieve full details for the first product.
+  description: >-
+    Lists the developer account's extensions and fetches the full record of the
+    first product in the returned list.
+  inputs:
+    type: object
+    required:
+    - accessToken
+    properties:
+      accessToken:
+        type: string
+        description: >-
+          Azure AD bearer access token acquired via the client credentials
+          flow for the Microsoft Partner Center scope.
+      top:
+        type: integer
+        description: Maximum number of products to return.
+        default: 25
+      skip:
+        type: integer
+        description: Number of products to skip for pagination.
+        default: 0
+  steps:
+  - stepId: listProducts
+    description: >-
+      Retrieve the list of extensions associated with the authenticated
+      developer account, capturing the first product identifier and the total
+      count for pagination.
+    operationId: listProducts
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: $top
+      in: query
+      value: $inputs.top
+    - name: $skip
+      in: query
+      value: $inputs.skip
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstProductId: $response.body#/value/0/id
+      totalCount: $response.body#/totalCount
+  - stepId: getProduct
+    description: >-
+      Retrieve the full details of the first listed product, including its
+      description, status, version, and store category.
+    operationId: getProduct
+    parameters:
+    - name: Authorization
+      in: header
+      value: Bearer $inputs.accessToken
+    - name: productId
+      in: path
+      value: $steps.listProducts.outputs.firstProductId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      productId: $response.body#/id
+      productName: $response.body#/name
+      status: $response.body#/status
+      version: $response.body#/version
+      category: $response.body#/category
+  outputs:
+    totalCount: $steps.listProducts.outputs.totalCount
+    productId: $steps.getProduct.outputs.productId
+    productName: $steps.getProduct.outputs.productName
+    status: $steps.getProduct.outputs.status

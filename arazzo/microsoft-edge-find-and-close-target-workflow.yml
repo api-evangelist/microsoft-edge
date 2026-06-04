@@ -1,0 +1,72 @@
+arazzo: 1.0.1
+info:
+  title: Microsoft Edge Find And Close Target
+  summary: List debuggable targets, branch on whether any exist, and close the first target.
+  description: >-
+    A DevTools Protocol cleanup flow against a local Microsoft Edge debugging
+    endpoint. The workflow lists all debuggable targets, then branches on the
+    result: when at least one target is present it closes the first target,
+    otherwise it ends without acting. This is useful for tearing down a tab left
+    open by a prior automation run. The DevTools HTTP API requires no
+    authentication, so no Authorization header is sent. Every step spells out its
+    request inline so the flow can be read and executed without opening the
+    underlying OpenAPI description.
+  version: 1.0.0
+sourceDescriptions:
+- name: devtoolsApi
+  url: ../openapi/microsoft-edge-devtools-api.yaml
+  type: openapi
+workflows:
+- workflowId: find-and-close-target
+  summary: List targets and close the first one if any exist.
+  description: >-
+    Lists debuggable targets and, when at least one is present, closes the first
+    target; otherwise the workflow ends without closing anything.
+  inputs:
+    type: object
+    properties:
+      placeholder:
+        type: string
+        description: >-
+          Unused input placeholder; the list call takes no parameters, so this
+          workflow requires no operational inputs.
+  steps:
+  - stepId: listTargets
+    description: >-
+      Return all debuggable targets including pages, service workers, and
+      extensions, capturing the first target's identifier and type.
+    operationId: listTargets
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      firstTargetId: $response.body#/0/id
+      firstTargetType: $response.body#/0/type
+    onSuccess:
+    - name: targetFound
+      type: goto
+      stepId: closeTarget
+      criteria:
+      - context: $response.body
+        condition: $.length > 0
+        type: jsonpath
+    - name: noTargets
+      type: end
+      criteria:
+      - context: $response.body
+        condition: $.length == 0
+        type: jsonpath
+  - stepId: closeTarget
+    description: >-
+      Close the first debuggable target returned by the list call.
+    operationId: closeTarget
+    parameters:
+    - name: targetId
+      in: path
+      value: $steps.listTargets.outputs.firstTargetId
+    successCriteria:
+    - condition: $statusCode == 200
+    outputs:
+      closeResult: $response.body
+  outputs:
+    firstTargetId: $steps.listTargets.outputs.firstTargetId
+    closeResult: $steps.closeTarget.outputs.closeResult
