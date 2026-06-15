@@ -1,0 +1,565 @@
+{
+  "info": {
+    "_postman_id": "834af00d-0793-4700-b836-55397144a7ee",
+    "name": "Microsoft Edge DevTools Protocol HTTP API",
+    "description": "HTTP endpoints for the Microsoft Edge DevTools Protocol, based on the Chromium DevTools Protocol. These endpoints allow programmatic discovery and management of debuggable browser targets including pages, service workers, and extensions. The HTTP API serves as the entry point for establishing WebSocket debugging connections to individual targets.\n\nContact Support:\n Name: Microsoft Edge Developer",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:11:40.000Z",
+    "updatedAt": "2026-06-05T15:11:41.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-834af00d-0793-4700-b836-55397144a7ee"
+  },
+  "item": [
+    {
+      "name": "json",
+      "item": [
+        {
+          "name": "list",
+          "item": [
+            {
+              "name": "Microsoft Edge List Debuggable Targets",
+              "id": "2599c0de-7d8b-40e9-bcbe-24b923dca56e",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/json/list",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "json",
+                    "list"
+                  ]
+                },
+                "description": "Returns a JSON array of all debuggable targets including pages, service workers, extensions, and background pages with their WebSocket debugger URLs."
+              },
+              "response": [
+                {
+                  "id": "9df93170-5a5e-4c83-a620-47ca4ec328bd",
+                  "name": "List of debuggable targets",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/json/list",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "json",
+                        "list"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "[\n  {\n    \"description\": \"<string>\",\n    \"devtoolsFrontendUrl\": \"<string>\",\n    \"faviconUrl\": \"<string>\",\n    \"id\": \"<string>\",\n    \"title\": \"<string>\",\n    \"type\": \"iframe\",\n    \"url\": \"<uri>\",\n    \"webSocketDebuggerUrl\": \"<string>\"\n  },\n  {\n    \"description\": \"<string>\",\n    \"devtoolsFrontendUrl\": \"<string>\",\n    \"faviconUrl\": \"<string>\",\n    \"id\": \"<string>\",\n    \"title\": \"<string>\",\n    \"type\": \"iframe\",\n    \"url\": \"<uri>\",\n    \"webSocketDebuggerUrl\": \"<string>\"\n  }\n]",
+                  "createdAt": "2026-06-05T15:11:41.000Z",
+                  "updatedAt": "2026-06-05T15:11:41.000Z",
+                  "uid": "35240-9df93170-5a5e-4c83-a620-47ca4ec328bd"
+                }
+              ],
+              "createdAt": "2026-06-05T15:11:41.000Z",
+              "updatedAt": "2026-06-05T15:11:41.000Z",
+              "uid": "35240-2599c0de-7d8b-40e9-bcbe-24b923dca56e"
+            }
+          ],
+          "id": "e5f410a7-8107-492f-8725-0713f5929435",
+          "createdAt": "2026-06-05T15:11:41.000Z",
+          "updatedAt": "2026-06-05T15:11:41.000Z",
+          "uid": "35240-e5f410a7-8107-492f-8725-0713f5929435"
+        },
+        {
+          "name": "new",
+          "item": [
+            {
+              "name": "Microsoft Edge Create New Target",
+              "id": "3075f258-3dd7-4a58-add7-f299dcace048",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/json/new?url=<uri>",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "json",
+                    "new"
+                  ],
+                  "query": [
+                    {
+                      "description": "URL to navigate the new tab to",
+                      "key": "url",
+                      "value": "<uri>"
+                    }
+                  ]
+                },
+                "description": "Opens a new tab navigated to the specified URL and returns the new target's debugging information."
+              },
+              "response": [
+                {
+                  "id": "d340a786-7f90-4549-9bb1-c739ae5e1789",
+                  "name": "New target created",
+                  "originalRequest": {
+                    "method": "PUT",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/json/new?url=<uri>",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "json",
+                        "new"
+                      ],
+                      "query": [
+                        {
+                          "description": "URL to navigate the new tab to",
+                          "key": "url",
+                          "value": "<uri>"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"description\": \"<string>\",\n  \"devtoolsFrontendUrl\": \"<string>\",\n  \"faviconUrl\": \"<string>\",\n  \"id\": \"<string>\",\n  \"title\": \"<string>\",\n  \"type\": \"other\",\n  \"url\": \"<uri>\",\n  \"webSocketDebuggerUrl\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:11:41.000Z",
+                  "updatedAt": "2026-06-05T15:11:41.000Z",
+                  "uid": "35240-d340a786-7f90-4549-9bb1-c739ae5e1789"
+                }
+              ],
+              "createdAt": "2026-06-05T15:11:41.000Z",
+              "updatedAt": "2026-06-05T15:11:41.000Z",
+              "uid": "35240-3075f258-3dd7-4a58-add7-f299dcace048"
+            }
+          ],
+          "id": "5c103337-8c5b-43e6-959e-3282263eeed4",
+          "createdAt": "2026-06-05T15:11:41.000Z",
+          "updatedAt": "2026-06-05T15:11:41.000Z",
+          "uid": "35240-5c103337-8c5b-43e6-959e-3282263eeed4"
+        },
+        {
+          "name": "activate",
+          "item": [
+            {
+              "name": "{targetId}",
+              "item": [
+                {
+                  "name": "Microsoft Edge Activate Target",
+                  "id": "c57e4bcc-6449-4b63-9fa8-216a4fa9dc3b",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/json/activate/:targetId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "json",
+                        "activate",
+                        ":targetId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "7495b349-1d27-4e3a-9a03-e411830e94a3",
+                          "key": "targetId",
+                          "value": "<string>",
+                          "description": "(Required) Target identifier"
+                        }
+                      ]
+                    },
+                    "description": "Brings the specified target to the foreground, making it the active page in the browser window."
+                  },
+                  "response": [
+                    {
+                      "id": "b8d59435-e942-46d4-bd01-1ee3f1af7ab5",
+                      "name": "Target activated successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/json/activate/:targetId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "json",
+                            "activate",
+                            ":targetId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "targetId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-06-05T15:11:41.000Z",
+                      "updatedAt": "2026-06-05T15:11:41.000Z",
+                      "uid": "35240-b8d59435-e942-46d4-bd01-1ee3f1af7ab5"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:11:41.000Z",
+                  "updatedAt": "2026-06-05T15:11:41.000Z",
+                  "uid": "35240-c57e4bcc-6449-4b63-9fa8-216a4fa9dc3b"
+                }
+              ],
+              "id": "04ee8119-69c2-4dff-a33d-de9ca340acdc",
+              "createdAt": "2026-06-05T15:11:41.000Z",
+              "updatedAt": "2026-06-05T15:11:41.000Z",
+              "uid": "35240-04ee8119-69c2-4dff-a33d-de9ca340acdc"
+            }
+          ],
+          "id": "7183e147-8847-4f98-89de-122677431334",
+          "createdAt": "2026-06-05T15:11:41.000Z",
+          "updatedAt": "2026-06-05T15:11:41.000Z",
+          "uid": "35240-7183e147-8847-4f98-89de-122677431334"
+        },
+        {
+          "name": "close",
+          "item": [
+            {
+              "name": "{targetId}",
+              "item": [
+                {
+                  "name": "Microsoft Edge Close Target",
+                  "id": "9e7f071c-4336-4732-b29c-fe32124165aa",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "POST",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "text/plain"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/json/close/:targetId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "json",
+                        "close",
+                        ":targetId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "bc55cbf5-4ee1-4e30-adfc-df1c37df5c03",
+                          "key": "targetId",
+                          "value": "<string>",
+                          "description": "(Required) Target identifier"
+                        }
+                      ]
+                    },
+                    "description": "Closes the specified target tab or page."
+                  },
+                  "response": [
+                    {
+                      "id": "10a8a041-4138-4fab-bd9b-924bf63b3405",
+                      "name": "Target closed successfully",
+                      "originalRequest": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "text/plain"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/json/close/:targetId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "json",
+                            "close",
+                            ":targetId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "targetId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "text",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "text/plain"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "<string>",
+                      "createdAt": "2026-06-05T15:11:41.000Z",
+                      "updatedAt": "2026-06-05T15:11:41.000Z",
+                      "uid": "35240-10a8a041-4138-4fab-bd9b-924bf63b3405"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:11:41.000Z",
+                  "updatedAt": "2026-06-05T15:11:41.000Z",
+                  "uid": "35240-9e7f071c-4336-4732-b29c-fe32124165aa"
+                }
+              ],
+              "id": "2081816b-7709-4289-bc1a-8a94f8fb7416",
+              "createdAt": "2026-06-05T15:11:41.000Z",
+              "updatedAt": "2026-06-05T15:11:41.000Z",
+              "uid": "35240-2081816b-7709-4289-bc1a-8a94f8fb7416"
+            }
+          ],
+          "id": "af87804d-4084-452a-bc02-c60fcb7d56c0",
+          "createdAt": "2026-06-05T15:11:41.000Z",
+          "updatedAt": "2026-06-05T15:11:41.000Z",
+          "uid": "35240-af87804d-4084-452a-bc02-c60fcb7d56c0"
+        },
+        {
+          "name": "version",
+          "item": [
+            {
+              "name": "Microsoft Edge Get Browser Version",
+              "id": "e173e80a-4d99-4ac1-b741-83391cc31a8c",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/json/version",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "json",
+                    "version"
+                  ]
+                },
+                "description": "Returns browser version information including the browser name, protocol version, user agent string, V8 version, and WebKit version."
+              },
+              "response": [
+                {
+                  "id": "2bc01237-5caa-4321-9f70-048c7f08a8fc",
+                  "name": "Browser version information",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/json/version",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "json",
+                        "version"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"Browser\": \"<string>\",\n  \"Protocol-Version\": \"<string>\",\n  \"User-Agent\": \"<string>\",\n  \"V8-Version\": \"<string>\",\n  \"WebKit-Version\": \"<string>\",\n  \"webSocketDebuggerUrl\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:11:41.000Z",
+                  "updatedAt": "2026-06-05T15:11:41.000Z",
+                  "uid": "35240-2bc01237-5caa-4321-9f70-048c7f08a8fc"
+                }
+              ],
+              "createdAt": "2026-06-05T15:11:41.000Z",
+              "updatedAt": "2026-06-05T15:11:41.000Z",
+              "uid": "35240-e173e80a-4d99-4ac1-b741-83391cc31a8c"
+            }
+          ],
+          "id": "033ec8c9-16e6-4f10-9519-d7542f5f12ef",
+          "createdAt": "2026-06-05T15:11:41.000Z",
+          "updatedAt": "2026-06-05T15:11:41.000Z",
+          "uid": "35240-033ec8c9-16e6-4f10-9519-d7542f5f12ef"
+        },
+        {
+          "name": "protocol",
+          "item": [
+            {
+              "name": "Microsoft Edge Get Protocol Schema",
+              "id": "b1afbf17-22ea-4a88-bffa-0cfbc77d6fda",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/json/protocol",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "json",
+                    "protocol"
+                  ]
+                },
+                "description": "Returns the complete DevTools Protocol schema in JSON format, including all domains, commands, events, and types."
+              },
+              "response": [
+                {
+                  "id": "e627a2d1-2771-43ab-9abd-a29457795597",
+                  "name": "Full protocol schema",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/json/protocol",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "json",
+                        "protocol"
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"version\": {\n    \"major\": \"<string>\",\n    \"minor\": \"<string>\"\n  },\n  \"domains\": [\n    {\n      \"domain\": \"<string>\",\n      \"experimental\": \"<boolean>\",\n      \"commands\": [\n        {\n          \"name\": \"<string>\",\n          \"parameters\": [\n            {\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"parameters\": [\n            {\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"events\": [\n        {\n          \"name\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\"\n        }\n      ]\n    },\n    {\n      \"domain\": \"<string>\",\n      \"experimental\": \"<boolean>\",\n      \"commands\": [\n        {\n          \"name\": \"<string>\",\n          \"parameters\": [\n            {\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            }\n          ]\n        },\n        {\n          \"name\": \"<string>\",\n          \"parameters\": [\n            {\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            },\n            {\n              \"name\": \"<string>\",\n              \"type\": \"<string>\"\n            }\n          ]\n        }\n      ],\n      \"events\": [\n        {\n          \"name\": \"<string>\"\n        },\n        {\n          \"name\": \"<string>\"\n        }\n      ]\n    }\n  ]\n}",
+                  "createdAt": "2026-06-05T15:11:41.000Z",
+                  "updatedAt": "2026-06-05T15:11:41.000Z",
+                  "uid": "35240-e627a2d1-2771-43ab-9abd-a29457795597"
+                }
+              ],
+              "createdAt": "2026-06-05T15:11:41.000Z",
+              "updatedAt": "2026-06-05T15:11:41.000Z",
+              "uid": "35240-b1afbf17-22ea-4a88-bffa-0cfbc77d6fda"
+            }
+          ],
+          "id": "6c6f8d8a-a296-4e02-98e9-46c72e90cae7",
+          "createdAt": "2026-06-05T15:11:41.000Z",
+          "updatedAt": "2026-06-05T15:11:41.000Z",
+          "uid": "35240-6c6f8d8a-a296-4e02-98e9-46c72e90cae7"
+        }
+      ],
+      "id": "401327d4-62d5-41e1-8015-7140f4b869b7",
+      "createdAt": "2026-06-05T15:11:41.000Z",
+      "updatedAt": "2026-06-05T15:11:41.000Z",
+      "uid": "35240-401327d4-62d5-41e1-8015-7140f4b869b7"
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "http://localhost:9222"
+    }
+  ]
+}

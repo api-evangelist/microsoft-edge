@@ -1,0 +1,1367 @@
+{
+  "info": {
+    "_postman_id": "20d8d723-8073-4cb0-ac7d-579c2896fb59",
+    "name": "Microsoft Edge Add-ons API",
+    "description": "REST API for managing Microsoft Edge browser extensions through the Partner Center. Enables programmatic publishing, updating, and managing Edge extensions in the Microsoft Edge Add-ons store, supporting the full extension lifecycle from upload to publication.\n\nContact Support:\n Name: Microsoft Edge Developer",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "createdAt": "2026-06-05T15:11:38.000Z",
+    "updatedAt": "2026-06-05T15:11:38.000Z",
+    "lastUpdatedBy": "35240",
+    "uid": "35240-20d8d723-8073-4cb0-ac7d-579c2896fb59"
+  },
+  "item": [
+    {
+      "name": "v1",
+      "item": [
+        {
+          "name": "products",
+          "item": [
+            {
+              "name": "{productId}",
+              "item": [
+                {
+                  "name": "submissions",
+                  "item": [
+                    {
+                      "name": "{submissionId}",
+                      "item": [
+                        {
+                          "name": "Microsoft Edge Get Submission Status",
+                          "id": "e9f53077-44ef-42f0-9d13-13e36490fe3d",
+                          "protocolProfileBehavior": {
+                            "disableBodyPruning": true
+                          },
+                          "request": {
+                            "method": "GET",
+                            "header": [
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              }
+                            ],
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/products/:productId/submissions/:submissionId",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "products",
+                                ":productId",
+                                "submissions",
+                                ":submissionId"
+                              ],
+                              "variable": [
+                                {
+                                  "id": "61043719-c7ba-4bcc-ad63-194f8116da19",
+                                  "key": "productId",
+                                  "value": "<string>",
+                                  "description": "(Required) Product identifier"
+                                },
+                                {
+                                  "id": "51d4d6fe-10cc-4780-8f25-3556429056db",
+                                  "key": "submissionId",
+                                  "value": "<string>",
+                                  "description": "(Required) Submission identifier"
+                                }
+                              ]
+                            },
+                            "description": "Retrieve the current status and details of a submission for an extension product."
+                          },
+                          "response": [
+                            {
+                              "id": "15dfb437-8cc1-4bbe-9eee-88f6c05d4a93",
+                              "name": "Submission status retrieved",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/products/:productId/submissions/:submissionId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "products",
+                                    ":productId",
+                                    "submissions",
+                                    ":submissionId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "productId"
+                                    },
+                                    {
+                                      "key": "submissionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "OK",
+                              "code": 200,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"id\": \"<string>\",\n  \"productId\": \"<string>\",\n  \"status\": \"Failed\",\n  \"createdUtc\": \"<dateTime>\",\n  \"completedUtc\": \"<dateTime>\"\n}",
+                              "createdAt": "2026-06-05T15:11:39.000Z",
+                              "updatedAt": "2026-06-05T15:11:39.000Z",
+                              "uid": "35240-15dfb437-8cc1-4bbe-9eee-88f6c05d4a93"
+                            },
+                            {
+                              "id": "8cc6a22f-327f-4c22-bc63-37812864ee31",
+                              "name": "Authentication required",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/products/:productId/submissions/:submissionId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "products",
+                                    ":productId",
+                                    "submissions",
+                                    ":submissionId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "productId"
+                                    },
+                                    {
+                                      "key": "submissionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Unauthorized",
+                              "code": 401,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:11:39.000Z",
+                              "updatedAt": "2026-06-05T15:11:39.000Z",
+                              "uid": "35240-8cc6a22f-327f-4c22-bc63-37812864ee31"
+                            },
+                            {
+                              "id": "4bed19a8-be9c-4a97-8388-10ecff8e1ff1",
+                              "name": "Submission not found",
+                              "originalRequest": {
+                                "method": "GET",
+                                "header": [
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  },
+                                  {
+                                    "description": "Added as a part of security scheme: bearer",
+                                    "key": "Authorization",
+                                    "value": "Bearer <token>"
+                                  }
+                                ],
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/products/:productId/submissions/:submissionId",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "products",
+                                    ":productId",
+                                    "submissions",
+                                    ":submissionId"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "key": "productId"
+                                    },
+                                    {
+                                      "key": "submissionId"
+                                    }
+                                  ]
+                                }
+                              },
+                              "status": "Not Found",
+                              "code": 404,
+                              "_postman_previewlanguage": "json",
+                              "header": [
+                                {
+                                  "key": "Content-Type",
+                                  "value": "application/json"
+                                }
+                              ],
+                              "cookie": [],
+                              "responseTime": null,
+                              "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                              "createdAt": "2026-06-05T15:11:39.000Z",
+                              "updatedAt": "2026-06-05T15:11:39.000Z",
+                              "uid": "35240-4bed19a8-be9c-4a97-8388-10ecff8e1ff1"
+                            }
+                          ],
+                          "createdAt": "2026-06-05T15:11:39.000Z",
+                          "updatedAt": "2026-06-05T15:11:39.000Z",
+                          "uid": "35240-e9f53077-44ef-42f0-9d13-13e36490fe3d"
+                        }
+                      ],
+                      "id": "cf971b41-bf2d-4e4a-b7ce-100d122d51c0",
+                      "createdAt": "2026-06-05T15:11:39.000Z",
+                      "updatedAt": "2026-06-05T15:11:39.000Z",
+                      "uid": "35240-cf971b41-bf2d-4e4a-b7ce-100d122d51c0"
+                    },
+                    {
+                      "name": "draft",
+                      "item": [
+                        {
+                          "name": "package",
+                          "item": [
+                            {
+                              "name": "operations",
+                              "item": [
+                                {
+                                  "name": "{operationId}",
+                                  "item": [
+                                    {
+                                      "name": "Microsoft Edge Get Package Upload Status",
+                                      "id": "a68c2246-5ab3-4d3c-adb3-738359f5609b",
+                                      "protocolProfileBehavior": {
+                                        "disableBodyPruning": true
+                                      },
+                                      "request": {
+                                        "method": "GET",
+                                        "header": [
+                                          {
+                                            "key": "Accept",
+                                            "value": "application/json"
+                                          }
+                                        ],
+                                        "url": {
+                                          "raw": "{{baseUrl}}/v1/products/:productId/submissions/draft/package/operations/:operationId",
+                                          "host": [
+                                            "{{baseUrl}}"
+                                          ],
+                                          "path": [
+                                            "v1",
+                                            "products",
+                                            ":productId",
+                                            "submissions",
+                                            "draft",
+                                            "package",
+                                            "operations",
+                                            ":operationId"
+                                          ],
+                                          "variable": [
+                                            {
+                                              "id": "1adca5ce-91df-4e46-b4ca-f15a1d03f38b",
+                                              "key": "productId",
+                                              "value": "<string>",
+                                              "description": "(Required) Product identifier"
+                                            },
+                                            {
+                                              "id": "e9ff2e5e-b715-4a27-a44e-934a6ef4841a",
+                                              "key": "operationId",
+                                              "value": "<string>",
+                                              "description": "(Required) Upload operation identifier"
+                                            }
+                                          ]
+                                        },
+                                        "description": "Check the status of a package upload operation to determine if it has completed successfully or failed."
+                                      },
+                                      "response": [
+                                        {
+                                          "id": "9038165b-a1d8-44bc-8a39-e3647b951013",
+                                          "name": "Upload operation status",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/v1/products/:productId/submissions/draft/package/operations/:operationId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "v1",
+                                                "products",
+                                                ":productId",
+                                                "submissions",
+                                                "draft",
+                                                "package",
+                                                "operations",
+                                                ":operationId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "productId"
+                                                },
+                                                {
+                                                  "key": "operationId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "OK",
+                                          "code": 200,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"operationId\": \"<string>\",\n  \"status\": \"InProgress\",\n  \"message\": \"<string>\"\n}",
+                                          "createdAt": "2026-06-05T15:11:39.000Z",
+                                          "updatedAt": "2026-06-05T15:11:39.000Z",
+                                          "uid": "35240-9038165b-a1d8-44bc-8a39-e3647b951013"
+                                        },
+                                        {
+                                          "id": "b2a2fc0a-9984-460d-a7ea-8b4b35ce5d30",
+                                          "name": "Authentication required",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/v1/products/:productId/submissions/draft/package/operations/:operationId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "v1",
+                                                "products",
+                                                ":productId",
+                                                "submissions",
+                                                "draft",
+                                                "package",
+                                                "operations",
+                                                ":operationId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "productId"
+                                                },
+                                                {
+                                                  "key": "operationId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Unauthorized",
+                                          "code": 401,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                          "createdAt": "2026-06-05T15:11:39.000Z",
+                                          "updatedAt": "2026-06-05T15:11:39.000Z",
+                                          "uid": "35240-b2a2fc0a-9984-460d-a7ea-8b4b35ce5d30"
+                                        },
+                                        {
+                                          "id": "6ced2706-19ca-4a27-93c8-3c4cbf36b264",
+                                          "name": "Operation not found",
+                                          "originalRequest": {
+                                            "method": "GET",
+                                            "header": [
+                                              {
+                                                "key": "Accept",
+                                                "value": "application/json"
+                                              },
+                                              {
+                                                "description": "Added as a part of security scheme: bearer",
+                                                "key": "Authorization",
+                                                "value": "Bearer <token>"
+                                              }
+                                            ],
+                                            "url": {
+                                              "raw": "{{baseUrl}}/v1/products/:productId/submissions/draft/package/operations/:operationId",
+                                              "host": [
+                                                "{{baseUrl}}"
+                                              ],
+                                              "path": [
+                                                "v1",
+                                                "products",
+                                                ":productId",
+                                                "submissions",
+                                                "draft",
+                                                "package",
+                                                "operations",
+                                                ":operationId"
+                                              ],
+                                              "variable": [
+                                                {
+                                                  "key": "productId"
+                                                },
+                                                {
+                                                  "key": "operationId"
+                                                }
+                                              ]
+                                            }
+                                          },
+                                          "status": "Not Found",
+                                          "code": 404,
+                                          "_postman_previewlanguage": "json",
+                                          "header": [
+                                            {
+                                              "key": "Content-Type",
+                                              "value": "application/json"
+                                            }
+                                          ],
+                                          "cookie": [],
+                                          "responseTime": null,
+                                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                          "createdAt": "2026-06-05T15:11:39.000Z",
+                                          "updatedAt": "2026-06-05T15:11:39.000Z",
+                                          "uid": "35240-6ced2706-19ca-4a27-93c8-3c4cbf36b264"
+                                        }
+                                      ],
+                                      "createdAt": "2026-06-05T15:11:39.000Z",
+                                      "updatedAt": "2026-06-05T15:11:39.000Z",
+                                      "uid": "35240-a68c2246-5ab3-4d3c-adb3-738359f5609b"
+                                    }
+                                  ],
+                                  "id": "083c4690-067a-4571-9885-d7d4dab36884",
+                                  "createdAt": "2026-06-05T15:11:39.000Z",
+                                  "updatedAt": "2026-06-05T15:11:39.000Z",
+                                  "uid": "35240-083c4690-067a-4571-9885-d7d4dab36884"
+                                }
+                              ],
+                              "id": "1425d3e6-88ca-4d17-9373-a64bbeeeaf40",
+                              "createdAt": "2026-06-05T15:11:39.000Z",
+                              "updatedAt": "2026-06-05T15:11:39.000Z",
+                              "uid": "35240-1425d3e6-88ca-4d17-9373-a64bbeeeaf40"
+                            },
+                            {
+                              "name": "Microsoft Edge Upload Package",
+                              "id": "306f3849-1447-4cff-871b-928ac265b1be",
+                              "protocolProfileBehavior": {
+                                "disableBodyPruning": true
+                              },
+                              "request": {
+                                "method": "POST",
+                                "header": [
+                                  {
+                                    "key": "Content-Type",
+                                    "value": "application/zip"
+                                  },
+                                  {
+                                    "key": "Accept",
+                                    "value": "application/json"
+                                  }
+                                ],
+                                "body": {
+                                  "mode": "file",
+                                  "file": {}
+                                },
+                                "url": {
+                                  "raw": "{{baseUrl}}/v1/products/:productId/submissions/draft/package",
+                                  "host": [
+                                    "{{baseUrl}}"
+                                  ],
+                                  "path": [
+                                    "v1",
+                                    "products",
+                                    ":productId",
+                                    "submissions",
+                                    "draft",
+                                    "package"
+                                  ],
+                                  "variable": [
+                                    {
+                                      "id": "ff5c65c6-cf82-48c1-82a8-6ecaf55b50c1",
+                                      "key": "productId",
+                                      "value": "<string>",
+                                      "description": "(Required) Product identifier"
+                                    }
+                                  ]
+                                },
+                                "description": "Upload a new extension package (ZIP or CRX file) as a draft submission for an existing product."
+                              },
+                              "response": [
+                                {
+                                  "id": "632fa4a8-93f8-4763-a024-70f11c518497",
+                                  "name": "Package uploaded and processing",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/zip"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "file",
+                                      "file": {}
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/products/:productId/submissions/draft/package",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "products",
+                                        ":productId",
+                                        "submissions",
+                                        "draft",
+                                        "package"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "productId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Accepted",
+                                  "code": 202,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"operationId\": \"<string>\",\n  \"status\": \"InProgress\",\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:11:39.000Z",
+                                  "updatedAt": "2026-06-05T15:11:39.000Z",
+                                  "uid": "35240-632fa4a8-93f8-4763-a024-70f11c518497"
+                                },
+                                {
+                                  "id": "8df786e7-e335-4a6a-9fdb-b438e59c56f7",
+                                  "name": "Invalid package",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/zip"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "file",
+                                      "file": {}
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/products/:productId/submissions/draft/package",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "products",
+                                        ":productId",
+                                        "submissions",
+                                        "draft",
+                                        "package"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "productId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Bad Request",
+                                  "code": 400,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:11:39.000Z",
+                                  "updatedAt": "2026-06-05T15:11:39.000Z",
+                                  "uid": "35240-8df786e7-e335-4a6a-9fdb-b438e59c56f7"
+                                },
+                                {
+                                  "id": "3429c066-6f3f-4f99-8c0e-e427ff9c7a91",
+                                  "name": "Authentication required",
+                                  "originalRequest": {
+                                    "method": "POST",
+                                    "header": [
+                                      {
+                                        "key": "Content-Type",
+                                        "value": "application/zip"
+                                      },
+                                      {
+                                        "key": "Accept",
+                                        "value": "application/json"
+                                      },
+                                      {
+                                        "description": "Added as a part of security scheme: bearer",
+                                        "key": "Authorization",
+                                        "value": "Bearer <token>"
+                                      }
+                                    ],
+                                    "body": {
+                                      "mode": "file",
+                                      "file": {}
+                                    },
+                                    "url": {
+                                      "raw": "{{baseUrl}}/v1/products/:productId/submissions/draft/package",
+                                      "host": [
+                                        "{{baseUrl}}"
+                                      ],
+                                      "path": [
+                                        "v1",
+                                        "products",
+                                        ":productId",
+                                        "submissions",
+                                        "draft",
+                                        "package"
+                                      ],
+                                      "variable": [
+                                        {
+                                          "key": "productId"
+                                        }
+                                      ]
+                                    }
+                                  },
+                                  "status": "Unauthorized",
+                                  "code": 401,
+                                  "_postman_previewlanguage": "json",
+                                  "header": [
+                                    {
+                                      "key": "Content-Type",
+                                      "value": "application/json"
+                                    }
+                                  ],
+                                  "cookie": [],
+                                  "responseTime": null,
+                                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                                  "createdAt": "2026-06-05T15:11:39.000Z",
+                                  "updatedAt": "2026-06-05T15:11:39.000Z",
+                                  "uid": "35240-3429c066-6f3f-4f99-8c0e-e427ff9c7a91"
+                                }
+                              ],
+                              "createdAt": "2026-06-05T15:11:39.000Z",
+                              "updatedAt": "2026-06-05T15:11:39.000Z",
+                              "uid": "35240-306f3849-1447-4cff-871b-928ac265b1be"
+                            }
+                          ],
+                          "id": "50643a8d-05ac-4123-98a7-7c6966ff7426",
+                          "createdAt": "2026-06-05T15:11:39.000Z",
+                          "updatedAt": "2026-06-05T15:11:39.000Z",
+                          "uid": "35240-50643a8d-05ac-4123-98a7-7c6966ff7426"
+                        }
+                      ],
+                      "id": "9b91b9a9-64fd-4999-bf2f-216e4ff65bc6",
+                      "createdAt": "2026-06-05T15:11:39.000Z",
+                      "updatedAt": "2026-06-05T15:11:39.000Z",
+                      "uid": "35240-9b91b9a9-64fd-4999-bf2f-216e4ff65bc6"
+                    },
+                    {
+                      "name": "Microsoft Edge Create Submission",
+                      "id": "afd90ee7-5090-4d3b-9e86-db65c9a4c594",
+                      "protocolProfileBehavior": {
+                        "disableBodyPruning": true
+                      },
+                      "request": {
+                        "method": "POST",
+                        "header": [
+                          {
+                            "key": "Content-Type",
+                            "value": "application/json"
+                          },
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          }
+                        ],
+                        "body": {
+                          "mode": "raw",
+                          "raw": "{\n  \"notes\": \"<string>\"\n}",
+                          "options": {
+                            "raw": {
+                              "headerFamily": "json",
+                              "language": "json"
+                            }
+                          }
+                        },
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/products/:productId/submissions",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "products",
+                            ":productId",
+                            "submissions"
+                          ],
+                          "variable": [
+                            {
+                              "id": "3d3fe6ee-5721-4739-acdd-ee2e0aea6816",
+                              "key": "productId",
+                              "value": "<string>",
+                              "description": "(Required) Product identifier"
+                            }
+                          ]
+                        },
+                        "description": "Create a new submission for an extension product, initiating the review and publishing process."
+                      },
+                      "response": [
+                        {
+                          "id": "0c7b6080-0bbc-4693-ba8d-0a330d081edd",
+                          "name": "Submission created and queued for review",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"notes\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/products/:productId/submissions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "products",
+                                ":productId",
+                                "submissions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Accepted",
+                          "code": 202,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"id\": \"<string>\",\n  \"productId\": \"<string>\",\n  \"status\": \"Failed\",\n  \"createdUtc\": \"<dateTime>\",\n  \"completedUtc\": \"<dateTime>\"\n}",
+                          "createdAt": "2026-06-05T15:11:39.000Z",
+                          "updatedAt": "2026-06-05T15:11:39.000Z",
+                          "uid": "35240-0c7b6080-0bbc-4693-ba8d-0a330d081edd"
+                        },
+                        {
+                          "id": "fadbf2c1-2137-4985-8c26-d83249602e98",
+                          "name": "Invalid submission",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"notes\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/products/:productId/submissions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "products",
+                                ":productId",
+                                "submissions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Bad Request",
+                          "code": 400,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:11:39.000Z",
+                          "updatedAt": "2026-06-05T15:11:39.000Z",
+                          "uid": "35240-fadbf2c1-2137-4985-8c26-d83249602e98"
+                        },
+                        {
+                          "id": "2ca6b098-4f8a-4b0a-b963-25db3427ebbe",
+                          "name": "Authentication required",
+                          "originalRequest": {
+                            "method": "POST",
+                            "header": [
+                              {
+                                "key": "Content-Type",
+                                "value": "application/json"
+                              },
+                              {
+                                "key": "Accept",
+                                "value": "application/json"
+                              },
+                              {
+                                "description": "Added as a part of security scheme: bearer",
+                                "key": "Authorization",
+                                "value": "Bearer <token>"
+                              }
+                            ],
+                            "body": {
+                              "mode": "raw",
+                              "raw": "{\n  \"notes\": \"<string>\"\n}",
+                              "options": {
+                                "raw": {
+                                  "headerFamily": "json",
+                                  "language": "json"
+                                }
+                              }
+                            },
+                            "url": {
+                              "raw": "{{baseUrl}}/v1/products/:productId/submissions",
+                              "host": [
+                                "{{baseUrl}}"
+                              ],
+                              "path": [
+                                "v1",
+                                "products",
+                                ":productId",
+                                "submissions"
+                              ],
+                              "variable": [
+                                {
+                                  "key": "productId"
+                                }
+                              ]
+                            }
+                          },
+                          "status": "Unauthorized",
+                          "code": 401,
+                          "_postman_previewlanguage": "json",
+                          "header": [
+                            {
+                              "key": "Content-Type",
+                              "value": "application/json"
+                            }
+                          ],
+                          "cookie": [],
+                          "responseTime": null,
+                          "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                          "createdAt": "2026-06-05T15:11:39.000Z",
+                          "updatedAt": "2026-06-05T15:11:39.000Z",
+                          "uid": "35240-2ca6b098-4f8a-4b0a-b963-25db3427ebbe"
+                        }
+                      ],
+                      "createdAt": "2026-06-05T15:11:39.000Z",
+                      "updatedAt": "2026-06-05T15:11:39.000Z",
+                      "uid": "35240-afd90ee7-5090-4d3b-9e86-db65c9a4c594"
+                    }
+                  ],
+                  "id": "36e6a609-4f04-41cd-9e6c-fdb4b14d728d",
+                  "createdAt": "2026-06-05T15:11:39.000Z",
+                  "updatedAt": "2026-06-05T15:11:39.000Z",
+                  "uid": "35240-36e6a609-4f04-41cd-9e6c-fdb4b14d728d"
+                },
+                {
+                  "name": "Microsoft Edge Get Product",
+                  "id": "97945465-48a1-4fa4-ab96-468a2d0dd441",
+                  "protocolProfileBehavior": {
+                    "disableBodyPruning": true
+                  },
+                  "request": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/products/:productId",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "products",
+                        ":productId"
+                      ],
+                      "variable": [
+                        {
+                          "id": "24c46416-2602-4dc9-90ac-66606b2d2603",
+                          "key": "productId",
+                          "value": "<string>",
+                          "description": "(Required) Product identifier"
+                        }
+                      ]
+                    },
+                    "description": "Retrieve details of a specific extension product including its current status, version, and metadata."
+                  },
+                  "response": [
+                    {
+                      "id": "b93e0c99-7002-4970-9f34-721f1a074304",
+                      "name": "Product details retrieved",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/products/:productId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "products",
+                            ":productId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "productId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "OK",
+                      "code": 200,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"id\": \"<string>\",\n  \"name\": \"<string>\",\n  \"description\": \"<string>\",\n  \"status\": \"Draft\",\n  \"version\": \"<string>\",\n  \"lastUpdatedUtc\": \"<dateTime>\",\n  \"category\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:11:39.000Z",
+                      "updatedAt": "2026-06-05T15:11:39.000Z",
+                      "uid": "35240-b93e0c99-7002-4970-9f34-721f1a074304"
+                    },
+                    {
+                      "id": "83939ec1-1087-48f2-ba60-0daaac29e1a1",
+                      "name": "Authentication required",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/products/:productId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "products",
+                            ":productId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "productId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Unauthorized",
+                      "code": 401,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:11:39.000Z",
+                      "updatedAt": "2026-06-05T15:11:39.000Z",
+                      "uid": "35240-83939ec1-1087-48f2-ba60-0daaac29e1a1"
+                    },
+                    {
+                      "id": "419d2d4c-ec1c-481e-acae-ef9756167e87",
+                      "name": "Product not found",
+                      "originalRequest": {
+                        "method": "GET",
+                        "header": [
+                          {
+                            "key": "Accept",
+                            "value": "application/json"
+                          },
+                          {
+                            "description": "Added as a part of security scheme: bearer",
+                            "key": "Authorization",
+                            "value": "Bearer <token>"
+                          }
+                        ],
+                        "url": {
+                          "raw": "{{baseUrl}}/v1/products/:productId",
+                          "host": [
+                            "{{baseUrl}}"
+                          ],
+                          "path": [
+                            "v1",
+                            "products",
+                            ":productId"
+                          ],
+                          "variable": [
+                            {
+                              "key": "productId"
+                            }
+                          ]
+                        }
+                      },
+                      "status": "Not Found",
+                      "code": 404,
+                      "_postman_previewlanguage": "json",
+                      "header": [
+                        {
+                          "key": "Content-Type",
+                          "value": "application/json"
+                        }
+                      ],
+                      "cookie": [],
+                      "responseTime": null,
+                      "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                      "createdAt": "2026-06-05T15:11:39.000Z",
+                      "updatedAt": "2026-06-05T15:11:39.000Z",
+                      "uid": "35240-419d2d4c-ec1c-481e-acae-ef9756167e87"
+                    }
+                  ],
+                  "createdAt": "2026-06-05T15:11:39.000Z",
+                  "updatedAt": "2026-06-05T15:11:39.000Z",
+                  "uid": "35240-97945465-48a1-4fa4-ab96-468a2d0dd441"
+                }
+              ],
+              "id": "9f9c1a30-0fb4-4fa3-bf13-0db96fff0bf1",
+              "createdAt": "2026-06-05T15:11:39.000Z",
+              "updatedAt": "2026-06-05T15:11:39.000Z",
+              "uid": "35240-9f9c1a30-0fb4-4fa3-bf13-0db96fff0bf1"
+            },
+            {
+              "name": "Microsoft Edge List Products",
+              "id": "feec164f-4007-4f53-a46d-407e148d4759",
+              "protocolProfileBehavior": {
+                "disableBodyPruning": true
+              },
+              "request": {
+                "method": "GET",
+                "header": [
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/v1/products?$top=25&$skip=0",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "v1",
+                    "products"
+                  ],
+                  "query": [
+                    {
+                      "description": "Maximum number of products to return",
+                      "key": "$top",
+                      "value": "25"
+                    },
+                    {
+                      "description": "Number of products to skip for pagination",
+                      "key": "$skip",
+                      "value": "0"
+                    }
+                  ]
+                },
+                "description": "Retrieve a list of all extensions (products) associated with the authenticated developer account."
+              },
+              "response": [
+                {
+                  "id": "bc763687-6a4e-4ed0-8645-220e62f54b0e",
+                  "name": "Products listed successfully",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/products?$top=25&$skip=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "products"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of products to return",
+                          "key": "$top",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Number of products to skip for pagination",
+                          "key": "$skip",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "OK",
+                  "code": 200,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"value\": [\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"InReview\",\n      \"version\": \"<string>\",\n      \"lastUpdatedUtc\": \"<dateTime>\",\n      \"category\": \"<string>\"\n    },\n    {\n      \"id\": \"<string>\",\n      \"name\": \"<string>\",\n      \"description\": \"<string>\",\n      \"status\": \"Unpublished\",\n      \"version\": \"<string>\",\n      \"lastUpdatedUtc\": \"<dateTime>\",\n      \"category\": \"<string>\"\n    }\n  ],\n  \"totalCount\": \"<integer>\"\n}",
+                  "createdAt": "2026-06-05T15:11:39.000Z",
+                  "updatedAt": "2026-06-05T15:11:39.000Z",
+                  "uid": "35240-bc763687-6a4e-4ed0-8645-220e62f54b0e"
+                },
+                {
+                  "id": "5be93457-0903-4d26-94c4-ee54e2d24561",
+                  "name": "Authentication required",
+                  "originalRequest": {
+                    "method": "GET",
+                    "header": [
+                      {
+                        "key": "Accept",
+                        "value": "application/json"
+                      },
+                      {
+                        "description": "Added as a part of security scheme: bearer",
+                        "key": "Authorization",
+                        "value": "Bearer <token>"
+                      }
+                    ],
+                    "url": {
+                      "raw": "{{baseUrl}}/v1/products?$top=25&$skip=0",
+                      "host": [
+                        "{{baseUrl}}"
+                      ],
+                      "path": [
+                        "v1",
+                        "products"
+                      ],
+                      "query": [
+                        {
+                          "description": "Maximum number of products to return",
+                          "key": "$top",
+                          "value": "25"
+                        },
+                        {
+                          "description": "Number of products to skip for pagination",
+                          "key": "$skip",
+                          "value": "0"
+                        }
+                      ]
+                    }
+                  },
+                  "status": "Unauthorized",
+                  "code": 401,
+                  "_postman_previewlanguage": "json",
+                  "header": [
+                    {
+                      "key": "Content-Type",
+                      "value": "application/json"
+                    }
+                  ],
+                  "cookie": [],
+                  "responseTime": null,
+                  "body": "{\n  \"code\": \"<string>\",\n  \"message\": \"<string>\"\n}",
+                  "createdAt": "2026-06-05T15:11:39.000Z",
+                  "updatedAt": "2026-06-05T15:11:39.000Z",
+                  "uid": "35240-5be93457-0903-4d26-94c4-ee54e2d24561"
+                }
+              ],
+              "createdAt": "2026-06-05T15:11:39.000Z",
+              "updatedAt": "2026-06-05T15:11:39.000Z",
+              "uid": "35240-feec164f-4007-4f53-a46d-407e148d4759"
+            }
+          ],
+          "id": "c5ec7deb-5936-4de2-9d8f-d80091ff2466",
+          "createdAt": "2026-06-05T15:11:39.000Z",
+          "updatedAt": "2026-06-05T15:11:39.000Z",
+          "uid": "35240-c5ec7deb-5936-4de2-9d8f-d80091ff2466"
+        }
+      ],
+      "id": "36ab7914-4eaa-41c5-9803-c4bb11845a4a",
+      "createdAt": "2026-06-05T15:11:39.000Z",
+      "updatedAt": "2026-06-05T15:11:39.000Z",
+      "uid": "35240-36ab7914-4eaa-41c5-9803-c4bb11845a4a"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}",
+        "type": "string"
+      }
+    ]
+  },
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://api.addons.microsoftedge.microsoft.com"
+    }
+  ]
+}

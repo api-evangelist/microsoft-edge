@@ -183,6 +183,8 @@ apis:
   - type: ReleaseNotes
     url: https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/whats-new/
 common:
+  - type: PostmanWorkspace
+    url: https://www.postman.com/kinlaneapi/microsoft-edge/overview
 - type: ArazzoWorkflows
   url: arazzo/
   workflows:
