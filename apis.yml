@@ -82,11 +82,11 @@ apis:
     url: examples/addons-api-submission-example.json
   - type: CodeExamples
     url: examples/addons-api-package-upload-result-example.json
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/addons-packages.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/addons-products.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/addons-publishing.yaml
 - aid: microsoft-edge:edge-devtools-api
   name: Microsoft Edge DevTools Protocol HTTP API
@@ -136,11 +136,11 @@ apis:
     url: examples/devtools-api-browser-version-example.json
   - type: CodeExamples
     url: examples/devtools-api-protocol-schema-example.json
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/devtools-browser.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/devtools-pages.yaml
-  - type: NaftikoCapability
+  - type: X-NaftikoCapability
     url: capabilities/devtools-targets.yaml
 - aid: microsoft-edge:edge-extensions-api
   name: Microsoft Edge Extensions API
@@ -185,148 +185,145 @@ apis:
 common:
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/microsoft-edge/overview
-- type: ArazzoWorkflows
-  url: arazzo/
-  workflows:
-  - url: arazzo/microsoft-edge-find-and-close-target-workflow.yml
+  - type: Arazzo
+    url: arazzo/microsoft-edge-find-and-close-target-workflow.yml
     name: Microsoft Edge Find And Close Target
-    summary: List debuggable targets, branch on whether any exist, and close the first target.
-  - url: arazzo/microsoft-edge-inspect-browser-environment-workflow.yml
+  - type: Arazzo
+    url: arazzo/microsoft-edge-inspect-browser-environment-workflow.yml
     name: Microsoft Edge Inspect Browser Environment
-    summary: Read the browser version and then fetch the full DevTools Protocol schema.
-  - url: arazzo/microsoft-edge-list-and-inspect-product-workflow.yml
+  - type: Arazzo
+    url: arazzo/microsoft-edge-list-and-inspect-product-workflow.yml
     name: Microsoft Edge List And Inspect Product
-    summary: List the developer account's extensions and fetch full details for the first product.
-  - url: arazzo/microsoft-edge-open-and-activate-target-workflow.yml
+  - type: Arazzo
+    url: arazzo/microsoft-edge-open-and-activate-target-workflow.yml
     name: Microsoft Edge Open And Activate Target
-    summary: Confirm the DevTools endpoint, open a new tab at a URL, and bring it to the foreground.
-  - url: arazzo/microsoft-edge-publish-extension-update-workflow.yml
+  - type: Arazzo
+    url: arazzo/microsoft-edge-publish-extension-update-workflow.yml
     name: Microsoft Edge Publish Extension Update
-    summary: Upload a new extension package, wait for validation, then create and track a store submission.
-  - url: arazzo/microsoft-edge-submit-draft-and-track-workflow.yml
+  - type: Arazzo
+    url: arazzo/microsoft-edge-submit-draft-and-track-workflow.yml
     name: Microsoft Edge Submit Draft And Track
-    summary: Create a submission for an already-uploaded draft and poll it until Published or Failed.
-  - url: arazzo/microsoft-edge-upload-package-and-validate-workflow.yml
+  - type: Arazzo
+    url: arazzo/microsoft-edge-upload-package-and-validate-workflow.yml
     name: Microsoft Edge Upload Package And Validate
-    summary: Confirm a product exists, upload a draft package, and poll until the package is validated.
-- type: Documentation
-  url: https://learn.microsoft.com/en-us/microsoft-edge/
-  name: Microsoft Edge Documentation
-- type: DeveloperPortal
-  url: https://developer.microsoft.com/microsoft-edge/
-  name: Microsoft Edge Developer Portal
-- type: Blog
-  url: https://blogs.windows.com/msedgedev/
-  name: Microsoft Edge Blog
-- type: GitHubOrganization
-  url: https://github.com/MicrosoftEdge
-  name: MicrosoftEdge GitHub Organization
-- type: GitHubRepository
-  url: https://github.com/MicrosoftEdge/WebView2Samples
-  name: WebView2 Samples Repository
-- type: GitHubRepository
-  url: https://github.com/nicedoc/nicedoc.io
-  name: Microsoft Edge DevTools Repository
-- type: Support
-  url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/
-  name: Microsoft Edge DevTools Documentation
-- type: ReleaseNotes
-  url: https://learn.microsoft.com/en-us/microsoft-edge/web-platform/release-notes/
-  name: Microsoft Edge Release Notes
-- type: ChangeLog
-  url: https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
-  name: Microsoft Edge Stable Channel Release Notes
-- type: StatusPage
-  url: https://developer.microsoft.com/en-us/microsoft-edge/status/
-  name: Microsoft Edge Platform Status
-- type: X
-  url: https://twitter.com/MSEdgeDev
-  name: Microsoft Edge Dev on X
-- type: TermsOfService
-  url: https://www.microsoft.com/legal/terms-of-use
-  name: Microsoft Terms of Use
-- type: PrivacyPolicy
-  url: https://privacy.microsoft.com/privacystatement
-  name: Microsoft Privacy Statement
-- type: SDK
-  url: https://www.nuget.org/packages/Microsoft.Web.WebView2
-  name: WebView2 SDK (NuGet)
-- type: SignUp
-  url: https://partner.microsoft.com/dashboard/microsoftedge/
-  name: Microsoft Edge Partner Center
-- type: Login
-  url: https://partner.microsoft.com/dashboard/
-  name: Microsoft Partner Center Login
-- type: Marketplace
-  url: https://microsoftedge.microsoft.com/addons/
-  name: Microsoft Edge Add-ons Store
-- type: JSONLD
-  url: json-ld/microsoft-edge-devtools-api-context.jsonld
-  title: DevTools API Context
-- type: JSONLD
-  url: json-ld/microsoft-edge-addons-api-context.jsonld
-  title: Add-ons API Context
-- type: SpectralRules
-  url: rules/microsoft-edge-spectral-rules.yml
-- type: Vocabulary
-  url: vocabulary/microsoft-edge-vocabulary.yaml
-- type: Features
-  name: Features
-  data:
-  - name: Extension Publishing API
-    description: Programmatically publish, update, and manage browser extensions in the Edge Add-ons store via REST API.
-  - name: Remote Debugging Protocol
-    description: Debug and inspect web pages, service workers, and extensions using the Chrome DevTools Protocol over WebSocket.
-  - name: WebView2 Embedding
-    description: Embed Microsoft Edge rendering engine in native desktop applications using the WebView2 SDK.
-  - name: Progressive Web App Support
-    description: Build installable PWAs with offline capability, push notifications, and system integration.
-  - name: Cross-Browser Extension Compatibility
-    description: Build extensions using the Chromium WebExtensions API standard for cross-browser portability.
-  - name: Browser Automation
-    description: Automate browser tasks including page navigation, target management, and performance profiling.
-  - name: Extension Sideloading
-    description: Load and test unpacked extensions locally during development without publishing to the store.
-  - name: Manifest V3 Support
-    description: Build extensions using the latest Manifest V3 specification with service workers and declarative APIs.
-- type: UseCases
-  name: Use Cases
-  data:
-  - name: Automated Extension Deployment
-    description: Use the Add-ons API to automate CI/CD pipelines for publishing and updating browser extensions.
-  - name: Browser Testing and QA
-    description: Leverage DevTools Protocol for automated browser testing, performance auditing, and regression detection.
-  - name: Custom Browser Controls
-    description: Embed Edge rendering in desktop applications for custom browser experiences using WebView2.
-  - name: Enterprise Content Filtering
-    description: Build enterprise extensions for content filtering, security policy enforcement, and compliance monitoring.
-  - name: Web Scraping and Data Extraction
-    description: Use DevTools Protocol to programmatically navigate pages and extract structured data.
-  - name: Accessibility Testing
-    description: Automate accessibility audits using DevTools Protocol to inspect DOM, ARIA attributes, and contrast ratios.
-  - name: Performance Monitoring
-    description: Collect real-time performance metrics, network traces, and JavaScript profiling data via DevTools Protocol.
-  - name: Progressive Web App Distribution
-    description: Build and distribute PWAs through the Microsoft Store with native-like installation and system integration.
-- type: Integrations
-  name: Integrations
-  data:
-  - name: Azure Active Directory
-    description: Authenticate to the Edge Add-ons API using Azure AD OAuth 2.0 client credentials flow.
-  - name: Microsoft Partner Center
-    description: Manage extension listings, submissions, and analytics through the Partner Center dashboard.
-  - name: Visual Studio Code
-    description: Debug Edge browser content directly from VS Code using the Edge DevTools extension.
-  - name: Selenium WebDriver
-    description: Automate Microsoft Edge browser for testing using Selenium with the Edge WebDriver.
-  - name: Playwright
-    description: Cross-browser automation framework with first-class support for Microsoft Edge testing.
-  - name: Puppeteer
-    description: Control headless Microsoft Edge instances programmatically using the Puppeteer Node.js library.
-  - name: GitHub Actions
-    description: Automate extension publishing and browser testing in CI/CD workflows using GitHub Actions.
-  - name: Windows App SDK
-    description: Integrate WebView2 into Windows desktop applications built with WinUI 3 and the Windows App SDK.
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/microsoft-edge/
+    name: Microsoft Edge Documentation
+  - type: DeveloperPortal
+    url: https://developer.microsoft.com/microsoft-edge/
+    name: Microsoft Edge Developer Portal
+  - type: Blog
+    url: https://blogs.windows.com/msedgedev/
+    name: Microsoft Edge Blog
+  - type: GitHubOrganization
+    url: https://github.com/MicrosoftEdge
+    name: MicrosoftEdge GitHub Organization
+  - type: GitHubRepository
+    url: https://github.com/MicrosoftEdge/WebView2Samples
+    name: WebView2 Samples Repository
+  - type: GitHubRepository
+    url: https://github.com/nicedoc/nicedoc.io
+    name: Microsoft Edge DevTools Repository
+  - type: Support
+    url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/
+    name: Microsoft Edge DevTools Documentation
+  - type: ReleaseNotes
+    url: https://learn.microsoft.com/en-us/microsoft-edge/web-platform/release-notes/
+    name: Microsoft Edge Release Notes
+  - type: ChangeLog
+    url: https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel
+    name: Microsoft Edge Stable Channel Release Notes
+  - type: StatusPage
+    url: https://developer.microsoft.com/en-us/microsoft-edge/status/
+    name: Microsoft Edge Platform Status
+  - type: X
+    url: https://twitter.com/MSEdgeDev
+    name: Microsoft Edge Dev on X
+  - type: TermsOfService
+    url: https://www.microsoft.com/legal/terms-of-use
+    name: Microsoft Terms of Use
+  - type: PrivacyPolicy
+    url: https://privacy.microsoft.com/privacystatement
+    name: Microsoft Privacy Statement
+  - type: SDKs
+    url: https://www.nuget.org/packages/Microsoft.Web.WebView2
+    name: WebView2 SDK (NuGet)
+  - type: Signup
+    url: https://partner.microsoft.com/dashboard/microsoftedge/
+    name: Microsoft Edge Partner Center
+  - type: Login
+    url: https://partner.microsoft.com/dashboard/
+    name: Microsoft Partner Center Login
+  - type: Marketplace
+    url: https://microsoftedge.microsoft.com/addons/
+    name: Microsoft Edge Add-ons Store
+  - type: JSONLD
+    url: json-ld/microsoft-edge-devtools-api-context.jsonld
+    title: DevTools API Context
+  - type: JSONLD
+    url: json-ld/microsoft-edge-addons-api-context.jsonld
+    title: Add-ons API Context
+  - type: SpectralRules
+    url: rules/microsoft-edge-spectral-rules.yml
+  - type: Vocabulary
+    url: vocabulary/microsoft-edge-vocabulary.yaml
+  - type: Features
+    name: Features
+    data:
+    - name: Extension Publishing API
+      description: Programmatically publish, update, and manage browser extensions in the Edge Add-ons store via REST API.
+    - name: Remote Debugging Protocol
+      description: Debug and inspect web pages, service workers, and extensions using the Chrome DevTools Protocol over WebSocket.
+    - name: WebView2 Embedding
+      description: Embed Microsoft Edge rendering engine in native desktop applications using the WebView2 SDK.
+    - name: Progressive Web App Support
+      description: Build installable PWAs with offline capability, push notifications, and system integration.
+    - name: Cross-Browser Extension Compatibility
+      description: Build extensions using the Chromium WebExtensions API standard for cross-browser portability.
+    - name: Browser Automation
+      description: Automate browser tasks including page navigation, target management, and performance profiling.
+    - name: Extension Sideloading
+      description: Load and test unpacked extensions locally during development without publishing to the store.
+    - name: Manifest V3 Support
+      description: Build extensions using the latest Manifest V3 specification with service workers and declarative APIs.
+  - type: UseCases
+    name: Use Cases
+    data:
+    - name: Automated Extension Deployment
+      description: Use the Add-ons API to automate CI/CD pipelines for publishing and updating browser extensions.
+    - name: Browser Testing and QA
+      description: Leverage DevTools Protocol for automated browser testing, performance auditing, and regression detection.
+    - name: Custom Browser Controls
+      description: Embed Edge rendering in desktop applications for custom browser experiences using WebView2.
+    - name: Enterprise Content Filtering
+      description: Build enterprise extensions for content filtering, security policy enforcement, and compliance monitoring.
+    - name: Web Scraping and Data Extraction
+      description: Use DevTools Protocol to programmatically navigate pages and extract structured data.
+    - name: Accessibility Testing
+      description: Automate accessibility audits using DevTools Protocol to inspect DOM, ARIA attributes, and contrast ratios.
+    - name: Performance Monitoring
+      description: Collect real-time performance metrics, network traces, and JavaScript profiling data via DevTools Protocol.
+    - name: Progressive Web App Distribution
+      description: Build and distribute PWAs through the Microsoft Store with native-like installation and system integration.
+  - type: Integrations
+    name: Integrations
+    data:
+    - name: Azure Active Directory
+      description: Authenticate to the Edge Add-ons API using Azure AD OAuth 2.0 client credentials flow.
+    - name: Microsoft Partner Center
+      description: Manage extension listings, submissions, and analytics through the Partner Center dashboard.
+    - name: Visual Studio Code
+      description: Debug Edge browser content directly from VS Code using the Edge DevTools extension.
+    - name: Selenium WebDriver
+      description: Automate Microsoft Edge browser for testing using Selenium with the Edge WebDriver.
+    - name: Playwright
+      description: Cross-browser automation framework with first-class support for Microsoft Edge testing.
+    - name: Puppeteer
+      description: Control headless Microsoft Edge instances programmatically using the Puppeteer Node.js library.
+    - name: GitHub Actions
+      description: Automate extension publishing and browser testing in CI/CD workflows using GitHub Actions.
+    - name: Windows App SDK
+      description: Integrate WebView2 into Windows desktop applications built with WinUI 3 and the Windows App SDK.
 maintainers:
 - FN: Kin Lane
   email: kin@apievangelist.com
