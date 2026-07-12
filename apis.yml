@@ -183,6 +183,12 @@ apis:
   - type: ReleaseNotes
     url: https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/whats-new/
 common:
+  - type: VulnerabilityDisclosure
+    url: security/microsoft-edge-vulnerability-disclosure.yml
+  - type: DomainSecurity
+    url: security/microsoft-edge-domain-security.yml
+  - type: Authentication
+    url: authentication/microsoft-edge-authentication.yml
   - type: PostmanWorkspace
     url: https://www.postman.com/kinlaneapi/microsoft-edge/overview
   - type: Arazzo

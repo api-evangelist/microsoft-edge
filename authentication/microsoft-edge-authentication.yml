@@ -1,0 +1,15 @@
+generated: '2026-07-11'
+method: derived
+source: openapi/microsoft-edge-addons-api.yaml
+summary:
+  types:
+  - http
+schemes:
+- name: bearerAuth
+  type: http
+  scheme: bearer
+  bearerFormat: JWT
+  description: OAuth 2.0 access token obtained from Azure Active Directory using the client
+    credentials flow with the Microsoft Partner Center API scope.
+  sources:
+  - openapi/microsoft-edge-addons-api.yaml
