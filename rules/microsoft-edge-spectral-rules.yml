@@ -1,5 +1,22 @@
+# microsoft-edge — Spectral ruleset (strengthened)
+# Plain Spectral. Existing hand-authored rules preserved; measured rules added
+# from this provider's own OpenAPI conventions by strengthen_ruleset.py,
+# then self-validated against the spec.
+#
+# Provenance:
+#   - servers-https-only: 50% of servers already https (warn)
+#   - servers-expected-domain: 1/1 servers on microsoft.com
+#   - path-params-casing: camel @ 100% (n=9)
+#   - operationid-casing: camel @ 100% (n=12)
+#   - schema-names-casing: pascal @ 100% (n=9)
+#   - schema-properties-casing: snake @ 58% (n=36)
+#   - security: global (root) — NOT emitting operation-security-required
+#   - error-schema-defined: ErrorResponse
+#   - merge: kept 27 existing, added 5 measured, upgraded 0
+#   - added: servers-https-only, servers-expected-domain, schema-names-casing, schema-properties-casing, error-schema-defined
+extends:
+  - spectral:oas
 rules:
-  # INFO / METADATA
   info-title-prefix:
     description: Info title must start with "Microsoft Edge"
     severity: error
@@ -37,8 +54,6 @@ rules:
     then:
       field: contact
       function: truthy
-
-  # OPENAPI VERSION
   openapi-version:
     description: OpenAPI version should be 3.0.x
     severity: error
@@ -47,8 +62,6 @@ rules:
       function: pattern
       functionOptions:
         match: ^3\.0\.\d+$
-
-  # SERVERS
   servers-defined:
     description: At least one server must be defined
     severity: error
@@ -63,8 +76,6 @@ rules:
     then:
       field: description
       function: truthy
-
-  # PATHS - NAMING CONVENTIONS
   paths-kebab-case:
     description: Path segments should use kebab-case
     severity: warn
@@ -83,8 +94,6 @@ rules:
       function: pattern
       functionOptions:
         notMatch: .+\/$
-
-  # OPERATIONS
   operation-summary-required:
     description: Every operation must have a summary
     severity: error
@@ -129,8 +138,6 @@ rules:
     then:
       field: tags
       function: truthy
-
-  # TAGS
   tags-title-case:
     description: Tags should use Title Case
     severity: warn
@@ -139,8 +146,6 @@ rules:
       function: pattern
       functionOptions:
         match: ^[A-Z]
-
-  # PARAMETERS
   parameter-description-required:
     description: Every parameter must have a description
     severity: warn
@@ -155,8 +160,6 @@ rules:
     then:
       field: schema
       function: truthy
-
-  # RESPONSES
   response-success-required:
     description: Every operation must have a success response (2xx)
     severity: error
@@ -166,10 +169,14 @@ rules:
       functionOptions:
         schema:
           anyOf:
-            - required: ['200']
-            - required: ['201']
-            - required: ['202']
-            - required: ['204']
+          - required:
+            - '200'
+          - required:
+            - '201'
+          - required:
+            - '202'
+          - required:
+            - '204'
   response-description-required:
     description: Every response must have a description
     severity: error
@@ -177,8 +184,6 @@ rules:
     then:
       field: description
       function: truthy
-
-  # SCHEMAS
   schema-description-required:
     description: Top-level schemas should have descriptions
     severity: warn
@@ -193,8 +198,6 @@ rules:
     then:
       field: type
       function: truthy
-
-  # SECURITY
   security-schemes-defined:
     description: Security schemes should be defined when security is used
     severity: warn
@@ -202,8 +205,6 @@ rules:
     then:
       field: securitySchemes
       function: truthy
-
-  # HTTP METHOD CONVENTIONS
   get-no-request-body:
     description: GET operations should not have a request body
     severity: error
@@ -218,11 +219,50 @@ rules:
     then:
       field: requestBody
       function: falsy
-
-  # GENERAL QUALITY
   no-empty-descriptions:
     description: Descriptions should not be empty strings
     severity: error
     given: $..description
     then:
+      function: truthy
+  servers-https-only:
+    description: Server URLs must use HTTPS.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: ^https://
+  servers-expected-domain:
+    description: Server URLs should be on the microsoft.com domain.
+    severity: warn
+    given: $.servers[*].url
+    then:
+      function: pattern
+      functionOptions:
+        match: microsoft\.com
+  schema-names-casing:
+    description: Component schema names should be PascalCase (the dominant convention in this API).
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: pascal
+  schema-properties-casing:
+    description: Schema properties should be snake_case (the dominant convention in this API).
+    severity: info
+    given: $.components.schemas[*].properties
+    then:
+      field: '@key'
+      function: casing
+      functionOptions:
+        type: snake
+  error-schema-defined:
+    description: A shared error schema (ErrorResponse) should be defined for error payloads.
+    severity: warn
+    given: $.components.schemas
+    then:
+      field: ErrorResponse
       function: truthy
