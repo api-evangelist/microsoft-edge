@@ -1,0 +1,194 @@
+openapi: 3.0.3
+info:
+  title: Microsoft Edge Add-ons Browser Publishing API
+  description: REST API for managing Microsoft Edge browser extensions through the Partner Center. Enables programmatic publishing, updating, and managing Edge extensions in the Microsoft Edge Add-ons store, supporting the full extension lifecycle from upload to publication.
+  version: 1.0.0
+  contact:
+    name: Microsoft Edge Developer
+    url: https://developer.microsoft.com/microsoft-edge/
+  license:
+    name: Microsoft Software License
+    url: https://www.microsoft.com/legal/terms-of-use
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://api.addons.microsoftedge.microsoft.com
+  description: Microsoft Edge Add-ons API Production
+security:
+- bearerAuth: []
+tags:
+- name: Publishing
+  description: Publish and unpublish extensions
+paths:
+  /v1/products/{productId}/submissions:
+    post:
+      operationId: createSubmission
+      summary: Microsoft Edge Create Submission
+      description: Create a new submission for an extension product, initiating the review and publishing process.
+      tags:
+      - Publishing
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        description: Product identifier
+        schema:
+          type: string
+        example: ext-500123
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmissionCreate'
+            examples:
+              CreateSubmissionRequestExample:
+                summary: Default createSubmission request
+                x-microcks-default: true
+                value:
+                  notes: Updated permissions and bug fixes
+      responses:
+        '202':
+          description: Submission created and queued for review
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submission'
+              examples:
+                CreateSubmission202Example:
+                  summary: Default createSubmission 202 response
+                  x-microcks-default: true
+                  value:
+                    id: sub-600123
+                    productId: ext-500123
+                    status: InReview
+                    createdUtc: '2026-04-18T12:00:00Z'
+        '400':
+          description: Invalid submission
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/products/{productId}/submissions/{submissionId}:
+    get:
+      operationId: getSubmission
+      summary: Microsoft Edge Get Submission Status
+      description: Retrieve the current status and details of a submission for an extension product.
+      tags:
+      - Publishing
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        description: Product identifier
+        schema:
+          type: string
+        example: ext-500123
+      - name: submissionId
+        in: path
+        required: true
+        description: Submission identifier
+        schema:
+          type: string
+        example: sub-600123
+      responses:
+        '200':
+          description: Submission status retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submission'
+              examples:
+                GetSubmission200Example:
+                  summary: Default getSubmission 200 response
+                  x-microcks-default: true
+                  value:
+                    id: sub-600123
+                    productId: ext-500123
+                    status: Published
+                    createdUtc: '2026-04-18T12:00:00Z'
+                    completedUtc: '2026-04-18T14:00:00Z'
+        '404':
+          description: Submission not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Submission:
+      type: object
+      description: An extension submission for review and publishing
+      properties:
+        id:
+          type: string
+          description: Submission identifier
+          example: sub-600123
+        productId:
+          type: string
+          description: Parent product identifier
+          example: ext-500123
+        status:
+          type: string
+          description: Submission status
+          enum:
+          - Draft
+          - InReview
+          - Published
+          - Failed
+          - Cancelled
+          example: InReview
+        createdUtc:
+          type: string
+          format: date-time
+          description: Submission creation timestamp
+          example: '2026-04-18T12:00:00Z'
+        completedUtc:
+          type: string
+          format: date-time
+          description: Submission completion timestamp
+          example: '2026-04-18T14:00:00Z'
+    SubmissionCreate:
+      type: object
+      description: Submission creation request
+      properties:
+        notes:
+          type: string
+          description: Notes for the review team
+          example: Updated permissions and bug fixes
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        code:
+          type: string
+          description: Error code
+          example: NotFound
+        message:
+          type: string
+          description: Error message
+          example: The specified product was not found
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained from Azure Active Directory using the client credentials flow with the Microsoft Partner Center API scope.

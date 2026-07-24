@@ -1,0 +1,166 @@
+openapi: 3.0.3
+info:
+  title: Microsoft Edge Add-ons Browser Packages API
+  description: REST API for managing Microsoft Edge browser extensions through the Partner Center. Enables programmatic publishing, updating, and managing Edge extensions in the Microsoft Edge Add-ons store, supporting the full extension lifecycle from upload to publication.
+  version: 1.0.0
+  contact:
+    name: Microsoft Edge Developer
+    url: https://developer.microsoft.com/microsoft-edge/
+  license:
+    name: Microsoft Software License
+    url: https://www.microsoft.com/legal/terms-of-use
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://api.addons.microsoftedge.microsoft.com
+  description: Microsoft Edge Add-ons API Production
+security:
+- bearerAuth: []
+tags:
+- name: Packages
+  description: Upload and manage extension packages
+paths:
+  /v1/products/{productId}/submissions/draft/package:
+    post:
+      operationId: uploadPackage
+      summary: Microsoft Edge Upload Package
+      description: Upload a new extension package (ZIP or CRX file) as a draft submission for an existing product.
+      tags:
+      - Packages
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        description: Product identifier
+        schema:
+          type: string
+        example: ext-500123
+      requestBody:
+        required: true
+        content:
+          application/zip:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '202':
+          description: Package uploaded and processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageUploadResult'
+              examples:
+                UploadPackage202Example:
+                  summary: Default uploadPackage 202 response
+                  x-microcks-default: true
+                  value:
+                    operationId: op-700123
+                    status: InProgress
+                    message: Package upload accepted
+        '400':
+          description: Invalid package
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/products/{productId}/submissions/draft/package/operations/{operationId}:
+    get:
+      operationId: getPackageUploadStatus
+      summary: Microsoft Edge Get Package Upload Status
+      description: Check the status of a package upload operation to determine if it has completed successfully or failed.
+      tags:
+      - Packages
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        description: Product identifier
+        schema:
+          type: string
+        example: ext-500123
+      - name: operationId
+        in: path
+        required: true
+        description: Upload operation identifier
+        schema:
+          type: string
+        example: op-700123
+      responses:
+        '200':
+          description: Upload operation status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageUploadResult'
+              examples:
+                GetPackageUploadStatus200Example:
+                  summary: Default getPackageUploadStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    operationId: op-700123
+                    status: Succeeded
+                    message: Package validated and ready for submission
+        '404':
+          description: Operation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    PackageUploadResult:
+      type: object
+      description: Package upload operation result
+      properties:
+        operationId:
+          type: string
+          description: Upload operation identifier
+          example: op-700123
+        status:
+          type: string
+          description: Operation status
+          enum:
+          - InProgress
+          - Succeeded
+          - Failed
+          example: Succeeded
+        message:
+          type: string
+          description: Status message
+          example: Package validated and ready for submission
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        code:
+          type: string
+          description: Error code
+          example: NotFound
+        message:
+          type: string
+          description: Error message
+          example: The specified product was not found
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained from Azure Active Directory using the client credentials flow with the Microsoft Partner Center API scope.

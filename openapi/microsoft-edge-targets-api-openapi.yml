@@ -1,0 +1,105 @@
+openapi: 3.0.3
+info:
+  title: Microsoft Edge Add-ons Browser Targets API
+  description: REST API for managing Microsoft Edge browser extensions through the Partner Center. Enables programmatic publishing, updating, and managing Edge extensions in the Microsoft Edge Add-ons store, supporting the full extension lifecycle from upload to publication.
+  version: 1.0.0
+  contact:
+    name: Microsoft Edge Developer
+    url: https://developer.microsoft.com/microsoft-edge/
+  license:
+    name: Microsoft Software License
+    url: https://www.microsoft.com/legal/terms-of-use
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://api.addons.microsoftedge.microsoft.com
+  description: Microsoft Edge Add-ons API Production
+security:
+- bearerAuth: []
+tags:
+- name: Targets
+  description: Discover and manage debuggable browser targets
+paths:
+  /json/list:
+    get:
+      operationId: listTargets
+      summary: Microsoft Edge List Debuggable Targets
+      description: Returns a JSON array of all debuggable targets including pages, service workers, extensions, and background pages with their WebSocket debugger URLs.
+      tags:
+      - Targets
+      responses:
+        '200':
+          description: List of debuggable targets
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Target'
+              examples:
+                ListTargets200Example:
+                  summary: Default listTargets 200 response
+                  x-microcks-default: true
+                  value:
+                  - description: ''
+                    devtoolsFrontendUrl: /devtools/inspector.html?ws=localhost:9222/devtools/page/ABC123
+                    id: ABC123
+                    title: Example Page
+                    type: page
+                    url: https://www.example.com
+                    webSocketDebuggerUrl: ws://localhost:9222/devtools/page/ABC123
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Target:
+      type: object
+      description: A debuggable browser target
+      properties:
+        description:
+          type: string
+          description: Target description
+          example: ''
+        devtoolsFrontendUrl:
+          type: string
+          description: URL to the DevTools frontend for this target
+          example: /devtools/inspector.html?ws=localhost:9222/devtools/page/ABC123
+        faviconUrl:
+          type: string
+          description: URL to the target's favicon
+          example: https://www.example.com/favicon.ico
+        id:
+          type: string
+          description: Unique target identifier
+          example: ABC123
+        title:
+          type: string
+          description: Page title
+          example: Example Page
+        type:
+          type: string
+          description: Target type
+          enum:
+          - page
+          - background_page
+          - service_worker
+          - worker
+          - iframe
+          - other
+          example: page
+        url:
+          type: string
+          format: uri
+          description: Current URL of the target
+          example: https://www.example.com
+        webSocketDebuggerUrl:
+          type: string
+          description: WebSocket URL for debugging this target
+          example: ws://localhost:9222/devtools/page/ABC123
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained from Azure Active Directory using the client credentials flow with the Microsoft Partner Center API scope.

@@ -1,0 +1,167 @@
+openapi: 3.0.3
+info:
+  title: Microsoft Edge Add-ons Browser API
+  description: REST API for managing Microsoft Edge browser extensions through the Partner Center. Enables programmatic publishing, updating, and managing Edge extensions in the Microsoft Edge Add-ons store, supporting the full extension lifecycle from upload to publication.
+  version: 1.0.0
+  contact:
+    name: Microsoft Edge Developer
+    url: https://developer.microsoft.com/microsoft-edge/
+  license:
+    name: Microsoft Software License
+    url: https://www.microsoft.com/legal/terms-of-use
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://api.addons.microsoftedge.microsoft.com
+  description: Microsoft Edge Add-ons API Production
+security:
+- bearerAuth: []
+tags:
+- name: Browser
+  description: Browser-level information and management
+paths:
+  /json/version:
+    get:
+      operationId: getBrowserVersion
+      summary: Microsoft Edge Get Browser Version
+      description: Returns browser version information including the browser name, protocol version, user agent string, V8 version, and WebKit version.
+      tags:
+      - Browser
+      responses:
+        '200':
+          description: Browser version information
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/BrowserVersion'
+              examples:
+                GetBrowserVersion200Example:
+                  summary: Default getBrowserVersion 200 response
+                  x-microcks-default: true
+                  value:
+                    Browser: Microsoft Edge/125.0.0.0
+                    Protocol-Version: '1.3'
+                    User-Agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0
+                    V8-Version: 12.5.283.0
+                    WebKit-Version: 537.36
+                    webSocketDebuggerUrl: ws://localhost:9222/devtools/browser/GHI789
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /json/protocol:
+    get:
+      operationId: getProtocolSchema
+      summary: Microsoft Edge Get Protocol Schema
+      description: Returns the complete DevTools Protocol schema in JSON format, including all domains, commands, events, and types.
+      tags:
+      - Browser
+      responses:
+        '200':
+          description: Full protocol schema
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProtocolSchema'
+              examples:
+                GetProtocolSchema200Example:
+                  summary: Default getProtocolSchema 200 response
+                  x-microcks-default: true
+                  value:
+                    version:
+                      major: '1'
+                      minor: '3'
+                    domains:
+                    - domain: Page
+                      experimental: false
+                      commands:
+                      - name: navigate
+                        parameters:
+                        - name: url
+                          type: string
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    BrowserVersion:
+      type: object
+      description: Browser version and protocol information
+      properties:
+        Browser:
+          type: string
+          description: Browser name and version
+          example: Microsoft Edge/125.0.0.0
+        Protocol-Version:
+          type: string
+          description: DevTools Protocol version
+          example: '1.3'
+        User-Agent:
+          type: string
+          description: Full user agent string
+          example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+        V8-Version:
+          type: string
+          description: V8 JavaScript engine version
+          example: 12.5.283.0
+        WebKit-Version:
+          type: string
+          description: WebKit rendering engine version
+          example: 537.36
+        webSocketDebuggerUrl:
+          type: string
+          description: WebSocket URL for browser-level debugging
+          example: ws://localhost:9222/devtools/browser/GHI789
+    ProtocolSchema:
+      type: object
+      description: DevTools Protocol schema definition
+      properties:
+        version:
+          type: object
+          properties:
+            major:
+              type: string
+              example: '1'
+            minor:
+              type: string
+              example: '3'
+        domains:
+          type: array
+          description: Protocol domains
+          items:
+            type: object
+            properties:
+              domain:
+                type: string
+                example: Page
+              experimental:
+                type: boolean
+                example: false
+              commands:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+                    parameters:
+                      type: array
+                      items:
+                        type: object
+                        properties:
+                          name:
+                            type: string
+                          type:
+                            type: string
+              events:
+                type: array
+                items:
+                  type: object
+                  properties:
+                    name:
+                      type: string
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained from Azure Active Directory using the client credentials flow with the Microsoft Partner Center API scope.

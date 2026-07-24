@@ -1,0 +1,194 @@
+openapi: 3.0.3
+info:
+  title: Microsoft Edge Add-ons Browser Products API
+  description: REST API for managing Microsoft Edge browser extensions through the Partner Center. Enables programmatic publishing, updating, and managing Edge extensions in the Microsoft Edge Add-ons store, supporting the full extension lifecycle from upload to publication.
+  version: 1.0.0
+  contact:
+    name: Microsoft Edge Developer
+    url: https://developer.microsoft.com/microsoft-edge/
+  license:
+    name: Microsoft Software License
+    url: https://www.microsoft.com/legal/terms-of-use
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+- url: https://api.addons.microsoftedge.microsoft.com
+  description: Microsoft Edge Add-ons API Production
+security:
+- bearerAuth: []
+tags:
+- name: Products
+  description: Manage extension products in the Edge Add-ons store
+paths:
+  /v1/products:
+    get:
+      operationId: listProducts
+      summary: Microsoft Edge List Products
+      description: Retrieve a list of all extensions (products) associated with the authenticated developer account.
+      tags:
+      - Products
+      parameters:
+      - name: $top
+        in: query
+        required: false
+        description: Maximum number of products to return
+        schema:
+          type: integer
+          default: 25
+        example: 25
+      - name: $skip
+        in: query
+        required: false
+        description: Number of products to skip for pagination
+        schema:
+          type: integer
+          default: 0
+        example: 0
+      responses:
+        '200':
+          description: Products listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductList'
+              examples:
+                ListProducts200Example:
+                  summary: Default listProducts 200 response
+                  x-microcks-default: true
+                  value:
+                    value:
+                    - id: ext-500123
+                      name: My Extension
+                      status: Published
+                      lastUpdatedUtc: '2026-04-15T10:00:00Z'
+                    totalCount: 5
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/products/{productId}:
+    get:
+      operationId: getProduct
+      summary: Microsoft Edge Get Product
+      description: Retrieve details of a specific extension product including its current status, version, and metadata.
+      tags:
+      - Products
+      parameters:
+      - name: productId
+        in: path
+        required: true
+        description: Product identifier
+        schema:
+          type: string
+        example: ext-500123
+      responses:
+        '200':
+          description: Product details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+              examples:
+                GetProduct200Example:
+                  summary: Default getProduct 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ext-500123
+                    name: My Extension
+                    description: A sample browser extension for Microsoft Edge
+                    status: Published
+                    version: 1.2.0
+                    lastUpdatedUtc: '2026-04-15T10:00:00Z'
+                    category: Productivity
+        '404':
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  schemas:
+    Product:
+      type: object
+      description: An extension product in the Edge Add-ons store
+      properties:
+        id:
+          type: string
+          description: Product identifier
+          example: ext-500123
+        name:
+          type: string
+          description: Extension name
+          example: My Extension
+        description:
+          type: string
+          description: Extension description
+          example: A sample browser extension for Microsoft Edge
+        status:
+          type: string
+          description: Product publishing status
+          enum:
+          - Draft
+          - InReview
+          - Published
+          - Unpublished
+          - Rejected
+          example: Published
+        version:
+          type: string
+          description: Current published version
+          example: 1.2.0
+        lastUpdatedUtc:
+          type: string
+          format: date-time
+          description: Last update timestamp
+          example: '2026-04-15T10:00:00Z'
+        category:
+          type: string
+          description: Store category
+          example: Productivity
+    ProductList:
+      type: object
+      description: Paginated list of products
+      properties:
+        value:
+          type: array
+          description: Array of products
+          items:
+            $ref: '#/components/schemas/Product'
+        totalCount:
+          type: integer
+          description: Total number of products
+          example: 5
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        code:
+          type: string
+          description: Error code
+          example: NotFound
+        message:
+          type: string
+          description: Error message
+          example: The specified product was not found
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: OAuth 2.0 access token obtained from Azure Active Directory using the client credentials flow with the Microsoft Partner Center API scope.
