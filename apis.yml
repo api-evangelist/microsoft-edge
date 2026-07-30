@@ -3,6 +3,19 @@ name: Microsoft Edge
 description: APIs and resources for Microsoft Edge browser development and integration, including the Edge Add-ons API for
   extension management, DevTools Protocol for browser debugging and automation, Extensions API for building browser extensions,
   and Web Platform APIs for progressive web app development.
+accessModel:
+  pricing: freemium
+  onboarding: self-serve
+  trial: false
+  try_now: true
+  public: false
+  label: Freemium · Self-serve signup
+  confidence: high
+  source:
+  - plans
+  - authentication
+  generated: '2026-07-22'
+  method: derived
 image: https://www.microsoft.com/edge/favicon.ico
 url: https://www.microsoft.com/edge
 humanURL: https://developer.microsoft.com/microsoft-edge/
@@ -23,129 +36,11 @@ tags:
 - Web Development
 - WebView
 apis:
-- aid: microsoft-edge:edge-addons-api
-  name: Microsoft Edge Add-ons API
-  description: REST API for managing Microsoft Edge browser extensions through the Partner Center. Enables programmatic publishing,
-    updating, and managing Edge extensions in the Microsoft Edge Add-ons store, supporting the full extension lifecycle from
-    upload to publication.
-  image: https://docs.microsoft.com/en-us/media/logos/logo_edge.svg
-  humanURL: https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api
-  baseURL: https://api.addons.microsoftedge.microsoft.com
-  tags:
-  - Add-Ons
-  - Browser Extensions
-  - Extension Publishing
-  - Package Management
-  - Partner Center
-  properties:
-  - type: Documentation
-    url: https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api
-  - type: GettingStarted
-    url: https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api#before-you-begin
-  - type: APIReference
-    url: https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/addons-api-reference
-  - type: Authentication
-    url: https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api#registering-the-client-application-in-azure-active-directory
-  - type: OpenAPI
-    url: openapi/microsoft-edge-addons-api.yaml
-  - type: JSONSchema
-    url: json-schema/addons-api-product-schema.json
-    title: Product Schema
-  - type: JSONSchema
-    url: json-schema/addons-api-submission-schema.json
-    title: Submission Schema
-  - type: JSONSchema
-    url: json-schema/addons-api-product-list-schema.json
-    title: Product List Schema
-  - type: JSONSchema
-    url: json-schema/addons-api-package-upload-result-schema.json
-    title: Package Upload Result Schema
-  - type: JSONLD
-    url: json-ld/microsoft-edge-addons-api-context.jsonld
-  - type: JSONSchema
-    url: json-structure/addons-api-product-structure.json
-    title: JSON Structure
-  - type: JSONSchema
-    url: json-structure/addons-api-submission-structure.json
-    title: JSON Structure
-  - type: JSONSchema
-    url: json-structure/addons-api-product-list-structure.json
-    title: JSON Structure
-  - type: JSONSchema
-    url: json-structure/addons-api-package-upload-result-structure.json
-    title: JSON Structure
-  - type: CodeExamples
-    url: examples/addons-api-product-example.json
-  - type: CodeExamples
-    url: examples/addons-api-product-list-example.json
-  - type: CodeExamples
-    url: examples/addons-api-submission-example.json
-  - type: CodeExamples
-    url: examples/addons-api-package-upload-result-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/addons-packages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/addons-products.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/addons-publishing.yaml
-- aid: microsoft-edge:edge-devtools-api
-  name: Microsoft Edge DevTools Protocol HTTP API
-  description: HTTP endpoints for the Microsoft Edge DevTools Protocol, based on the Chromium DevTools Protocol. These endpoints
-    allow programmatic discovery and management of debuggable browser targets including pages, service workers, and extensions.
-  image: https://docs.microsoft.com/en-us/media/logos/logo_edge.svg
-  humanURL: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
-  baseURL: http://localhost:9222
-  tags:
-  - Automation
-  - Browser Debugging
-  - DevTools
-  - Remote Debugging
-  - Testing
-  properties:
-  - type: Documentation
-    url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
-  - type: APIReference
-    url: https://chromedevtools.github.io/devtools-protocol/
-  - type: GettingStarted
-    url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
-  - type: OpenAPI
-    url: openapi/microsoft-edge-devtools-api.yaml
-  - type: JSONSchema
-    url: json-schema/devtools-api-target-schema.json
-    title: Target Schema
-  - type: JSONSchema
-    url: json-schema/devtools-api-browser-version-schema.json
-    title: Browser Version Schema
-  - type: JSONSchema
-    url: json-schema/devtools-api-protocol-schema-schema.json
-    title: Protocol Schema Schema
-  - type: JSONLD
-    url: json-ld/microsoft-edge-devtools-api-context.jsonld
-  - type: JSONSchema
-    url: json-structure/devtools-api-target-structure.json
-    title: JSON Structure
-  - type: JSONSchema
-    url: json-structure/devtools-api-browser-version-structure.json
-    title: JSON Structure
-  - type: JSONSchema
-    url: json-structure/devtools-api-protocol-schema-structure.json
-    title: JSON Structure
-  - type: CodeExamples
-    url: examples/devtools-api-target-example.json
-  - type: CodeExamples
-    url: examples/devtools-api-browser-version-example.json
-  - type: CodeExamples
-    url: examples/devtools-api-protocol-schema-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-browser.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-pages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-targets.yaml
 - aid: microsoft-edge:edge-extensions-api
   name: Microsoft Edge Extensions API
-  description: Build browser extensions for Microsoft Edge using the Chromium-based extensions platform. Supports the WebExtensions
-    API standard for cross-browser compatibility.
+  description: >-
+    Build browser extensions for Microsoft Edge using the Chromium-based extensions platform. Supports
+    the WebExtensions API standard for cross-browser compatibility.
   image: https://docs.microsoft.com/en-us/media/logos/logo_edge.svg
   humanURL: https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/
   baseURL: https://microsoftedge.microsoft.com/addons
@@ -160,13 +55,16 @@ apis:
   - type: GettingStarted
     url: https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/getting-started/
   - type: APIReference
-    url: https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/developer-guide/api-support
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/developer-guide/api-support
   - type: Tutorials
-    url: https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/getting-started/part1-simple-extension
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/getting-started/part1-simple-extension
 - aid: microsoft-edge:edge-web-platform-apis
   name: Microsoft Edge Web Platform APIs
-  description: Modern web APIs and standards supported in Microsoft Edge, including Progressive Web App capabilities, Web
-    Components, and emerging web platform features.
+  description: >-
+    Modern web APIs and standards supported in Microsoft Edge, including Progressive Web App capabilities,
+    Web Components, and emerging web platform features.
   image: https://docs.microsoft.com/en-us/media/logos/logo_edge.svg
   humanURL: https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/
   baseURL: https://www.microsoft.com/edge
@@ -181,7 +79,530 @@ apis:
   - type: GettingStarted
     url: https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/
   - type: ReleaseNotes
-    url: https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/whats-new/
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/whats-new/
+- aid: microsoft-edge:microsoft-edge-browser-api
+  name: Microsoft Edge Browser API
+  description: Browser-level information and management
+  humanURL: >-
+    https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api
+  baseURL: https://api.addons.microsoftedge.microsoft.com
+  tags:
+  - Browser
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-edge-browser-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api
+  - type: GettingStarted
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api#before-you-begin
+  - type: APIReference
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/addons-api-reference
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api#registering-the-client-application-in-azure-active-directory
+  - type: JSONSchema
+    url: json-schema/addons-api-product-schema.json
+  - type: JSONSchema
+    url: json-schema/addons-api-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/addons-api-product-list-schema.json
+  - type: JSONSchema
+    url: json-schema/addons-api-package-upload-result-schema.json
+  - type: JSONLD
+    url: json-ld/microsoft-edge-addons-api-context.jsonld
+  - type: JSONSchema
+    url: json-structure/addons-api-product-structure.json
+  - type: JSONSchema
+    url: json-structure/addons-api-submission-structure.json
+  - type: JSONSchema
+    url: json-structure/addons-api-product-list-structure.json
+  - type: JSONSchema
+    url: json-structure/addons-api-package-upload-result-structure.json
+  - type: CodeExamples
+    url: examples/addons-api-product-example.json
+  - type: CodeExamples
+    url: examples/addons-api-product-list-example.json
+  - type: CodeExamples
+    url: examples/addons-api-submission-example.json
+  - type: CodeExamples
+    url: examples/addons-api-package-upload-result-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/addons-packages.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/addons-products.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/addons-publishing.yaml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
+  - type: APIReference
+    url: https://chromedevtools.github.io/devtools-protocol/
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
+  - type: JSONSchema
+    url: json-schema/devtools-api-target-schema.json
+  - type: JSONSchema
+    url: json-schema/devtools-api-browser-version-schema.json
+  - type: JSONSchema
+    url: json-schema/devtools-api-protocol-schema-schema.json
+  - type: JSONLD
+    url: json-ld/microsoft-edge-devtools-api-context.jsonld
+  - type: JSONSchema
+    url: json-structure/devtools-api-target-structure.json
+  - type: JSONSchema
+    url: json-structure/devtools-api-browser-version-structure.json
+  - type: JSONSchema
+    url: json-structure/devtools-api-protocol-schema-structure.json
+  - type: CodeExamples
+    url: examples/devtools-api-target-example.json
+  - type: CodeExamples
+    url: examples/devtools-api-browser-version-example.json
+  - type: CodeExamples
+    url: examples/devtools-api-protocol-schema-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/devtools-browser.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/devtools-pages.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/devtools-targets.yaml
+- aid: microsoft-edge:microsoft-edge-packages-api
+  name: Microsoft Edge Packages API
+  description: Upload and manage extension packages
+  humanURL: >-
+    https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api
+  baseURL: https://api.addons.microsoftedge.microsoft.com
+  tags:
+  - Packages
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-edge-packages-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api
+  - type: GettingStarted
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api#before-you-begin
+  - type: APIReference
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/addons-api-reference
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api#registering-the-client-application-in-azure-active-directory
+  - type: JSONSchema
+    url: json-schema/addons-api-product-schema.json
+  - type: JSONSchema
+    url: json-schema/addons-api-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/addons-api-product-list-schema.json
+  - type: JSONSchema
+    url: json-schema/addons-api-package-upload-result-schema.json
+  - type: JSONLD
+    url: json-ld/microsoft-edge-addons-api-context.jsonld
+  - type: JSONSchema
+    url: json-structure/addons-api-product-structure.json
+  - type: JSONSchema
+    url: json-structure/addons-api-submission-structure.json
+  - type: JSONSchema
+    url: json-structure/addons-api-product-list-structure.json
+  - type: JSONSchema
+    url: json-structure/addons-api-package-upload-result-structure.json
+  - type: CodeExamples
+    url: examples/addons-api-product-example.json
+  - type: CodeExamples
+    url: examples/addons-api-product-list-example.json
+  - type: CodeExamples
+    url: examples/addons-api-submission-example.json
+  - type: CodeExamples
+    url: examples/addons-api-package-upload-result-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/addons-packages.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/addons-products.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/addons-publishing.yaml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
+  - type: APIReference
+    url: https://chromedevtools.github.io/devtools-protocol/
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
+  - type: JSONSchema
+    url: json-schema/devtools-api-target-schema.json
+  - type: JSONSchema
+    url: json-schema/devtools-api-browser-version-schema.json
+  - type: JSONSchema
+    url: json-schema/devtools-api-protocol-schema-schema.json
+  - type: JSONLD
+    url: json-ld/microsoft-edge-devtools-api-context.jsonld
+  - type: JSONSchema
+    url: json-structure/devtools-api-target-structure.json
+  - type: JSONSchema
+    url: json-structure/devtools-api-browser-version-structure.json
+  - type: JSONSchema
+    url: json-structure/devtools-api-protocol-schema-structure.json
+  - type: CodeExamples
+    url: examples/devtools-api-target-example.json
+  - type: CodeExamples
+    url: examples/devtools-api-browser-version-example.json
+  - type: CodeExamples
+    url: examples/devtools-api-protocol-schema-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/devtools-browser.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/devtools-pages.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/devtools-targets.yaml
+- aid: microsoft-edge:microsoft-edge-pages-api
+  name: Microsoft Edge Pages API
+  description: Page target management
+  humanURL: >-
+    https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api
+  baseURL: https://api.addons.microsoftedge.microsoft.com
+  tags:
+  - Pages
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-edge-pages-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api
+  - type: GettingStarted
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api#before-you-begin
+  - type: APIReference
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/addons-api-reference
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api#registering-the-client-application-in-azure-active-directory
+  - type: JSONSchema
+    url: json-schema/addons-api-product-schema.json
+  - type: JSONSchema
+    url: json-schema/addons-api-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/addons-api-product-list-schema.json
+  - type: JSONSchema
+    url: json-schema/addons-api-package-upload-result-schema.json
+  - type: JSONLD
+    url: json-ld/microsoft-edge-addons-api-context.jsonld
+  - type: JSONSchema
+    url: json-structure/addons-api-product-structure.json
+  - type: JSONSchema
+    url: json-structure/addons-api-submission-structure.json
+  - type: JSONSchema
+    url: json-structure/addons-api-product-list-structure.json
+  - type: JSONSchema
+    url: json-structure/addons-api-package-upload-result-structure.json
+  - type: CodeExamples
+    url: examples/addons-api-product-example.json
+  - type: CodeExamples
+    url: examples/addons-api-product-list-example.json
+  - type: CodeExamples
+    url: examples/addons-api-submission-example.json
+  - type: CodeExamples
+    url: examples/addons-api-package-upload-result-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/addons-packages.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/addons-products.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/addons-publishing.yaml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
+  - type: APIReference
+    url: https://chromedevtools.github.io/devtools-protocol/
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
+  - type: JSONSchema
+    url: json-schema/devtools-api-target-schema.json
+  - type: JSONSchema
+    url: json-schema/devtools-api-browser-version-schema.json
+  - type: JSONSchema
+    url: json-schema/devtools-api-protocol-schema-schema.json
+  - type: JSONLD
+    url: json-ld/microsoft-edge-devtools-api-context.jsonld
+  - type: JSONSchema
+    url: json-structure/devtools-api-target-structure.json
+  - type: JSONSchema
+    url: json-structure/devtools-api-browser-version-structure.json
+  - type: JSONSchema
+    url: json-structure/devtools-api-protocol-schema-structure.json
+  - type: CodeExamples
+    url: examples/devtools-api-target-example.json
+  - type: CodeExamples
+    url: examples/devtools-api-browser-version-example.json
+  - type: CodeExamples
+    url: examples/devtools-api-protocol-schema-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/devtools-browser.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/devtools-pages.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/devtools-targets.yaml
+- aid: microsoft-edge:microsoft-edge-products-api
+  name: Microsoft Edge Products API
+  description: Manage extension products in the Edge Add-ons store
+  humanURL: >-
+    https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api
+  baseURL: https://api.addons.microsoftedge.microsoft.com
+  tags:
+  - Products
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-edge-products-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api
+  - type: GettingStarted
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api#before-you-begin
+  - type: APIReference
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/addons-api-reference
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api#registering-the-client-application-in-azure-active-directory
+  - type: JSONSchema
+    url: json-schema/addons-api-product-schema.json
+  - type: JSONSchema
+    url: json-schema/addons-api-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/addons-api-product-list-schema.json
+  - type: JSONSchema
+    url: json-schema/addons-api-package-upload-result-schema.json
+  - type: JSONLD
+    url: json-ld/microsoft-edge-addons-api-context.jsonld
+  - type: JSONSchema
+    url: json-structure/addons-api-product-structure.json
+  - type: JSONSchema
+    url: json-structure/addons-api-submission-structure.json
+  - type: JSONSchema
+    url: json-structure/addons-api-product-list-structure.json
+  - type: JSONSchema
+    url: json-structure/addons-api-package-upload-result-structure.json
+  - type: CodeExamples
+    url: examples/addons-api-product-example.json
+  - type: CodeExamples
+    url: examples/addons-api-product-list-example.json
+  - type: CodeExamples
+    url: examples/addons-api-submission-example.json
+  - type: CodeExamples
+    url: examples/addons-api-package-upload-result-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/addons-packages.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/addons-products.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/addons-publishing.yaml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
+  - type: APIReference
+    url: https://chromedevtools.github.io/devtools-protocol/
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
+  - type: JSONSchema
+    url: json-schema/devtools-api-target-schema.json
+  - type: JSONSchema
+    url: json-schema/devtools-api-browser-version-schema.json
+  - type: JSONSchema
+    url: json-schema/devtools-api-protocol-schema-schema.json
+  - type: JSONLD
+    url: json-ld/microsoft-edge-devtools-api-context.jsonld
+  - type: JSONSchema
+    url: json-structure/devtools-api-target-structure.json
+  - type: JSONSchema
+    url: json-structure/devtools-api-browser-version-structure.json
+  - type: JSONSchema
+    url: json-structure/devtools-api-protocol-schema-structure.json
+  - type: CodeExamples
+    url: examples/devtools-api-target-example.json
+  - type: CodeExamples
+    url: examples/devtools-api-browser-version-example.json
+  - type: CodeExamples
+    url: examples/devtools-api-protocol-schema-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/devtools-browser.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/devtools-pages.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/devtools-targets.yaml
+- aid: microsoft-edge:microsoft-edge-publishing-api
+  name: Microsoft Edge Publishing API
+  description: Publish and unpublish extensions
+  humanURL: >-
+    https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api
+  baseURL: https://api.addons.microsoftedge.microsoft.com
+  tags:
+  - Publishing
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-edge-publishing-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api
+  - type: GettingStarted
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api#before-you-begin
+  - type: APIReference
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/addons-api-reference
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api#registering-the-client-application-in-azure-active-directory
+  - type: JSONSchema
+    url: json-schema/addons-api-product-schema.json
+  - type: JSONSchema
+    url: json-schema/addons-api-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/addons-api-product-list-schema.json
+  - type: JSONSchema
+    url: json-schema/addons-api-package-upload-result-schema.json
+  - type: JSONLD
+    url: json-ld/microsoft-edge-addons-api-context.jsonld
+  - type: JSONSchema
+    url: json-structure/addons-api-product-structure.json
+  - type: JSONSchema
+    url: json-structure/addons-api-submission-structure.json
+  - type: JSONSchema
+    url: json-structure/addons-api-product-list-structure.json
+  - type: JSONSchema
+    url: json-structure/addons-api-package-upload-result-structure.json
+  - type: CodeExamples
+    url: examples/addons-api-product-example.json
+  - type: CodeExamples
+    url: examples/addons-api-product-list-example.json
+  - type: CodeExamples
+    url: examples/addons-api-submission-example.json
+  - type: CodeExamples
+    url: examples/addons-api-package-upload-result-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/addons-packages.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/addons-products.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/addons-publishing.yaml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
+  - type: APIReference
+    url: https://chromedevtools.github.io/devtools-protocol/
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
+  - type: JSONSchema
+    url: json-schema/devtools-api-target-schema.json
+  - type: JSONSchema
+    url: json-schema/devtools-api-browser-version-schema.json
+  - type: JSONSchema
+    url: json-schema/devtools-api-protocol-schema-schema.json
+  - type: JSONLD
+    url: json-ld/microsoft-edge-devtools-api-context.jsonld
+  - type: JSONSchema
+    url: json-structure/devtools-api-target-structure.json
+  - type: JSONSchema
+    url: json-structure/devtools-api-browser-version-structure.json
+  - type: JSONSchema
+    url: json-structure/devtools-api-protocol-schema-structure.json
+  - type: CodeExamples
+    url: examples/devtools-api-target-example.json
+  - type: CodeExamples
+    url: examples/devtools-api-browser-version-example.json
+  - type: CodeExamples
+    url: examples/devtools-api-protocol-schema-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/devtools-browser.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/devtools-pages.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/devtools-targets.yaml
+- aid: microsoft-edge:microsoft-edge-targets-api
+  name: Microsoft Edge Targets API
+  description: Discover and manage debuggable browser targets
+  humanURL: >-
+    https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api
+  baseURL: https://api.addons.microsoftedge.microsoft.com
+  tags:
+  - Targets
+  properties:
+  - type: OpenAPI
+    url: openapi/microsoft-edge-targets-api-openapi.yml
+  - type: Documentation
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api
+  - type: GettingStarted
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api#before-you-begin
+  - type: APIReference
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/addons-api-reference
+  - type: Authentication
+    url: >-
+      https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api#registering-the-client-application-in-azure-active-directory
+  - type: JSONSchema
+    url: json-schema/addons-api-product-schema.json
+  - type: JSONSchema
+    url: json-schema/addons-api-submission-schema.json
+  - type: JSONSchema
+    url: json-schema/addons-api-product-list-schema.json
+  - type: JSONSchema
+    url: json-schema/addons-api-package-upload-result-schema.json
+  - type: JSONLD
+    url: json-ld/microsoft-edge-addons-api-context.jsonld
+  - type: JSONSchema
+    url: json-structure/addons-api-product-structure.json
+  - type: JSONSchema
+    url: json-structure/addons-api-submission-structure.json
+  - type: JSONSchema
+    url: json-structure/addons-api-product-list-structure.json
+  - type: JSONSchema
+    url: json-structure/addons-api-package-upload-result-structure.json
+  - type: CodeExamples
+    url: examples/addons-api-product-example.json
+  - type: CodeExamples
+    url: examples/addons-api-product-list-example.json
+  - type: CodeExamples
+    url: examples/addons-api-submission-example.json
+  - type: CodeExamples
+    url: examples/addons-api-package-upload-result-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/addons-packages.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/addons-products.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/addons-publishing.yaml
+  - type: Documentation
+    url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
+  - type: APIReference
+    url: https://chromedevtools.github.io/devtools-protocol/
+  - type: GettingStarted
+    url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
+  - type: JSONSchema
+    url: json-schema/devtools-api-target-schema.json
+  - type: JSONSchema
+    url: json-schema/devtools-api-browser-version-schema.json
+  - type: JSONSchema
+    url: json-schema/devtools-api-protocol-schema-schema.json
+  - type: JSONLD
+    url: json-ld/microsoft-edge-devtools-api-context.jsonld
+  - type: JSONSchema
+    url: json-structure/devtools-api-target-structure.json
+  - type: JSONSchema
+    url: json-structure/devtools-api-browser-version-structure.json
+  - type: JSONSchema
+    url: json-structure/devtools-api-protocol-schema-structure.json
+  - type: CodeExamples
+    url: examples/devtools-api-target-example.json
+  - type: CodeExamples
+    url: examples/devtools-api-browser-version-example.json
+  - type: CodeExamples
+    url: examples/devtools-api-protocol-schema-example.json
+  - type: X-NaftikoCapability
+    url: capabilities/devtools-browser.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/devtools-pages.yaml
+  - type: X-NaftikoCapability
+    url: capabilities/devtools-targets.yaml
 common:
   - type: AgenticAccess
     url: agentic-access/microsoft-edge-agentic-access.yml
