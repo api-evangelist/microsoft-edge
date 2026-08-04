@@ -2,10 +2,6 @@
   "repo": "microsoft-edge",
   "feeds": [
     {
-      "source": "https://blogs.windows.com/msedgedev/feed/",
-      "error": "HTTPError"
-    },
-    {
       "source": "https://developer.microsoft.com/microsoft-edge/",
       "feed_url": "https://developer.microsoft.com/microsoft-edge/",
       "title": "",
@@ -14,5 +10,5 @@
     }
   ],
   "post_count": 14,
-  "fetched": "2026-07-11T11:50:51Z"
+  "fetched": "2026-08-01T15:49:00Z"
 }

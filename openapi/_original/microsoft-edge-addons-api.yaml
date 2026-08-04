@@ -1,0 +1,492 @@
+openapi: 3.0.3
+info:
+  title: Microsoft Edge Add-ons API
+  description: >-
+    REST API for managing Microsoft Edge browser extensions through the
+    Partner Center. Enables programmatic publishing, updating, and managing
+    Edge extensions in the Microsoft Edge Add-ons store, supporting the
+    full extension lifecycle from upload to publication.
+  version: 1.0.0
+  contact:
+    name: Microsoft Edge Developer
+    url: https://developer.microsoft.com/microsoft-edge/
+  license:
+    name: Microsoft Software License
+    url: https://www.microsoft.com/legal/terms-of-use
+  x-generated-from: documentation
+  x-last-validated: '2026-04-18'
+servers:
+  - url: https://api.addons.microsoftedge.microsoft.com
+    description: Microsoft Edge Add-ons API Production
+security:
+  - bearerAuth: []
+tags:
+  - name: Products
+    description: Manage extension products in the Edge Add-ons store
+  - name: Packages
+    description: Upload and manage extension packages
+  - name: Publishing
+    description: Publish and unpublish extensions
+paths:
+  /v1/products:
+    get:
+      operationId: listProducts
+      summary: Microsoft Edge List Products
+      description: >-
+        Retrieve a list of all extensions (products) associated with the
+        authenticated developer account.
+      tags:
+        - Products
+      parameters:
+        - name: $top
+          in: query
+          required: false
+          description: Maximum number of products to return
+          schema:
+            type: integer
+            default: 25
+          example: 25
+        - name: $skip
+          in: query
+          required: false
+          description: Number of products to skip for pagination
+          schema:
+            type: integer
+            default: 0
+          example: 0
+      responses:
+        '200':
+          description: Products listed successfully
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ProductList'
+              examples:
+                ListProducts200Example:
+                  summary: Default listProducts 200 response
+                  x-microcks-default: true
+                  value:
+                    value:
+                      - id: ext-500123
+                        name: My Extension
+                        status: Published
+                        lastUpdatedUtc: '2026-04-15T10:00:00Z'
+                    totalCount: 5
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/products/{productId}:
+    get:
+      operationId: getProduct
+      summary: Microsoft Edge Get Product
+      description: >-
+        Retrieve details of a specific extension product including
+        its current status, version, and metadata.
+      tags:
+        - Products
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          description: Product identifier
+          schema:
+            type: string
+          example: ext-500123
+      responses:
+        '200':
+          description: Product details retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+              examples:
+                GetProduct200Example:
+                  summary: Default getProduct 200 response
+                  x-microcks-default: true
+                  value:
+                    id: ext-500123
+                    name: My Extension
+                    description: A sample browser extension for Microsoft Edge
+                    status: Published
+                    version: 1.2.0
+                    lastUpdatedUtc: '2026-04-15T10:00:00Z'
+                    category: Productivity
+        '404':
+          description: Product not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/products/{productId}/submissions:
+    post:
+      operationId: createSubmission
+      summary: Microsoft Edge Create Submission
+      description: >-
+        Create a new submission for an extension product, initiating the
+        review and publishing process.
+      tags:
+        - Publishing
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          description: Product identifier
+          schema:
+            type: string
+          example: ext-500123
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SubmissionCreate'
+            examples:
+              CreateSubmissionRequestExample:
+                summary: Default createSubmission request
+                x-microcks-default: true
+                value:
+                  notes: Updated permissions and bug fixes
+      responses:
+        '202':
+          description: Submission created and queued for review
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submission'
+              examples:
+                CreateSubmission202Example:
+                  summary: Default createSubmission 202 response
+                  x-microcks-default: true
+                  value:
+                    id: sub-600123
+                    productId: ext-500123
+                    status: InReview
+                    createdUtc: '2026-04-18T12:00:00Z'
+        '400':
+          description: Invalid submission
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/products/{productId}/submissions/{submissionId}:
+    get:
+      operationId: getSubmission
+      summary: Microsoft Edge Get Submission Status
+      description: >-
+        Retrieve the current status and details of a submission
+        for an extension product.
+      tags:
+        - Publishing
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          description: Product identifier
+          schema:
+            type: string
+          example: ext-500123
+        - name: submissionId
+          in: path
+          required: true
+          description: Submission identifier
+          schema:
+            type: string
+          example: sub-600123
+      responses:
+        '200':
+          description: Submission status retrieved
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Submission'
+              examples:
+                GetSubmission200Example:
+                  summary: Default getSubmission 200 response
+                  x-microcks-default: true
+                  value:
+                    id: sub-600123
+                    productId: ext-500123
+                    status: Published
+                    createdUtc: '2026-04-18T12:00:00Z'
+                    completedUtc: '2026-04-18T14:00:00Z'
+        '404':
+          description: Submission not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/products/{productId}/submissions/draft/package:
+    post:
+      operationId: uploadPackage
+      summary: Microsoft Edge Upload Package
+      description: >-
+        Upload a new extension package (ZIP or CRX file) as a draft
+        submission for an existing product.
+      tags:
+        - Packages
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          description: Product identifier
+          schema:
+            type: string
+          example: ext-500123
+      requestBody:
+        required: true
+        content:
+          application/zip:
+            schema:
+              type: string
+              format: binary
+      responses:
+        '202':
+          description: Package uploaded and processing
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageUploadResult'
+              examples:
+                UploadPackage202Example:
+                  summary: Default uploadPackage 202 response
+                  x-microcks-default: true
+                  value:
+                    operationId: op-700123
+                    status: InProgress
+                    message: Package upload accepted
+        '400':
+          description: Invalid package
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+  /v1/products/{productId}/submissions/draft/package/operations/{operationId}:
+    get:
+      operationId: getPackageUploadStatus
+      summary: Microsoft Edge Get Package Upload Status
+      description: >-
+        Check the status of a package upload operation to determine
+        if it has completed successfully or failed.
+      tags:
+        - Packages
+      parameters:
+        - name: productId
+          in: path
+          required: true
+          description: Product identifier
+          schema:
+            type: string
+          example: ext-500123
+        - name: operationId
+          in: path
+          required: true
+          description: Upload operation identifier
+          schema:
+            type: string
+          example: op-700123
+      responses:
+        '200':
+          description: Upload operation status
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PackageUploadResult'
+              examples:
+                GetPackageUploadStatus200Example:
+                  summary: Default getPackageUploadStatus 200 response
+                  x-microcks-default: true
+                  value:
+                    operationId: op-700123
+                    status: Succeeded
+                    message: Package validated and ready for submission
+        '404':
+          description: Operation not found
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+        '401':
+          description: Authentication required
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ErrorResponse'
+      x-microcks-operation:
+        delay: 0
+        dispatcher: FALLBACK
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+      description: >-
+        OAuth 2.0 access token obtained from Azure Active Directory using
+        the client credentials flow with the Microsoft Partner Center API scope.
+  schemas:
+    Product:
+      type: object
+      description: An extension product in the Edge Add-ons store
+      properties:
+        id:
+          type: string
+          description: Product identifier
+          example: ext-500123
+        name:
+          type: string
+          description: Extension name
+          example: My Extension
+        description:
+          type: string
+          description: Extension description
+          example: A sample browser extension for Microsoft Edge
+        status:
+          type: string
+          description: Product publishing status
+          enum:
+            - Draft
+            - InReview
+            - Published
+            - Unpublished
+            - Rejected
+          example: Published
+        version:
+          type: string
+          description: Current published version
+          example: 1.2.0
+        lastUpdatedUtc:
+          type: string
+          format: date-time
+          description: Last update timestamp
+          example: '2026-04-15T10:00:00Z'
+        category:
+          type: string
+          description: Store category
+          example: Productivity
+    ProductList:
+      type: object
+      description: Paginated list of products
+      properties:
+        value:
+          type: array
+          description: Array of products
+          items:
+            $ref: '#/components/schemas/Product'
+        totalCount:
+          type: integer
+          description: Total number of products
+          example: 5
+    Submission:
+      type: object
+      description: An extension submission for review and publishing
+      properties:
+        id:
+          type: string
+          description: Submission identifier
+          example: sub-600123
+        productId:
+          type: string
+          description: Parent product identifier
+          example: ext-500123
+        status:
+          type: string
+          description: Submission status
+          enum:
+            - Draft
+            - InReview
+            - Published
+            - Failed
+            - Cancelled
+          example: InReview
+        createdUtc:
+          type: string
+          format: date-time
+          description: Submission creation timestamp
+          example: '2026-04-18T12:00:00Z'
+        completedUtc:
+          type: string
+          format: date-time
+          description: Submission completion timestamp
+          example: '2026-04-18T14:00:00Z'
+    SubmissionCreate:
+      type: object
+      description: Submission creation request
+      properties:
+        notes:
+          type: string
+          description: Notes for the review team
+          example: Updated permissions and bug fixes
+    PackageUploadResult:
+      type: object
+      description: Package upload operation result
+      properties:
+        operationId:
+          type: string
+          description: Upload operation identifier
+          example: op-700123
+        status:
+          type: string
+          description: Operation status
+          enum:
+            - InProgress
+            - Succeeded
+            - Failed
+          example: Succeeded
+        message:
+          type: string
+          description: Status message
+          example: Package validated and ready for submission
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        code:
+          type: string
+          description: Error code
+          example: NotFound
+        message:
+          type: string
+          description: Error message
+          example: The specified product was not found

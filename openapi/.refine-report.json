@@ -1,0 +1,24 @@
+{
+  "provider": "microsoft-edge",
+  "sources": [
+    "microsoft-edge-browser-api-openapi.yml",
+    "microsoft-edge-packages-api-openapi.yml",
+    "microsoft-edge-pages-api-openapi.yml",
+    "microsoft-edge-products-api-openapi.yml",
+    "microsoft-edge-publishing-api-openapi.yml",
+    "microsoft-edge-targets-api-openapi.yml"
+  ],
+  "outputs": [
+    "microsoft-edge-browser-api-openapi.yml",
+    "microsoft-edge-packages-api-openapi.yml",
+    "microsoft-edge-pages-api-openapi.yml",
+    "microsoft-edge-products-api-openapi.yml",
+    "microsoft-edge-publishing-api-openapi.yml",
+    "microsoft-edge-targets-api-openapi.yml"
+  ],
+  "archived": [],
+  "errors": [],
+  "warnings": [],
+  "notes": [],
+  "skipped": []
+}
