@@ -130,12 +130,6 @@ apis:
     url: examples/addons-api-submission-example.json
   - type: CodeExamples
     url: examples/addons-api-package-upload-result-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/addons-packages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/addons-products.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/addons-publishing.yaml
   - type: Documentation
     url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
   - type: APIReference
@@ -162,12 +156,6 @@ apis:
     url: examples/devtools-api-browser-version-example.json
   - type: CodeExamples
     url: examples/devtools-api-protocol-schema-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-browser.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-pages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-targets.yaml
 - aid: microsoft-edge:microsoft-edge-packages-api
   name: Microsoft Edge Packages API
   description: Upload and manage extension packages
@@ -217,12 +205,6 @@ apis:
     url: examples/addons-api-submission-example.json
   - type: CodeExamples
     url: examples/addons-api-package-upload-result-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/addons-packages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/addons-products.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/addons-publishing.yaml
   - type: Documentation
     url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
   - type: APIReference
@@ -249,12 +231,6 @@ apis:
     url: examples/devtools-api-browser-version-example.json
   - type: CodeExamples
     url: examples/devtools-api-protocol-schema-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-browser.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-pages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-targets.yaml
 - aid: microsoft-edge:microsoft-edge-pages-api
   name: Microsoft Edge Pages API
   description: Page target management
@@ -304,12 +280,6 @@ apis:
     url: examples/addons-api-submission-example.json
   - type: CodeExamples
     url: examples/addons-api-package-upload-result-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/addons-packages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/addons-products.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/addons-publishing.yaml
   - type: Documentation
     url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
   - type: APIReference
@@ -336,12 +306,6 @@ apis:
     url: examples/devtools-api-browser-version-example.json
   - type: CodeExamples
     url: examples/devtools-api-protocol-schema-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-browser.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-pages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-targets.yaml
 - aid: microsoft-edge:microsoft-edge-products-api
   name: Microsoft Edge Products API
   description: Manage extension products in the Edge Add-ons store
@@ -391,12 +355,6 @@ apis:
     url: examples/addons-api-submission-example.json
   - type: CodeExamples
     url: examples/addons-api-package-upload-result-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/addons-packages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/addons-products.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/addons-publishing.yaml
   - type: Documentation
     url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
   - type: APIReference
@@ -423,12 +381,6 @@ apis:
     url: examples/devtools-api-browser-version-example.json
   - type: CodeExamples
     url: examples/devtools-api-protocol-schema-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-browser.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-pages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-targets.yaml
 - aid: microsoft-edge:microsoft-edge-publishing-api
   name: Microsoft Edge Publishing API
   description: Publish and unpublish extensions
@@ -478,12 +430,6 @@ apis:
     url: examples/addons-api-submission-example.json
   - type: CodeExamples
     url: examples/addons-api-package-upload-result-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/addons-packages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/addons-products.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/addons-publishing.yaml
   - type: Documentation
     url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
   - type: APIReference
@@ -510,12 +456,6 @@ apis:
     url: examples/devtools-api-browser-version-example.json
   - type: CodeExamples
     url: examples/devtools-api-protocol-schema-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-browser.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-pages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-targets.yaml
 - aid: microsoft-edge:microsoft-edge-targets-api
   name: Microsoft Edge Targets API
   description: Discover and manage debuggable browser targets
@@ -565,12 +505,6 @@ apis:
     url: examples/addons-api-submission-example.json
   - type: CodeExamples
     url: examples/addons-api-package-upload-result-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/addons-packages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/addons-products.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/addons-publishing.yaml
   - type: Documentation
     url: https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/
   - type: APIReference
@@ -597,12 +531,6 @@ apis:
     url: examples/devtools-api-browser-version-example.json
   - type: CodeExamples
     url: examples/devtools-api-protocol-schema-example.json
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-browser.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-pages.yaml
-  - type: X-NaftikoCapability
-    url: capabilities/devtools-targets.yaml
 common:
   - type: AgenticAccess
     url: agentic-access/microsoft-edge-agentic-access.yml
