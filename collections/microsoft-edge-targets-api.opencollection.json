@@ -1,0 +1,35 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Microsoft Edge Add-ons Browser Targets API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Targets",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Microsoft Edge List Debuggable Targets",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.addons.microsoftedge.microsoft.com/json/list"
+          },
+          "docs": "Returns a JSON array of all debuggable targets including pages, service workers, extensions, and background pages with their WebSocket debugger URLs."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

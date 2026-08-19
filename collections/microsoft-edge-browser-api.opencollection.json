@@ -1,0 +1,46 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Microsoft Edge Add-ons Browser API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Browser",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Microsoft Edge Get Browser Version",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.addons.microsoftedge.microsoft.com/json/version"
+          },
+          "docs": "Returns browser version information including the browser name, protocol version, user agent string, V8 version, and WebKit version."
+        },
+        {
+          "info": {
+            "name": "Microsoft Edge Get Protocol Schema",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.addons.microsoftedge.microsoft.com/json/protocol"
+          },
+          "docs": "Returns the complete DevTools Protocol schema in JSON format, including all domains, commands, events, and types."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

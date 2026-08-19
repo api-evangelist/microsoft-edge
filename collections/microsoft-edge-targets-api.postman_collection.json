@@ -1,0 +1,121 @@
+{
+  "item": [
+    {
+      "id": "1642de88-4a8e-4d23-b2d8-db21df4296f9",
+      "name": "Targets",
+      "description": {
+        "content": "Discover and manage debuggable browser targets",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "78ece631-c367-41d0-ab86-365b7182bcaf",
+          "name": "Microsoft Edge List Debuggable Targets",
+          "request": {
+            "name": "Microsoft Edge List Debuggable Targets",
+            "description": {
+              "content": "Returns a JSON array of all debuggable targets including pages, service workers, extensions, and background pages with their WebSocket debugger URLs.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "json",
+                "list"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "e6950e12-86da-4891-b27c-78d46fc8e982",
+              "name": "List of debuggable targets",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "json",
+                    "list"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "[\n  {\n    \"description\": \"\",\n    \"devtoolsFrontendUrl\": \"/devtools/inspector.html?ws=localhost:9222/devtools/page/ABC123\",\n    \"id\": \"ABC123\",\n    \"title\": \"Example Page\",\n    \"type\": \"page\",\n    \"url\": \"https://www.example.com\",\n    \"webSocketDebuggerUrl\": \"ws://localhost:9222/devtools/page/ABC123\"\n  }\n]",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.addons.microsoftedge.microsoft.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "c175f3b4-0e0f-48c1-88e1-12585b50d5ef",
+    "name": "Microsoft Edge Add-ons Browser Targets API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing Microsoft Edge browser extensions through the Partner Center. Enables programmatic publishing, updating, and managing Edge extensions in the Microsoft Edge Add-ons store, supporting the full extension lifecycle from upload to publication.\n\nContact Support:\n Name: Microsoft Edge Developer",
+      "type": "text/plain"
+    }
+  }
+}

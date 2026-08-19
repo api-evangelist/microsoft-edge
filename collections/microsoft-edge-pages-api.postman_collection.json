@@ -1,0 +1,329 @@
+{
+  "item": [
+    {
+      "id": "a40afec1-8f45-48d0-a03a-96945770cbf0",
+      "name": "Pages",
+      "description": {
+        "content": "Page target management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "88b2cc78-23d1-4a9b-b3d2-5c352a903105",
+          "name": "Microsoft Edge Create New Target",
+          "request": {
+            "name": "Microsoft Edge Create New Target",
+            "description": {
+              "content": "Opens a new tab navigated to the specified URL and returns the new target's debugging information.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "json",
+                "new"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [
+                {
+                  "disabled": false,
+                  "key": "url",
+                  "value": "<uri>",
+                  "description": "URL to navigate the new tab to"
+                }
+              ],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "PUT",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "ab887ad5-e102-4f7b-85a9-1ec28ac7e52a",
+              "name": "New target created",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "json",
+                    "new"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [
+                    {
+                      "key": "url",
+                      "value": "https://www.example.com"
+                    }
+                  ],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "PUT",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"description\": \"\",\n  \"devtoolsFrontendUrl\": \"/devtools/inspector.html?ws=localhost:9222/devtools/page/DEF456\",\n  \"id\": \"DEF456\",\n  \"title\": \"New Tab\",\n  \"type\": \"page\",\n  \"url\": \"https://www.example.com\",\n  \"webSocketDebuggerUrl\": \"ws://localhost:9222/devtools/page/DEF456\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "0b69f857-394d-4528-a1d1-feab90ce1120",
+          "name": "Microsoft Edge Activate Target",
+          "request": {
+            "name": "Microsoft Edge Activate Target",
+            "description": {
+              "content": "Brings the specified target to the foreground, making it the active page in the browser window.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "json",
+                "activate",
+                ":targetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetId",
+                  "description": "(Required) Target identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "27627165-0fd5-4333-baca-cfc1a8c29cb8",
+              "name": "Target activated successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "json",
+                    "activate",
+                    ":targetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "targetId",
+                      "description": "(Required) Target identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Target activated",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "01f8e2ac-81bf-4be1-93f1-57428bd3854b",
+          "name": "Microsoft Edge Close Target",
+          "request": {
+            "name": "Microsoft Edge Close Target",
+            "description": {
+              "content": "Closes the specified target tab or page.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "json",
+                "close",
+                ":targetId"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": [
+                {
+                  "disabled": false,
+                  "type": "any",
+                  "value": "<string>",
+                  "key": "targetId",
+                  "description": "(Required) Target identifier"
+                }
+              ]
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "text/plain"
+              }
+            ],
+            "method": "POST",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "05968cbc-4ea6-417c-8ba0-468984c65977",
+              "name": "Target closed successfully",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "json",
+                    "close",
+                    ":targetId"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": [
+                    {
+                      "disabled": false,
+                      "type": "any",
+                      "value": "<string>",
+                      "key": "targetId",
+                      "description": "(Required) Target identifier"
+                    }
+                  ]
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "text/plain"
+                  }
+                ],
+                "method": "POST",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "text/plain"
+                }
+              ],
+              "body": "Target is closing",
+              "cookie": [],
+              "_postman_previewlanguage": "text"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.addons.microsoftedge.microsoft.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "1302377e-041a-4a66-ae4c-9039fac64b05",
+    "name": "Microsoft Edge Add-ons Browser Pages API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing Microsoft Edge browser extensions through the Partner Center. Enables programmatic publishing, updating, and managing Edge extensions in the Microsoft Edge Add-ons store, supporting the full extension lifecycle from upload to publication.\n\nContact Support:\n Name: Microsoft Edge Developer",
+      "type": "text/plain"
+    }
+  }
+}

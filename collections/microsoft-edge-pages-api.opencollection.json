@@ -1,0 +1,81 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Microsoft Edge Add-ons Browser Pages API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Pages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Microsoft Edge Create New Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "PUT",
+            "url": "https://api.addons.microsoftedge.microsoft.com/json/new",
+            "params": [
+              {
+                "name": "url",
+                "value": "https://www.example.com",
+                "type": "query",
+                "description": "URL to navigate the new tab to"
+              }
+            ]
+          },
+          "docs": "Opens a new tab navigated to the specified URL and returns the new target's debugging information."
+        },
+        {
+          "info": {
+            "name": "Microsoft Edge Activate Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.addons.microsoftedge.microsoft.com/json/activate/:targetId",
+            "params": [
+              {
+                "name": "targetId",
+                "value": "ABC123",
+                "type": "path",
+                "description": "Target identifier"
+              }
+            ]
+          },
+          "docs": "Brings the specified target to the foreground, making it the active page in the browser window."
+        },
+        {
+          "info": {
+            "name": "Microsoft Edge Close Target",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.addons.microsoftedge.microsoft.com/json/close/:targetId",
+            "params": [
+              {
+                "name": "targetId",
+                "value": "ABC123",
+                "type": "path",
+                "description": "Target identifier"
+              }
+            ]
+          },
+          "docs": "Closes the specified target tab or page."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

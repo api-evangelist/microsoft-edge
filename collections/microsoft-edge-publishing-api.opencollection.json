@@ -1,0 +1,72 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Microsoft Edge Add-ons Browser Publishing API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Publishing",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Microsoft Edge Create Submission",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.addons.microsoftedge.microsoft.com/v1/products/:productId/submissions",
+            "params": [
+              {
+                "name": "productId",
+                "value": "ext-500123",
+                "type": "path",
+                "description": "Product identifier"
+              }
+            ],
+            "body": {
+              "type": "json",
+              "data": "{}"
+            }
+          },
+          "docs": "Create a new submission for an extension product, initiating the review and publishing process."
+        },
+        {
+          "info": {
+            "name": "Microsoft Edge Get Submission Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.addons.microsoftedge.microsoft.com/v1/products/:productId/submissions/:submissionId",
+            "params": [
+              {
+                "name": "productId",
+                "value": "ext-500123",
+                "type": "path",
+                "description": "Product identifier"
+              },
+              {
+                "name": "submissionId",
+                "value": "sub-600123",
+                "type": "path",
+                "description": "Submission identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve the current status and details of a submission for an extension product."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

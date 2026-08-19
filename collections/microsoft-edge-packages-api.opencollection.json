@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Microsoft Edge Add-ons Browser Packages API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Packages",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Microsoft Edge Upload Package",
+            "type": "http"
+          },
+          "http": {
+            "method": "POST",
+            "url": "https://api.addons.microsoftedge.microsoft.com/v1/products/:productId/submissions/draft/package",
+            "params": [
+              {
+                "name": "productId",
+                "value": "ext-500123",
+                "type": "path",
+                "description": "Product identifier"
+              }
+            ]
+          },
+          "docs": "Upload a new extension package (ZIP or CRX file) as a draft submission for an existing product."
+        },
+        {
+          "info": {
+            "name": "Microsoft Edge Get Package Upload Status",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.addons.microsoftedge.microsoft.com/v1/products/:productId/submissions/draft/package/operations/:operationId",
+            "params": [
+              {
+                "name": "productId",
+                "value": "ext-500123",
+                "type": "path",
+                "description": "Product identifier"
+              },
+              {
+                "name": "operationId",
+                "value": "op-700123",
+                "type": "path",
+                "description": "Upload operation identifier"
+              }
+            ]
+          },
+          "docs": "Check the status of a package upload operation to determine if it has completed successfully or failed."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

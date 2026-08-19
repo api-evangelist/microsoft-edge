@@ -1,0 +1,68 @@
+{
+  "opencollection": "1.0.0",
+  "info": {
+    "name": "Microsoft Edge Add-ons Browser Products API",
+    "version": "1.0.0"
+  },
+  "request": {
+    "auth": {
+      "type": "bearer",
+      "token": "{{bearerToken}}"
+    }
+  },
+  "items": [
+    {
+      "info": {
+        "name": "Products",
+        "type": "folder"
+      },
+      "items": [
+        {
+          "info": {
+            "name": "Microsoft Edge List Products",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.addons.microsoftedge.microsoft.com/v1/products",
+            "params": [
+              {
+                "name": "$top",
+                "value": "25",
+                "type": "query",
+                "description": "Maximum number of products to return"
+              },
+              {
+                "name": "$skip",
+                "value": "0",
+                "type": "query",
+                "description": "Number of products to skip for pagination"
+              }
+            ]
+          },
+          "docs": "Retrieve a list of all extensions (products) associated with the authenticated developer account."
+        },
+        {
+          "info": {
+            "name": "Microsoft Edge Get Product",
+            "type": "http"
+          },
+          "http": {
+            "method": "GET",
+            "url": "https://api.addons.microsoftedge.microsoft.com/v1/products/:productId",
+            "params": [
+              {
+                "name": "productId",
+                "value": "ext-500123",
+                "type": "path",
+                "description": "Product identifier"
+              }
+            ]
+          },
+          "docs": "Retrieve details of a specific extension product including its current status, version, and metadata."
+        }
+      ]
+    }
+  ],
+  "bundled": true
+}

@@ -1,0 +1,201 @@
+{
+  "item": [
+    {
+      "id": "a33484c3-4c91-4f1a-a3a2-b496e0ffc01b",
+      "name": "Browser",
+      "description": {
+        "content": "Browser-level information and management",
+        "type": "text/plain"
+      },
+      "item": [
+        {
+          "id": "8564b011-36c8-4cfa-be42-e6d498f14b98",
+          "name": "Microsoft Edge Get Browser Version",
+          "request": {
+            "name": "Microsoft Edge Get Browser Version",
+            "description": {
+              "content": "Returns browser version information including the browser name, protocol version, user agent string, V8 version, and WebKit version.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "json",
+                "version"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "b0b52fa9-acf0-4fe9-b50a-d6650e1204e3",
+              "name": "Browser version information",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "json",
+                    "version"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"Browser\": \"Microsoft Edge/125.0.0.0\",\n  \"Protocol-Version\": \"1.3\",\n  \"User-Agent\": \"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36 Edg/125.0.0.0\",\n  \"V8-Version\": \"12.5.283.0\",\n  \"WebKit-Version\": 537.36,\n  \"webSocketDebuggerUrl\": \"ws://localhost:9222/devtools/browser/GHI789\"\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        },
+        {
+          "id": "f13cacd4-6a8a-4155-9e15-2c7d1c32efc0",
+          "name": "Microsoft Edge Get Protocol Schema",
+          "request": {
+            "name": "Microsoft Edge Get Protocol Schema",
+            "description": {
+              "content": "Returns the complete DevTools Protocol schema in JSON format, including all domains, commands, events, and types.",
+              "type": "text/plain"
+            },
+            "url": {
+              "path": [
+                "json",
+                "protocol"
+              ],
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "query": [],
+              "variable": []
+            },
+            "header": [
+              {
+                "key": "Accept",
+                "value": "application/json"
+              }
+            ],
+            "method": "GET",
+            "auth": null
+          },
+          "response": [
+            {
+              "id": "57dd9388-136d-4b1e-bdbc-ae22f9e0f0f9",
+              "name": "Full protocol schema",
+              "originalRequest": {
+                "url": {
+                  "path": [
+                    "json",
+                    "protocol"
+                  ],
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "query": [],
+                  "variable": []
+                },
+                "header": [
+                  {
+                    "description": {
+                      "content": "Added as a part of security scheme: bearer",
+                      "type": "text/plain"
+                    },
+                    "key": "Authorization",
+                    "value": "Bearer <token>"
+                  },
+                  {
+                    "key": "Accept",
+                    "value": "application/json"
+                  }
+                ],
+                "method": "GET",
+                "body": {}
+              },
+              "status": "OK",
+              "code": 200,
+              "header": [
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                }
+              ],
+              "body": "{\n  \"version\": {\n    \"major\": \"1\",\n    \"minor\": \"3\"\n  },\n  \"domains\": [\n    {\n      \"domain\": \"Page\",\n      \"experimental\": false,\n      \"commands\": [\n        {\n          \"name\": \"navigate\",\n          \"parameters\": [\n            {\n              \"name\": \"url\",\n              \"type\": \"string\"\n            }\n          ]\n        }\n      ]\n    }\n  ]\n}",
+              "cookie": [],
+              "_postman_previewlanguage": "json"
+            }
+          ],
+          "event": [],
+          "protocolProfileBehavior": {
+            "disableBodyPruning": true
+          }
+        }
+      ],
+      "event": []
+    }
+  ],
+  "event": [],
+  "variable": [
+    {
+      "type": "string",
+      "value": "https://api.addons.microsoftedge.microsoft.com",
+      "key": "baseUrl"
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "{{bearerToken}}"
+      }
+    ]
+  },
+  "info": {
+    "_postman_id": "2ac3ebcd-406e-47fa-96c1-84f4e29950f1",
+    "name": "Microsoft Edge Add-ons Browser API",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "description": {
+      "content": "REST API for managing Microsoft Edge browser extensions through the Partner Center. Enables programmatic publishing, updating, and managing Edge extensions in the Microsoft Edge Add-ons store, supporting the full extension lifecycle from upload to publication.\n\nContact Support:\n Name: Microsoft Edge Developer",
+      "type": "text/plain"
+    }
+  }
+}
