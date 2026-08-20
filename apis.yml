@@ -45,6 +45,11 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/
   baseURL: https://microsoftedge.microsoft.com/addons
   tags:
+  - Addons
+  - Browser Extensions
+  - Chromium Extensions
+  - Web Extensions
+  tags_raw:
   - Add-Ons
   - Browser Extensions
   - Chromium Extensions
@@ -313,6 +318,8 @@ apis:
     https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api
   baseURL: https://api.addons.microsoftedge.microsoft.com
   tags:
+  - Product
+  tags_raw:
   - Products
   properties:
   - type: OpenAPI
