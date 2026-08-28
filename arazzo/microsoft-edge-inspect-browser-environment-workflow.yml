@@ -14,8 +14,8 @@ info:
     without opening the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: devtoolsApi
-  url: ../openapi/microsoft-edge-devtools-api.yaml
+- name: browserApi
+  url: ../openapi/microsoft-edge-browser-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: inspect-browser-environment

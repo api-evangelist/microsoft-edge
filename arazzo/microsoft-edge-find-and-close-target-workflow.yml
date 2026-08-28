@@ -13,8 +13,11 @@ info:
     underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: devtoolsApi
-  url: ../openapi/microsoft-edge-devtools-api.yaml
+- name: pagesApi
+  url: ../openapi/microsoft-edge-pages-api-openapi.yml
+  type: openapi
+- name: targetsApi
+  url: ../openapi/microsoft-edge-targets-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: find-and-close-target

@@ -14,8 +14,11 @@ info:
     the underlying OpenAPI description.
   version: 1.0.0
 sourceDescriptions:
-- name: addonsApi
-  url: ../openapi/microsoft-edge-addons-api.yaml
+- name: packagesApi
+  url: ../openapi/microsoft-edge-packages-api-openapi.yml
+  type: openapi
+- name: publishingApi
+  url: ../openapi/microsoft-edge-publishing-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: publish-extension-update

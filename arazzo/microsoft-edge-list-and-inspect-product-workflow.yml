@@ -13,8 +13,8 @@ info:
     description.
   version: 1.0.0
 sourceDescriptions:
-- name: addonsApi
-  url: ../openapi/microsoft-edge-addons-api.yaml
+- name: productsApi
+  url: ../openapi/microsoft-edge-products-api-openapi.yml
   type: openapi
 workflows:
 - workflowId: list-and-inspect-product
