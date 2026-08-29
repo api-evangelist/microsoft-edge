@@ -3,6 +3,19 @@ name: Microsoft Edge
 description: APIs and resources for Microsoft Edge browser development and integration, including the Edge Add-ons API for
   extension management, DevTools Protocol for browser debugging and automation, Extensions API for building browser extensions,
   and Web Platform APIs for progressive web app development.
+deliveryModel:
+  model: unknown
+  open_source: unknown
+  commercial: true
+  callable_host: true
+  label: Delivery model not determined — needs a product licence on record
+  confidence: low
+  source:
+  - openapi
+  - pricing
+  - repository-unlicensed
+  generated: '2026-08-28'
+  method: derived
 accessModel:
   pricing: freemium
   onboarding: self-serve
