@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Microsoft Edge Add-ons Browser Publishing API
+  title: Microsoft Edge Add-ons Publishing API
   description: REST API for managing Microsoft Edge browser extensions through the Partner Center. Enables programmatic publishing, updating, and managing Edge extensions in the Microsoft Edge Add-ons store, supporting the full extension lifecycle from upload to publication.
   version: 1.0.0
   contact:
@@ -134,6 +134,26 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        code:
+          type: string
+          description: Error code
+          example: NotFound
+        message:
+          type: string
+          description: Error message
+          example: The specified product was not found
+    SubmissionCreate:
+      type: object
+      description: Submission creation request
+      properties:
+        notes:
+          type: string
+          description: Notes for the review team
+          example: Updated permissions and bug fixes
     Submission:
       type: object
       description: An extension submission for review and publishing
@@ -166,26 +186,6 @@ components:
           format: date-time
           description: Submission completion timestamp
           example: '2026-04-18T14:00:00Z'
-    SubmissionCreate:
-      type: object
-      description: Submission creation request
-      properties:
-        notes:
-          type: string
-          description: Notes for the review team
-          example: Updated permissions and bug fixes
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        code:
-          type: string
-          description: Error code
-          example: NotFound
-        message:
-          type: string
-          description: Error message
-          example: The specified product was not found
   securitySchemes:
     bearerAuth:
       type: http

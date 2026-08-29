@@ -1,7 +1,7 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Microsoft Edge Add-ons Browser API
-  description: REST API for managing Microsoft Edge browser extensions through the Partner Center. Enables programmatic publishing, updating, and managing Edge extensions in the Microsoft Edge Add-ons store, supporting the full extension lifecycle from upload to publication.
+  title: Microsoft Edge DevTools Protocol HTTP Browser API
+  description: HTTP endpoints for the Microsoft Edge DevTools Protocol, based on the Chromium DevTools Protocol. These endpoints allow programmatic discovery and management of debuggable browser targets including pages, service workers, and extensions. The HTTP API serves as the entry point for establishing WebSocket debugging connections to individual targets.
   version: 1.0.0
   contact:
     name: Microsoft Edge Developer
@@ -12,10 +12,9 @@ info:
   x-generated-from: documentation
   x-last-validated: '2026-04-18'
 servers:
-- url: https://api.addons.microsoftedge.microsoft.com
-  description: Microsoft Edge Add-ons API Production
-security:
-- bearerAuth: []
+- url: http://localhost:9222
+  description: Local Edge DevTools debugging endpoint
+security: []
 tags:
 - name: Browser
   description: Browser-level information and management
@@ -159,9 +158,3 @@ components:
                   properties:
                     name:
                       type: string
-  securitySchemes:
-    bearerAuth:
-      type: http
-      scheme: bearer
-      bearerFormat: JWT
-      description: OAuth 2.0 access token obtained from Azure Active Directory using the client credentials flow with the Microsoft Partner Center API scope.

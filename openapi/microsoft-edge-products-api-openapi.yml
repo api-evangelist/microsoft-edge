@@ -1,6 +1,6 @@
-openapi: 3.0.3
+openapi: 3.2.0
 info:
-  title: Microsoft Edge Add-ons Browser Products API
+  title: Microsoft Edge Add-ons Products API
   description: REST API for managing Microsoft Edge browser extensions through the Partner Center. Enables programmatic publishing, updating, and managing Edge extensions in the Microsoft Edge Add-ons store, supporting the full extension lifecycle from upload to publication.
   version: 1.0.0
   contact:
@@ -122,6 +122,18 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        code:
+          type: string
+          description: Error code
+          example: NotFound
+        message:
+          type: string
+          description: Error message
+          example: The specified product was not found
     Product:
       type: object
       description: An extension product in the Edge Add-ons store
@@ -174,18 +186,6 @@ components:
           type: integer
           description: Total number of products
           example: 5
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        code:
-          type: string
-          description: Error code
-          example: NotFound
-        message:
-          type: string
-          description: Error message
-          example: The specified product was not found
   securitySchemes:
     bearerAuth:
       type: http

@@ -1,24 +1,31 @@
 {
   "provider": "microsoft-edge",
   "sources": [
-    "microsoft-edge-browser-api-openapi.yml",
-    "microsoft-edge-packages-api-openapi.yml",
-    "microsoft-edge-pages-api-openapi.yml",
-    "microsoft-edge-products-api-openapi.yml",
-    "microsoft-edge-publishing-api-openapi.yml",
-    "microsoft-edge-targets-api-openapi.yml"
+    "_original/microsoft-edge-addons-api.yaml",
+    "_original/microsoft-edge-devtools-api.yaml"
   ],
   "outputs": [
-    "microsoft-edge-browser-api-openapi.yml",
     "microsoft-edge-packages-api-openapi.yml",
-    "microsoft-edge-pages-api-openapi.yml",
     "microsoft-edge-products-api-openapi.yml",
     "microsoft-edge-publishing-api-openapi.yml",
+    "microsoft-edge-browser-api-openapi.yml",
+    "microsoft-edge-pages-api-openapi.yml",
     "microsoft-edge-targets-api-openapi.yml"
   ],
   "archived": [],
   "errors": [],
   "warnings": [],
-  "notes": [],
-  "skipped": []
+  "notes": [
+    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "microsoft-edge-addons-api.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "microsoft-edge-devtools-api.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0"
+  ],
+  "skipped": [
+    "microsoft-edge-browser-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-edge-packages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-edge-pages-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-edge-products-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-edge-publishing-api-openapi.yml: previously refined output, superseded by openapi/_original/",
+    "microsoft-edge-targets-api-openapi.yml: previously refined output, superseded by openapi/_original/"
+  ]
 }
