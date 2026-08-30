@@ -58,7 +58,7 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/
   baseURL: https://microsoftedge.microsoft.com/addons
   tags:
-  - Addons
+  - Add-Ons
   - Browser Extensions
   - Chromium Extensions
   - Web Extensions
