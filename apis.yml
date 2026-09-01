@@ -47,6 +47,16 @@ tags:
 - Microsoft
 - Progressive Web Apps
 - Web Development
+- Webview
+tags_raw:
+- Browser
+- Chromium
+- Developer Tools
+- Edge
+- Extensions
+- Microsoft
+- Progressive Web Apps
+- Web Development
 - WebView
 apis:
 - aid: microsoft-edge:edge-extensions-api
@@ -58,7 +68,7 @@ apis:
   humanURL: https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/
   baseURL: https://microsoftedge.microsoft.com/addons
   tags:
-  - Add-Ons
+  - Addons
   - Browser Extensions
   - Chromium Extensions
   - Web Extensions
