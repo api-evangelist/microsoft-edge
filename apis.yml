@@ -23,11 +23,12 @@ accessModel:
   try_now: true
   public: false
   label: Freemium · Self-serve signup
-  confidence: high
+  confidence: medium
   source:
   - plans
   - authentication
-  generated: '2026-07-22'
+  - security
+  generated: '2026-09-03'
   method: derived
 image: https://www.microsoft.com/edge/favicon.ico
 url: https://www.microsoft.com/edge
@@ -36,7 +37,7 @@ created: '2024-01-01'
 modified: '2026-05-19'
 specificationVersion: '0.23'
 type: Index
-position: Consumer
+position: Consuming
 access: 3rd-Party
 tags:
 - Browser
