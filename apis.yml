@@ -70,7 +70,7 @@ apis:
   baseURL: https://microsoftedge.microsoft.com/addons
   tags:
   - Addons
-  - Browser Extensions
+  - Browser Extension
   - Chromium Extensions
   - Web Extensions
   tags_raw:
