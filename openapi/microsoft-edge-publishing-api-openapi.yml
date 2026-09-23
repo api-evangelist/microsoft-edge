@@ -146,14 +146,6 @@ components:
           type: string
           description: Error message
           example: The specified product was not found
-    SubmissionCreate:
-      type: object
-      description: Submission creation request
-      properties:
-        notes:
-          type: string
-          description: Notes for the review team
-          example: Updated permissions and bug fixes
     Submission:
       type: object
       description: An extension submission for review and publishing
@@ -186,6 +178,14 @@ components:
           format: date-time
           description: Submission completion timestamp
           example: '2026-04-18T14:00:00Z'
+    SubmissionCreate:
+      type: object
+      description: Submission creation request
+      properties:
+        notes:
+          type: string
+          description: Notes for the review team
+          example: Updated permissions and bug fixes
   securitySchemes:
     bearerAuth:
       type: http

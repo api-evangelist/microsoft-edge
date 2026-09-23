@@ -1,8 +1,8 @@
 {
   "provider": "microsoft-edge",
   "sources": [
-    "_original/microsoft-edge-addons-api.yaml",
-    "_original/microsoft-edge-devtools-api.yaml"
+    "_ae-authored/microsoft-edge-addons-api.yaml",
+    "_ae-authored/microsoft-edge-devtools-api.yaml"
   ],
   "outputs": [
     "microsoft-edge-packages-api-openapi.yml",
@@ -16,9 +16,10 @@
   "errors": [],
   "warnings": [],
   "notes": [
-    "sourced from openapi/_original/ (2 archived document(s)); previously refined output at the top level was skipped rather than re-split",
+    "sourced from openapi/_original/ (0 archived document(s)); previously refined output at the top level was skipped rather than re-split",
     "microsoft-edge-addons-api.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
-    "microsoft-edge-devtools-api.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0"
+    "microsoft-edge-devtools-api.yaml: upgraded openapi 3.0.3 -> OpenAPI 3.2.0",
+    "apis.yml register: already-registered"
   ],
   "skipped": [
     "microsoft-edge-browser-api-openapi.yml: previously refined output, superseded by openapi/_original/",
