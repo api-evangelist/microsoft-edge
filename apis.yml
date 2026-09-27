@@ -4,17 +4,21 @@ description: APIs and resources for Microsoft Edge browser development and integ
   extension management, DevTools Protocol for browser debugging and automation, Extensions API for building browser extensions,
   and Web Platform APIs for progressive web app development.
 deliveryModel:
-  model: unknown
+  model: saas
+  license_evidence:
+    not_product:
+    - microsoftedge/webview2samples
+    - nicedoc/nicedoc.io
   open_source: unknown
   commercial: true
   callable_host: true
-  label: Delivery model not determined — needs a product licence on record
+  label: Hosted service · you call their endpoint
   confidence: low
   source:
   - openapi
   - pricing
-  - repository-unlicensed
-  generated: '2026-08-28'
+  - repository-not-product
+  generated: '2026-09-25'
   method: derived
 accessModel:
   pricing: freemium

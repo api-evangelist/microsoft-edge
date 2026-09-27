@@ -134,18 +134,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        code:
-          type: string
-          description: Error code
-          example: NotFound
-        message:
-          type: string
-          description: Error message
-          example: The specified product was not found
     Submission:
       type: object
       description: An extension submission for review and publishing
@@ -186,6 +174,18 @@ components:
           type: string
           description: Notes for the review team
           example: Updated permissions and bug fixes
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        code:
+          type: string
+          description: Error code
+          example: NotFound
+        message:
+          type: string
+          description: Error message
+          example: The specified product was not found
   securitySchemes:
     bearerAuth:
       type: http
