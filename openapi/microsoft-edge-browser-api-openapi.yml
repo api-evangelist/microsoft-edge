@@ -82,6 +82,34 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    BrowserVersion:
+      type: object
+      description: Browser version and protocol information
+      properties:
+        Browser:
+          type: string
+          description: Browser name and version
+          example: Microsoft Edge/125.0.0.0
+        Protocol-Version:
+          type: string
+          description: DevTools Protocol version
+          example: '1.3'
+        User-Agent:
+          type: string
+          description: Full user agent string
+          example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
+        V8-Version:
+          type: string
+          description: V8 JavaScript engine version
+          example: 12.5.283.0
+        WebKit-Version:
+          type: string
+          description: WebKit rendering engine version
+          example: 537.36
+        webSocketDebuggerUrl:
+          type: string
+          description: WebSocket URL for browser-level debugging
+          example: ws://localhost:9222/devtools/browser/GHI789
     ProtocolSchema:
       type: object
       description: DevTools Protocol schema definition
@@ -130,31 +158,3 @@ components:
                   properties:
                     name:
                       type: string
-    BrowserVersion:
-      type: object
-      description: Browser version and protocol information
-      properties:
-        Browser:
-          type: string
-          description: Browser name and version
-          example: Microsoft Edge/125.0.0.0
-        Protocol-Version:
-          type: string
-          description: DevTools Protocol version
-          example: '1.3'
-        User-Agent:
-          type: string
-          description: Full user agent string
-          example: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36
-        V8-Version:
-          type: string
-          description: V8 JavaScript engine version
-          example: 12.5.283.0
-        WebKit-Version:
-          type: string
-          description: WebKit rendering engine version
-          example: 537.36
-        webSocketDebuggerUrl:
-          type: string
-          description: WebSocket URL for browser-level debugging
-          example: ws://localhost:9222/devtools/browser/GHI789

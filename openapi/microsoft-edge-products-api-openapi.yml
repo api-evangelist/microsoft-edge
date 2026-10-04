@@ -122,6 +122,19 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    ProductList:
+      type: object
+      description: Paginated list of products
+      properties:
+        value:
+          type: array
+          description: Array of products
+          items:
+            $ref: '#/components/schemas/Product'
+        totalCount:
+          type: integer
+          description: Total number of products
+          example: 5
     ErrorResponse:
       type: object
       description: Error response
@@ -173,19 +186,6 @@ components:
           type: string
           description: Store category
           example: Productivity
-    ProductList:
-      type: object
-      description: Paginated list of products
-      properties:
-        value:
-          type: array
-          description: Array of products
-          items:
-            $ref: '#/components/schemas/Product'
-        totalCount:
-          type: integer
-          description: Total number of products
-          example: 5
   securitySchemes:
     bearerAuth:
       type: http

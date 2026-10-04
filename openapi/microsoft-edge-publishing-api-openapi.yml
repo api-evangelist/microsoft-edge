@@ -134,6 +134,14 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
+    SubmissionCreate:
+      type: object
+      description: Submission creation request
+      properties:
+        notes:
+          type: string
+          description: Notes for the review team
+          example: Updated permissions and bug fixes
     ErrorResponse:
       type: object
       description: Error response
@@ -146,14 +154,6 @@ components:
           type: string
           description: Error message
           example: The specified product was not found
-    SubmissionCreate:
-      type: object
-      description: Submission creation request
-      properties:
-        notes:
-          type: string
-          description: Notes for the review team
-          example: Updated permissions and bug fixes
     Submission:
       type: object
       description: An extension submission for review and publishing
