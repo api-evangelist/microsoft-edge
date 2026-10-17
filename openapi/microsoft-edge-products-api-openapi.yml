@@ -122,31 +122,6 @@ paths:
         dispatcher: FALLBACK
 components:
   schemas:
-    ProductList:
-      type: object
-      description: Paginated list of products
-      properties:
-        value:
-          type: array
-          description: Array of products
-          items:
-            $ref: '#/components/schemas/Product'
-        totalCount:
-          type: integer
-          description: Total number of products
-          example: 5
-    ErrorResponse:
-      type: object
-      description: Error response
-      properties:
-        code:
-          type: string
-          description: Error code
-          example: NotFound
-        message:
-          type: string
-          description: Error message
-          example: The specified product was not found
     Product:
       type: object
       description: An extension product in the Edge Add-ons store
@@ -186,6 +161,31 @@ components:
           type: string
           description: Store category
           example: Productivity
+    ErrorResponse:
+      type: object
+      description: Error response
+      properties:
+        code:
+          type: string
+          description: Error code
+          example: NotFound
+        message:
+          type: string
+          description: Error message
+          example: The specified product was not found
+    ProductList:
+      type: object
+      description: Paginated list of products
+      properties:
+        value:
+          type: array
+          description: Array of products
+          items:
+            $ref: '#/components/schemas/Product'
+        totalCount:
+          type: integer
+          description: Total number of products
+          example: 5
   securitySchemes:
     bearerAuth:
       type: http
