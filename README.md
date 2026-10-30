@@ -1,4 +1,4 @@
-# Microsoft Edge (microsoft-edge)
+# Microsoft Edge
 
 <!-- API-EVANGELIST-PROVENANCE:BEGIN -->
 > ### About this repository
@@ -66,220 +66,205 @@
 
 APIs and resources for Microsoft Edge browser development and integration, including the Edge Add-ons API for extension management, DevTools Protocol for browser debugging and automation, Extensions API for building browser extensions, and Web Platform APIs for progressive web app development.
 
-**URL:** [Visit APIs.json URL](https://www.microsoft.com/edge)
+**Areas:** Browser · Chromium · Developer Tools · Edge · Extensions · Microsoft · Progressive Web Apps · Web Development · Webview
 
-**Run:** [Capabilities Using Naftiko](https://github.com/naftiko/fleet?utm_source=api-evangelist&utm_medium=readme&utm_campaign=company-api-evangelist&utm_content=repo)
+## Microsoft Edge on APIs.io
 
-## Tags:
+Everything profiled for Microsoft Edge is published on APIs.io rather than in this repository. Start at the provider page — **[apis.io/providers/microsoft-edge/](https://apis.io/providers/microsoft-edge/)** — or go straight to one of the APIs or properties below.
 
- - Browser, Chromium, Developer Tools, Edge, Extensions, Microsoft, Progressive Web Apps, Web Development, WebView
+### APIs (8)
 
-## Timestamps
+- [Microsoft Edge Extensions API](https://apis.io/apis/microsoft-edge/edge-extensions-api/) — Build browser extensions for Microsoft Edge using the Chromium-based extensions platform. Supports the WebExtensions API standard for cross-browser…
+- [Microsoft Edge Web Platform APIs](https://apis.io/apis/microsoft-edge/edge-web-platform-apis/) — Modern web APIs and standards supported in Microsoft Edge, including Progressive Web App capabilities, Web Components, and emerging web platform features.
+- [Microsoft Edge Browser API](https://apis.io/apis/microsoft-edge/microsoft-edge-browser-api/) — Browser-level information and management
+- [Microsoft Edge Packages API](https://apis.io/apis/microsoft-edge/microsoft-edge-packages-api/) — Upload and manage extension packages
+- [Microsoft Edge Pages API](https://apis.io/apis/microsoft-edge/microsoft-edge-pages-api/) — Page target management
+- [Microsoft Edge Products API](https://apis.io/apis/microsoft-edge/microsoft-edge-products-api/) — Manage extension products in the Edge Add-ons store
+- [Microsoft Edge Publishing API](https://apis.io/apis/microsoft-edge/microsoft-edge-publishing-api/) — Publish and unpublish extensions
+- [Microsoft Edge Targets API](https://apis.io/apis/microsoft-edge/microsoft-edge-targets-api/) — Discover and manage debuggable browser targets
 
-- **Created:** 2024-01-01
-- **Modified:** 2026-04-18
+### Published properties
 
-## APIs
+Each property below is a page on APIs.io carrying the machine-readable artifact and what it says.
 
-### Microsoft Edge Add-ons API
-REST API for managing Microsoft Edge browser extensions through the Partner Center. Enables programmatic publishing, updating, and managing Edge extensions in the Microsoft Edge Add-ons store, supporting the full extension lifecycle from upload to publication.
+#### Arazzo workflows (7)
 
-**Human URL:** [https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api](https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api)
+Multi-step workflows that chain operations into a business task.
 
-#### Tags:
+- [Microsoft Edge Find And Close Target](https://apis.io/arazzos/microsoft-edge/microsoft-edge-find-and-close-target-workflow/)
+- [Microsoft Edge Inspect Browser Environment](https://apis.io/arazzos/microsoft-edge/microsoft-edge-inspect-browser-environment-workflow/)
+- [Microsoft Edge List And Inspect Product](https://apis.io/arazzos/microsoft-edge/microsoft-edge-list-and-inspect-product-workflow/)
+- [Microsoft Edge Open And Activate Target](https://apis.io/arazzos/microsoft-edge/microsoft-edge-open-and-activate-target-workflow/)
+- [Microsoft Edge Publish Extension Update](https://apis.io/arazzos/microsoft-edge/microsoft-edge-publish-extension-update-workflow/)
+- [Microsoft Edge Submit Draft And Track](https://apis.io/arazzos/microsoft-edge/microsoft-edge-submit-draft-and-track-workflow/)
+- [Microsoft Edge Upload Package And Validate](https://apis.io/arazzos/microsoft-edge/microsoft-edge-upload-package-and-validate-workflow/)
 
- - Add-Ons, Browser Extensions, Extension Publishing, Package Management, Partner Center
+#### Agentic access (1)
 
-#### Properties
+Which operations an agent can call, which act, and which need a human in the loop.
 
-- [Documentation](https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api)
-- [Getting Started](https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api#before-you-begin)
-- [API Reference](https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/addons-api-reference)
-- [Authentication](https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/publish/api/using-addons-api#registering-the-client-application-in-azure-active-directory)
-- [OpenAPI](openapi/microsoft-edge-addons-api.yaml)
-- [JSON Schema - Product](json-schema/addons-api-product-schema.json)
-- [JSON Schema - Submission](json-schema/addons-api-submission-schema.json)
-- [JSON Schema - Product List](json-schema/addons-api-product-list-schema.json)
-- [JSON Schema - Package Upload Result](json-schema/addons-api-package-upload-result-schema.json)
-- [JSON-LD Context](json-ld/microsoft-edge-addons-api-context.jsonld)
+- [Microsoft Edge Agentic Access](https://apis.io/agentic-access/microsoft-edge/microsoft-edge-agentic-access/)
 
-### Microsoft Edge DevTools Protocol HTTP API
-HTTP endpoints for the Microsoft Edge DevTools Protocol, based on the Chromium DevTools Protocol. These endpoints allow programmatic discovery and management of debuggable browser targets including pages, service workers, and extensions.
+#### JSON Schema (7)
 
-**Human URL:** [https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/](https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/)
+The data models the API reads and writes.
 
-#### Tags:
+- [PackageUploadResult](https://apis.io/schemas/microsoft-edge/addons-api-package-upload-result/)
+- [Product](https://apis.io/schemas/microsoft-edge/addons-api-product/)
+- [ProductList](https://apis.io/schemas/microsoft-edge/addons-api-product-list/)
+- [Submission](https://apis.io/schemas/microsoft-edge/addons-api-submission/)
+- [BrowserVersion](https://apis.io/schemas/microsoft-edge/devtools-api-browser-version/)
+- [ProtocolSchema](https://apis.io/schemas/microsoft-edge/devtools-api-protocol-schema/)
+- [Target](https://apis.io/schemas/microsoft-edge/devtools-api-target/)
 
- - Automation, Browser Debugging, DevTools, Remote Debugging, Testing
+#### JSON Structure (7)
 
-#### Properties
+Data models expressed in JSON Structure.
 
-- [Documentation](https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/)
-- [API Reference](https://chromedevtools.github.io/devtools-protocol/)
-- [Getting Started](https://learn.microsoft.com/en-us/microsoft-edge/devtools-protocol-chromium/)
-- [OpenAPI](openapi/microsoft-edge-devtools-api.yaml)
-- [JSON Schema - Target](json-schema/devtools-api-target-schema.json)
-- [JSON Schema - Browser Version](json-schema/devtools-api-browser-version-schema.json)
-- [JSON Schema - Protocol Schema](json-schema/devtools-api-protocol-schema-schema.json)
-- [JSON-LD Context](json-ld/microsoft-edge-devtools-api-context.jsonld)
+- [Addons Api Package Upload Result Structure](https://apis.io/json-structure/microsoft-edge/addons-api-package-upload-result-structure/)
+- [Addons Api Product List Structure](https://apis.io/json-structure/microsoft-edge/addons-api-product-list-structure/)
+- [Addons Api Product Structure](https://apis.io/json-structure/microsoft-edge/addons-api-product-structure/)
+- [Addons Api Submission Structure](https://apis.io/json-structure/microsoft-edge/addons-api-submission-structure/)
+- [Devtools Api Browser Version Structure](https://apis.io/json-structure/microsoft-edge/devtools-api-browser-version-structure/)
+- [Devtools Api Protocol Schema Structure](https://apis.io/json-structure/microsoft-edge/devtools-api-protocol-schema-structure/)
+- [Devtools Api Target Structure](https://apis.io/json-structure/microsoft-edge/devtools-api-target-structure/)
 
-### Microsoft Edge Extensions API
-Build browser extensions for Microsoft Edge using the Chromium-based extensions platform. Supports the WebExtensions API standard for cross-browser compatibility.
+#### JSON-LD (2)
 
-**Human URL:** [https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/](https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/)
+Linked-data contexts for the provider's vocabulary.
 
-#### Tags:
+- [Microsoft Edge Addons Api Context](https://apis.io/jsonld/microsoft-edge/microsoft-edge-addons-api-context/)
+- [Microsoft Edge Devtools Api Context](https://apis.io/jsonld/microsoft-edge/microsoft-edge-devtools-api-context/)
 
- - Add-Ons, Browser Extensions, Chromium Extensions, Web Extensions
+#### Vocabulary (1)
 
-#### Properties
+The provider's domain terms, defined.
 
-- [Documentation](https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/)
-- [Getting Started](https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/getting-started/)
-- [API Reference](https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/developer-guide/api-support)
-- [Tutorials](https://learn.microsoft.com/en-us/microsoft-edge/extensions-chromium/getting-started/part1-simple-extension)
+- [Microsoft Edge Vocabulary](https://apis.io/vocabularies/microsoft-edge/microsoft-edge-vocabulary/)
 
-### Microsoft Edge Web Platform APIs
-Modern web APIs and standards supported in Microsoft Edge, including Progressive Web App capabilities, Web Components, and emerging web platform features.
+#### Examples (7)
 
-**Human URL:** [https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/](https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/)
+Example requests and responses.
 
-#### Tags:
+- [Addons Api Package Upload Result Example](https://apis.io/examples/microsoft-edge/addons-api-package-upload-result-example/)
+- [Addons Api Product Example](https://apis.io/examples/microsoft-edge/addons-api-product-example/)
+- [Addons Api Product List Example](https://apis.io/examples/microsoft-edge/addons-api-product-list-example/)
+- [Addons Api Submission Example](https://apis.io/examples/microsoft-edge/addons-api-submission-example/)
+- [Devtools Api Browser Version Example](https://apis.io/examples/microsoft-edge/devtools-api-browser-version-example/)
+- [Devtools Api Protocol Schema Example](https://apis.io/examples/microsoft-edge/devtools-api-protocol-schema-example/)
+- [Devtools Api Target Example](https://apis.io/examples/microsoft-edge/devtools-api-target-example/)
 
- - Progressive Web Apps, PWA, Web Platform, Web Standards
+#### Collections (8)
 
-#### Properties
+Postman and Open Collection request collections.
 
-- [Documentation](https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/)
-- [Getting Started](https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/how-to/)
-- [Release Notes](https://learn.microsoft.com/en-us/microsoft-edge/progressive-web-apps-chromium/whats-new/)
+- [Microsoft Edge Add-ons Browser API](https://apis.io/collections/microsoft-edge/open-microsoft-edge-browser-api/)
+- [Microsoft Edge Add-ons Browser Packages API](https://apis.io/collections/microsoft-edge/open-microsoft-edge-packages-api/)
+- [Microsoft Edge Add-ons Browser Pages API](https://apis.io/collections/microsoft-edge/open-microsoft-edge-pages-api/)
+- [Microsoft Edge Add-ons Browser Products API](https://apis.io/collections/microsoft-edge/open-microsoft-edge-products-api/)
+- [Microsoft Edge Add-ons Browser Publishing API](https://apis.io/collections/microsoft-edge/open-microsoft-edge-publishing-api/)
+- [Microsoft Edge Add-ons Browser Targets API](https://apis.io/collections/microsoft-edge/open-microsoft-edge-targets-api/)
+- [Microsoft Edge Add-ons API](https://apis.io/collections/microsoft-edge/postman-microsoft-edge-addons-api/)
+- [Microsoft Edge DevTools Protocol HTTP API](https://apis.io/collections/microsoft-edge/postman-microsoft-edge-devtools-api/)
 
-## Common Properties
+#### Governance rules (2)
 
+Spectral rulesets for the provider's contracts.
+
+- [Microsoft Edge — jsonschema rules](https://apis.io/rules/microsoft-edge/microsoft-edge-jsonschema-spectral-rules/)
+- [Microsoft Edge API Rules](https://apis.io/rules/microsoft-edge/microsoft-edge-spectral-rules/)
+
+#### Security (3)
+
+Authentication, trust centre, and vulnerability disclosure.
+
+- [Microsoft Edge Authentication](https://apis.io/security/microsoft-edge/microsoft-edge-authentication/)
+- [Microsoft Edge Domain Security](https://apis.io/security/microsoft-edge/microsoft-edge-domain-security/)
+- [Microsoft Edge Vulnerability Disclosure](https://apis.io/security/microsoft-edge/microsoft-edge-vulnerability-disclosure/)
+
+#### Plans and pricing (1)
+
+Published plans, tiers and prices.
+
+- [Microsoft Edge Plans Pricing](https://apis.io/plans/microsoft-edge/microsoft-edge-plans-pricing/)
+
+#### Rate limits (1)
+
+Published request limits.
+
+- [Microsoft Edge Rate Limits](https://apis.io/rate-limits/microsoft-edge/microsoft-edge-rate-limits/)
+
+#### FinOps (1)
+
+What the API costs to run, by operation.
+
+- [Microsoft Edge Finops](https://apis.io/finops/microsoft-edge/microsoft-edge-finops/)
+
+## Where to find this API
+
+Links to the company's own pages. This repository publishes no copy of their specifications — the canonical document is theirs and lives at the URLs below.
+
+- [Website](https://www.microsoft.com/)
 - [Documentation](https://learn.microsoft.com/en-us/microsoft-edge/)
-- [Developer Portal](https://developer.microsoft.com/microsoft-edge/)
-- [Blog](https://blogs.windows.com/msedgedev/)
-- [GitHub Organization](https://github.com/MicrosoftEdge)
-- [WebView2 Samples](https://github.com/MicrosoftEdge/WebView2Samples)
 - [Support](https://learn.microsoft.com/en-us/microsoft-edge/devtools-guide-chromium/)
-- [Release Notes](https://learn.microsoft.com/en-us/microsoft-edge/web-platform/release-notes/)
-- [Change Log](https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel)
-- [Status Page](https://developer.microsoft.com/en-us/microsoft-edge/status/)
-- [X](https://twitter.com/MSEdgeDev)
-- [Terms of Service](https://www.microsoft.com/legal/terms-of-use)
-- [Privacy Policy](https://privacy.microsoft.com/privacystatement)
-- [SDK - WebView2 NuGet](https://www.nuget.org/packages/Microsoft.Web.WebView2)
-- [Sign Up](https://partner.microsoft.com/dashboard/microsoftedge/)
-- [Marketplace](https://microsoftedge.microsoft.com/addons/)
+- [Changelog](https://learn.microsoft.com/en-us/deployedge/microsoft-edge-relnote-stable-channel)
+- [Blog](https://blogs.windows.com/msedgedev/)
+- [Terms of service](https://www.microsoft.com/legal/terms-of-use)
+- [Privacy policy](https://privacy.microsoft.com/privacystatement)
+- [GitHub](https://github.com/MicrosoftEdge)
+- [Status](https://developer.microsoft.com/en-us/microsoft-edge/status/)
 
-## Features
+## API Evangelist rating
 
-| Name | Description |
-|------|-------------|
-| Extension Publishing API | Programmatically publish, update, and manage browser extensions in the Edge Add-ons store via REST API. |
-| Remote Debugging Protocol | Debug and inspect web pages, service workers, and extensions using the Chrome DevTools Protocol over WebSocket. |
-| WebView2 Embedding | Embed Microsoft Edge rendering engine in native desktop applications using the WebView2 SDK. |
-| Progressive Web App Support | Build installable PWAs with offline capability, push notifications, and system integration. |
-| Cross-Browser Extension Compatibility | Build extensions using the Chromium WebExtensions API standard for cross-browser portability. |
-| Browser Automation | Automate browser tasks including page navigation, target management, and performance profiling. |
-| Extension Sideloading | Load and test unpacked extensions locally during development without publishing to the store. |
-| Manifest V3 Support | Build extensions using the latest Manifest V3 specification with service workers and declarative APIs. |
+**Kin Score 44.2** — developing · rubric 0.25.0 · scored 2026-10-23
 
-## Use Cases
+| Facet | Score |
+|---|---|
+| Discoverability | 78.6 |
+| Contract quality | 28.1 |
+| Contract governance | 27.3 |
+| Operational transparency | 36.8 |
+| Developer ergonomics | 65.5 |
+| Access clarity | 32.9 |
 
-| Name | Description |
-|------|-------------|
-| Automated Extension Deployment | Use the Add-ons API to automate CI/CD pipelines for publishing and updating browser extensions. |
-| Browser Testing and QA | Leverage DevTools Protocol for automated browser testing, performance auditing, and regression detection. |
-| Custom Browser Controls | Embed Edge rendering in desktop applications for custom browser experiences using WebView2. |
-| Enterprise Content Filtering | Build enterprise extensions for content filtering, security policy enforcement, and compliance monitoring. |
-| Web Scraping and Data Extraction | Use DevTools Protocol to programmatically navigate pages and extract structured data. |
-| Accessibility Testing | Automate accessibility audits using DevTools Protocol to inspect DOM, ARIA attributes, and contrast ratios. |
-| Performance Monitoring | Collect real-time performance metrics, network traces, and JavaScript profiling data via DevTools Protocol. |
-| Progressive Web App Distribution | Build and distribute PWAs through the Microsoft Store with native-like installation and system integration. |
+**Agent readiness 29.2** — agent-ready
 
-## Integrations
+| Agent-readiness dimension | Result |
+|---|---|
+| Spec Presence | yes |
+| Agentic Access | derived (partial credit) |
+| Reversibility Documented | — |
+| MCP Server | — |
+| Auth Clarity | bearer (partial credit) |
+| Idempotency | — |
+| Error Semantics | verified |
+| OpenAPI Examples | verified |
+| Rate Limit Signal | derived (partial credit) |
+| Event Surface Described | — |
+| Agent Skills | — |
+| Well Known Catalog | — |
+| Consent Identity | — |
+| Agent Card | — |
+| Dry Run Mode | — |
+| Delegated Identity | — |
+| Protected Resource Metadata | — |
+| Dynamic Client Registration | — |
+| Agentic Commerce | — |
+| Pagination Ratio | — |
+| Operation Distinctiveness | distinct |
 
-| Name | Description |
-|------|-------------|
-| Azure Active Directory | Authenticate to the Edge Add-ons API using Azure AD OAuth 2.0 client credentials flow. |
-| Microsoft Partner Center | Manage extension listings, submissions, and analytics through the Partner Center dashboard. |
-| Visual Studio Code | Debug Edge browser content directly from VS Code using the Edge DevTools extension. |
-| Selenium WebDriver | Automate Microsoft Edge browser for testing using Selenium with the Edge WebDriver. |
-| Playwright | Cross-browser automation framework with first-class support for Microsoft Edge testing. |
-| Puppeteer | Control headless Microsoft Edge instances programmatically using the Puppeteer Node.js library. |
-| GitHub Actions | Automate extension publishing and browser testing in CI/CD workflows using GitHub Actions. |
-| Windows App SDK | Integrate WebView2 into Windows desktop applications built with WinUI 3 and the Windows App SDK. |
+**Regulatory alignment 30.4** — Horizontal (data, software, accessibility, platform)
 
-## Artifacts
+The rubric is published at [github.com/api-evangelist/kin-score](https://github.com/api-evangelist/kin-score). The per-check breakdown behind these numbers — which checks were earned, partial or missed — along with score history and how this provider compares to its peers, is available at [apis.io/providers/microsoft-edge/](https://apis.io/providers/microsoft-edge/).
 
-Machine-readable API specifications organized by format.
+## How this profile is made
 
-### OpenAPI
+API Evangelist profiles a company's public API surface the way a developer would find it: the website, developer portal and documentation, the specifications it publishes, its public repositories, and its pricing, status and changelog pages. From that it derives the properties above — contracts split per API, workflows, schemas, collections, governance rules, plans and rate limits — and scores them against the published [Kin Score rubric](https://github.com/api-evangelist/kin-score).
 
-- [Microsoft Edge Add-ons API](openapi/microsoft-edge-addons-api.yaml)
-- [Microsoft Edge DevTools Protocol HTTP API](openapi/microsoft-edge-devtools-api.yaml)
+The artifacts are published on [APIs.io](https://apis.io), not in this repository. This repository is the public record for Microsoft Edge: the place to say something is wrong, missing or out of date, and to ask for a re-score or a removal.
 
-### JSON Schema
+## Open an issue
 
-- [Add-ons API - Product](json-schema/addons-api-product-schema.json)
-- [Add-ons API - Submission](json-schema/addons-api-submission-schema.json)
-- [Add-ons API - Product List](json-schema/addons-api-product-list-schema.json)
-- [Add-ons API - Package Upload Result](json-schema/addons-api-package-upload-result-schema.json)
-- [DevTools API - Target](json-schema/devtools-api-target-schema.json)
-- [DevTools API - Browser Version](json-schema/devtools-api-browser-version-schema.json)
-- [DevTools API - Protocol Schema](json-schema/devtools-api-protocol-schema-schema.json)
-
-### JSON Structure
-
-- [Add-ons API - Product](json-structure/addons-api-product-structure.json)
-- [Add-ons API - Submission](json-structure/addons-api-submission-structure.json)
-- [Add-ons API - Product List](json-structure/addons-api-product-list-structure.json)
-- [Add-ons API - Package Upload Result](json-structure/addons-api-package-upload-result-structure.json)
-- [DevTools API - Target](json-structure/devtools-api-target-structure.json)
-- [DevTools API - Browser Version](json-structure/devtools-api-browser-version-structure.json)
-- [DevTools API - Protocol Schema](json-structure/devtools-api-protocol-schema-structure.json)
-
-### JSON-LD
-
-- [Microsoft Edge DevTools API Context](json-ld/microsoft-edge-devtools-api-context.jsonld)
-- [Microsoft Edge Add-ons API Context](json-ld/microsoft-edge-addons-api-context.jsonld)
-
-### Examples
-
-- [Add-ons API - Product](examples/addons-api-product-example.json)
-- [Add-ons API - Product List](examples/addons-api-product-list-example.json)
-- [Add-ons API - Submission](examples/addons-api-submission-example.json)
-- [Add-ons API - Package Upload Result](examples/addons-api-package-upload-result-example.json)
-- [DevTools API - Target](examples/devtools-api-target-example.json)
-- [DevTools API - Browser Version](examples/devtools-api-browser-version-example.json)
-- [DevTools API - Protocol Schema](examples/devtools-api-protocol-schema-example.json)
-
-## Capabilities
-
-Naftiko capabilities organized as shared per-API definitions composed into customer-facing workflows.
-
-### Shared Per-API Definitions
-
-- [DevTools API](capabilities/shared/devtools-api.yaml) -- 6 operations for browser target discovery and management
-- [Add-ons API](capabilities/shared/addons-api.yaml) -- 6 operations for extension lifecycle management
-
-### Workflow Capabilities
-
-| Workflow | APIs Combined | Tools | Persona |
-|----------|--------------|-------|---------|
-| [Browser Development](capabilities/browser-development.yaml) | DevTools API + Add-ons API | 12 | Extension Developer, Web Developer, QA Engineer |
-
-## Vocabulary
-
-- [Microsoft Edge Vocabulary](vocabulary/microsoft-edge-vocabulary.yaml) -- Unified taxonomy mapping 6 resources, 7 actions, 1 workflow, and 3 personas across operational (OpenAPI) and capability (Naftiko) dimensions
-
-## Rules
-
-- [Microsoft Edge Spectral Rules](rules/microsoft-edge-spectral-rules.yml) -- 25 rules across 10 categories enforcing Microsoft Edge API conventions
-
-## Maintainers
-
-**FN:** Kin Lane
-
-**Email:** kin@apievangelist.com
+- **Something about this listing** — a wrong description, a missing API, a stale artifact or a question about the rating: [open an issue on this repository](https://github.com/api-evangelist/microsoft-edge/issues/new).
+- **A new API, or one that is not in the catalog yet** — [submit it on APIs.io](https://apis.io/add/).
+- **Anything else** — [the APIs.io inbox](https://github.com/api-search/inbox/issues/new) or [info@apievangelist.com](mailto:info@apievangelist.com).
